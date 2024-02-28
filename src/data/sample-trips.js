@@ -160,3 +160,5 @@ const trips = [
     suggestedActivities: [ ]
     }
 ]
+
+export { trips }
