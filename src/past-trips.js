@@ -44,7 +44,11 @@ function viewUpcomingTrip(id, allTrips){
         return trip.userID === id; 
     }).sort((a, b) => new Date(a.date) - new Date(b.date))
     let pastTripDestination = allPastTrips.map(destination => {
-        return destination.destinationID
+        return destination = {
+            destinationID: destination.destinationID,
+            date: destination.date, 
+            duration: destination.duration
+        }
     })
     return pastTripDestination.slice(-1);
 }

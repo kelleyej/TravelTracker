@@ -29,6 +29,10 @@ h2 {
   color: #0a2351;
 }
 
+.upcomingTrip {
+  font-style: normal; 
+}
+
 .image-container, 
 .money-spent {
   position: fixed; 

@@ -1,5 +1,5 @@
 import { getData } from './apiCalls.js'
-import { viewPreviousTrip, calculateAnnualTripCost } from './past-trips.js'
+import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip } from './past-trips.js'
 
 // Query Selectors
 const dashboardHeader = document.querySelector('h1');
@@ -8,6 +8,7 @@ const globeButton = document.querySelector('img');
 const moneySpentDisplay = document.querySelector('.money-spent');
 const imageDisplay = document.querySelector('.image-container');
 const moneyDisplay = document.querySelector('.money-display')
+const upcomingTripSection = document.querySelector('.upcoming-trip')
 
 // EventListeners
 window.addEventListener('load', renderTravelerData)
@@ -29,6 +30,7 @@ getData()
     allTrips = trips.trips
     allDestinations = destinations.destinations
     welcomeTraveler(currentTraveler, allTrips, allDestinations);
+    displayUpcomingTrip(currentTraveler.id, allTrips, allDestinations)
 })
 }
 
@@ -48,4 +50,12 @@ function displayMoneySpent(id, allTrips, allDestinations, year){
     moneySpentDisplay.classList.remove('hidden');
     let amountSpent = calculateAnnualTripCost(id, allTrips, allDestinations, year)
     moneyDisplay.innerText = `You have spent $${amountSpent} so far this year.`
+}
+
+function displayUpcomingTrip(id, allTrips, allDestinations){
+    let upcomingTrip = viewUpcomingTrip(id, allTrips)
+    let locationOfTrip = allDestinations.find(location => {
+        return location.id === upcomingTrip[0].destinationID
+    })
+    upcomingTripSection.innerText = `On ${upcomingTrip[0].date}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
 }

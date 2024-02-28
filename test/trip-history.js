@@ -19,7 +19,7 @@ describe('trip-history.js', function() {
     it('should find an upcoming trip for a single traveler', function() {
       const upcomingTrip = viewUpcomingTrip(4, trips)
 
-      expect(upcomingTrip).to.deep.equal([2])
+      expect(upcomingTrip).to.deep.equal([{destinationID: 2, date: "2022/09/24", duration: 10}])
     });
   });
 
