@@ -3,6 +3,9 @@ body {
   font-family: "Nunito", sans-serif;
 }
 header {
+  display: flex; 
+  justify-content: space-between;
+  flex-direction: row-reverse;
   height: 15vh; 
   margin-bottom: 50px; 
   background-color: #72A0C1;
@@ -13,6 +16,29 @@ h1 {
 p {
   text-align: center;
   font-style: italic; 
+}
+
+img {
+  height: 10vh; 
+  cursor: pointer;
+}
+
+.image-container, 
+.money-spent {
+  position: fixed; 
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 2%;
+}
+
+.money-spent {
+  width: 8%; 
+}
+
+.text-container {
+  width: 100%;
 }
 
 main {
@@ -29,6 +55,6 @@ section {
   border-end-start-radius: 80px 80px;
 }
 
-footer {
-  background-color: yellow;
+.hidden {
+  display: none; 
 }

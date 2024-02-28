@@ -18,7 +18,7 @@ function viewPreviousTrip(id, allTrips, allDestinations){
     let previousTripLocation = allDestinations.find(place => {
         return place.id === recentTrip[0].destinationID
     })
-    return previousTripLocation.destination; 
+    return allPastTrips ? previousTripLocation.destination : `You have not been on any trips yet.`; 
 }
 
 function calculateAnnualTripCost(id, allTrips, allDestinations, year){
