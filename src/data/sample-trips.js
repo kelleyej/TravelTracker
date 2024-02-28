@@ -2,7 +2,7 @@ const trips = [
     {
     id: 1,
     userID: 1,
-    destinationID: 49,
+    destinationID: 2,
     travelers: 1,
     date: "2022/09/16",
     duration: 8,
@@ -12,7 +12,7 @@ const trips = [
     {
     id: 2,
     userID: 2,
-    destinationID: 25,
+    destinationID: 4,
     travelers: 5,
     date: "2022/10/04",
     duration: 18,
@@ -22,7 +22,7 @@ const trips = [
     {
     id: 3,
     userID: 5,
-    destinationID: 22,
+    destinationID: 8,
     travelers: 4,
     date: "2022/05/22",
     duration: 17,
@@ -32,7 +32,7 @@ const trips = [
     {
     id: 4,
     userID: 4,
-    destinationID: 14,
+    destinationID: 6,
     travelers: 2,
     date: "2022/02/25",
     duration: 10,
@@ -42,7 +42,7 @@ const trips = [
     {
     id: 5,
     userID: 4,
-    destinationID: 29,
+    destinationID: 3,
     travelers: 3,
     date: "2022/04/30",
     duration: 18,
@@ -52,7 +52,7 @@ const trips = [
     {
     id: 6,
     userID: 2,
-    destinationID: 35,
+    destinationID: 1,
     travelers: 3,
     date: "2022/06/29",
     duration: 9,
@@ -62,7 +62,7 @@ const trips = [
     {
     id: 7,
     userID: 1,
-    destinationID: 17,
+    destinationID: 4,
     travelers: 5,
     date: "2022/5/28",
     duration: 20,
@@ -72,7 +72,7 @@ const trips = [
     {
     id: 8,
     userID: 6,
-    destinationID: 39,
+    destinationID: 5,
     travelers: 6,
     date: "2022/02/07",
     duration: 4,
@@ -82,7 +82,7 @@ const trips = [
     {
     id: 9,
     userID: 5,
-    destinationID: 19,
+    destinationID: 2,
     travelers: 5,
     date: "2022/12/19",
     duration: 19,
@@ -92,7 +92,7 @@ const trips = [
     {
     id: 10,
     userID: 3,
-    destinationID: 50,
+    destinationID: 7,
     travelers: 6,
     date: "2022/07/23",
     duration: 17,
@@ -102,7 +102,7 @@ const trips = [
     {
     id: 11,
     userID: 1,
-    destinationID: 5,
+    destinationID: 6,
     travelers: 4,
     date: "2022/10/14",
     duration: 4,
@@ -112,7 +112,7 @@ const trips = [
     {
     id: 12,
     userID: 2,
-    destinationID: 33,
+    destinationID: 8,
     travelers: 6,
     date: "2022/10/17",
     duration: 6,
@@ -122,7 +122,7 @@ const trips = [
     {
     id: 13,
     userID: 6,
-    destinationID: 12,
+    destinationID: 4,
     travelers: 1,
     date: "2022/02/12",
     duration: 11,
@@ -132,7 +132,7 @@ const trips = [
     {
     id: 14,
     userID: 4,
-    destinationID: 35,
+    destinationID: 2,
     travelers: 1,
     date: "2022/09/24",
     duration: 10,
@@ -142,7 +142,7 @@ const trips = [
     {
     id: 15,
     userID: 5,
-    destinationID: 13,
+    destinationID: 1,
     travelers: 3,
     date: "2022/07/04",
     duration: 6,
@@ -152,7 +152,7 @@ const trips = [
     {
     id: 16,
     userID: 2,
-    destinationID: 27,
+    destinationID: 2,
     travelers: 1,
     date: "2022/11/20",
     duration: 9,
