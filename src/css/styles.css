@@ -5,7 +5,14 @@ body {
 header {
   height: 15vh; 
   margin-bottom: 50px; 
-  background-color: aqua;
+  background-color: #72A0C1;
+}
+h1 {
+  text-align: center;
+}
+p {
+  text-align: center;
+  font-style: italic; 
 }
 
 main {
@@ -17,6 +24,11 @@ main {
 section {
   width: 30%; 
   text-align: center;
-  background-color: yellow; 
+  background-color: #87A96B;
+  opacity: .9; 
   border-end-start-radius: 80px 80px;
+}
+
+footer {
+  background-color: yellow;
 }
