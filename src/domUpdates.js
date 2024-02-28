@@ -62,14 +62,9 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
 }
 
 function displayPastTrips(id, allTrips, allDestinations){
-   let location = viewPastTrips(id, allTrips)
-    let nameOfLocation = allDestinations.filter(loc => {
-        return location.includes(loc.id)
+    let trips = viewPastTrips(id, allTrips, allDestinations)
+    trips.forEach(trip => {
+        pastTripSection.innerHTML += `On ${trip.date}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
     })
-    console.log(location)
-    nameOfLocation.forEach(place => {
-        pastTripSection.innerHTML += `You visited ${place.destination}.<br>`
-    })
-   
   
 }

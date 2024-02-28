@@ -1,12 +1,22 @@
-function viewPastTrips(id, allTrips){
+function viewPastTrips(id, allTrips, allDestinations){
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id; 
     }).sort((a, b) => new Date(a.date) - new Date(b.date))
-    let pastTripDestination = allPastTrips.map(destination => {
-        return destination.destinationID
+    allPastTrips.length = allPastTrips.length -1 
+    let pastTrips = allPastTrips.map(trip => {
+        return trip = {
+            destination: allDestinations.find(place => place.id === trip.destinationID).destination, 
+            travelers: trip.travelers, 
+            date: trip.date, 
+        }
     })
-    pastTripDestination.length = pastTripDestination.length - 1
-    return pastTripDestination; 
+    console.log(pastTrips)
+    return pastTrips; 
+    // let pastTripDestination = allPastTrips.map(destination => {
+    //     return destination.destinationID
+    // })
+    // pastTripDestination.length = pastTripDestination.length - 1
+    // return pastTripDestination; 
 };
 
 function viewPreviousTrip(id, allTrips, allDestinations){
@@ -39,7 +49,8 @@ function calculateAnnualTripCost(id, allTrips, allDestinations) {
         return destination.id === trip.destinationID
        }).estimatedFlightCostPerPerson) 
     }, 0)
-    return totalTripCost + (totalTripCost * .10);
+    console.log((totalTripCost + (totalTripCost * .10)).toFixed(2))
+    return (totalTripCost + (totalTripCost * .10)).toFixed(2);
 }
 
 function viewUpcomingTrip(id, allTrips){

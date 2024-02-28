@@ -9,6 +9,7 @@ header {
   height: 15vh; 
   margin-bottom: 50px; 
   background-color: #72A0C1;
+  opacity: .8;
 }
 h1 {
   text-align: center;
@@ -16,6 +17,10 @@ h1 {
 p {
   text-align: center;
   font-style: italic; 
+}
+
+span {
+  font-weight: bold;
 }
 
 img {
@@ -31,6 +36,11 @@ h2 {
 
 .upcoming-trip {
   font-style: normal; 
+}
+
+.past-trip {
+  width: 90%;
+  text-align: left;
 }
 
 .image-container, 

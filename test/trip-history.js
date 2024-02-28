@@ -7,11 +7,19 @@ import { destinations } from '../src/data/sample-destinations';
 describe('trip-history.js', function() {
   describe('find all past trips', function() {
     it('should find all past trips for a single traveler', function() {
-      const pastTrips = viewPastTrips(4, trips)
+      const pastTrips = viewPastTrips(4, trips, destinations)
       // const pastTrips2 = viewPastTrips(3, trips)
 
-      expect(pastTrips).to.deep.equal([6, 3])
-      // expect(pastTrips2).to.deep.equal([7])
+      expect(pastTrips).to.deep.equal([{
+        "date": "2022/02/25",
+        "destination": "Jakarta, Indonesia",
+        "travelers": 2
+        },
+        {
+        "date": "2022/04/30",
+        "destination": "Sydney, Austrailia",
+        "travelers": 3
+        }]) ;
     });
   });
 
@@ -27,7 +35,7 @@ describe('trip-history.js', function() {
     it('should calculate the cost of travel for the year for a single traveler', function() {
       const totalCost = calculateAnnualTripCost(6, trips, destinations, "2022")
 
-      expect(totalCost).to.equal(1375)
+      expect(totalCost).to.equal("1375.00")
     })
   })
 
