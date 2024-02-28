@@ -21,6 +21,12 @@ p {
 img {
   height: 10vh; 
   cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
+}
+h2 {
+  color: #0a2351;
 }
 
 .image-container, 

@@ -13,8 +13,6 @@ const moneyDisplay = document.querySelector('.money-display')
 window.addEventListener('load', renderTravelerData)
 globeButton.addEventListener('click', function() {
     displayMoneySpent(currentTraveler.id, allTrips, allDestinations, "2022")
-    console.log(currentTraveler)
-    console.log(allTrips)
 });
 
 
