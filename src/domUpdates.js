@@ -1,5 +1,5 @@
 import { getData } from './apiCalls.js'
-import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip } from './past-trips.js'
+import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
 
 // Query Selectors
 const dashboardHeader = document.querySelector('h1');
@@ -9,11 +9,12 @@ const moneySpentDisplay = document.querySelector('.money-spent');
 const imageDisplay = document.querySelector('.image-container');
 const moneyDisplay = document.querySelector('.money-display')
 const upcomingTripSection = document.querySelector('.upcoming-trip')
+const pastTripSection = document.querySelector('.past-trip')
 
 // EventListeners
 window.addEventListener('load', renderTravelerData)
 globeButton.addEventListener('click', function() {
-    displayMoneySpent(currentTraveler.id, allTrips, allDestinations, "2022")
+    displayMoneySpent(currentTraveler.id, allTrips, allDestinations)
 });
 
 
@@ -30,14 +31,14 @@ getData()
     allTrips = trips.trips
     allDestinations = destinations.destinations
     welcomeTraveler(currentTraveler, allTrips, allDestinations);
-    displayUpcomingTrip(currentTraveler.id, allTrips, allDestinations)
+    displayUpcomingTrip(currentTraveler.id, allTrips, allDestinations);
+    displayPastTrips(currentTraveler.id, allTrips, allDestinations)
 })
 }
 
 function welcomeTraveler({id, name}, allTrips, allDestinations){
     dashboardHeader.innerText = `Welcome back, ${name}!`
     let previousTrip = viewPreviousTrip(id, allTrips, allDestinations)
-    console.log(previousTrip)
     if(previousTrip !== ''){
        dashboardParagraph.innerText = `How was your trip to ${previousTrip}?` 
     } else {
@@ -45,10 +46,10 @@ function welcomeTraveler({id, name}, allTrips, allDestinations){
     }
 }
 
-function displayMoneySpent(id, allTrips, allDestinations, year){
+function displayMoneySpent(id, allTrips, allDestinations){
     imageDisplay.classList.add('hidden');
     moneySpentDisplay.classList.remove('hidden');
-    let amountSpent = calculateAnnualTripCost(id, allTrips, allDestinations, year)
+    let amountSpent = calculateAnnualTripCost(id, allTrips, allDestinations)
     moneyDisplay.innerText = `You have spent $${amountSpent} so far this year.`
 }
 
@@ -58,4 +59,17 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
         return location.id === upcomingTrip[0].destinationID
     })
     upcomingTripSection.innerText = `On ${upcomingTrip[0].date}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
+}
+
+function displayPastTrips(id, allTrips, allDestinations){
+   let location = viewPastTrips(id, allTrips)
+    let nameOfLocation = allDestinations.filter(loc => {
+        return location.includes(loc.id)
+    })
+    console.log(location)
+    nameOfLocation.forEach(place => {
+        pastTripSection.innerHTML += `You visited ${place.destination}.<br>`
+    })
+   
+  
 }

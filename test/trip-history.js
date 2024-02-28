@@ -10,7 +10,7 @@ describe('trip-history.js', function() {
       const pastTrips = viewPastTrips(4, trips)
       // const pastTrips2 = viewPastTrips(3, trips)
 
-      expect(pastTrips).to.deep.equal([6, 3,])
+      expect(pastTrips).to.deep.equal([6, 3])
       // expect(pastTrips2).to.deep.equal([7])
     });
   });

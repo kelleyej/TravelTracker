@@ -6,7 +6,7 @@ function viewPastTrips(id, allTrips){
         return destination.destinationID
     })
     pastTripDestination.length = pastTripDestination.length - 1
-    return pastTripDestination;
+    return pastTripDestination; 
 };
 
 function viewPreviousTrip(id, allTrips, allDestinations){
@@ -21,14 +21,17 @@ function viewPreviousTrip(id, allTrips, allDestinations){
     return allPastTrips ? previousTripLocation.destination : `You have not been on any trips yet.`; 
 }
 
-function calculateAnnualTripCost(id, allTrips, allDestinations, year){
+function calculateAnnualTripCost(id, allTrips, allDestinations) {
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id; 
     }).sort((a, b) => new Date(a.date) - new Date(b.date))
-    allPastTrips.length = allPastTrips.length - 1;
+    let lastTrip = allPastTrips.splice(-1)
+    let year = lastTrip[0].date.split('/')[0]
+    // allPastTrips.length = allPastTrips.length - 1;
     let annualTrips = allPastTrips.filter(trip => {
         return trip.date.split('/')[0] === year; 
     })
+    console.log(annualTrips)
     let totalTripCost = annualTrips.reduce((total, trip) => {
        return total += ((trip.duration * (allDestinations.find(destination => {
         return destination.id === trip.destinationID
