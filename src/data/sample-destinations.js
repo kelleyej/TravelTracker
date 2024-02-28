@@ -64,3 +64,5 @@ const destinations = [
     alt: "city with people walking in crosswalk and brightly lit shops at night"
     }
 ]
+
+export { destinations }

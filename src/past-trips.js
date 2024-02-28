@@ -9,20 +9,24 @@ function viewPastTrips(id, allTrips){
     return pastTripDestination;
 };
 
-// function calculateAnnualTripCost(id, allTrips, allDestinations, year){
-//     let allPastTrips = allTrips.filter(trip => {
-//         return trip.userID === id; 
-//     }).sort((a, b) => new Date(a.date) - new Date(b.date))
-//     allPastTrips.length = allPastTrips.length - 1;
-//     let tripDate = allPastTrips.filter(trip => {
-//         let yearOnly = trip.date.splice('/')
-//         return yearOnly[0] === year; 
-//     })
-//     let totalTripCost = tripDate.reduce((total, trip) => {
-//         total += trip.duration * 
-//     }, 0)
-//     return totalTripCost;
-// }
+function calculateAnnualTripCost(id, allTrips, allDestinations, year){
+    let allPastTrips = allTrips.filter(trip => {
+        return trip.userID === id; 
+    }).sort((a, b) => new Date(a.date) - new Date(b.date))
+    allPastTrips.length = allPastTrips.length - 1;
+    let annualTrips = allPastTrips.filter(trip => {
+        return trip.date.split('/')[0] === year; 
+    })
+    let totalTripCost = annualTrips.reduce((total, trip) => {
+       return total += ((trip.duration * (allDestinations.find(destination => {
+        return destination.id === trip.destinationID
+       })).estimatedLodgingCostPerDay) + allDestinations.find(destination =>{
+        return destination.id === trip.destinationID
+       }).estimatedFlightCostPerPerson)
+    }, 0)
+    console.log(totalTripCost)
+    return totalTripCost;
+}
 
 function viewUpcomingTrip(id, allTrips){
     let allPastTrips = allTrips.filter(trip => {
@@ -34,7 +38,7 @@ function viewUpcomingTrip(id, allTrips){
     return pastTripDestination.slice(-1);
 }
 
-export { viewPastTrips, viewUpcomingTrip }
+export { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost }
 
 
 // id: 7,

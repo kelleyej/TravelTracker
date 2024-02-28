@@ -8,5 +8,5 @@ import './css/styles.css';
 // import './images/turing-logo.png'
 import './images/travel.jpg'
 
+import './domUpdates'
 
-console.log('This is the JavaScript entry file - your code begins here.');
