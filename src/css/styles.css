@@ -18,4 +18,5 @@ section {
   width: 30%; 
   text-align: center;
   background-color: yellow; 
+  border-end-start-radius: 80px 80px;
 }
