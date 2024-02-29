@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Webpack Starter Kit</title>
+</head>
+<body>
+<header>
+  <div class="text-container">
+  <h1></h1>
+  <p></p>
+   </div>
+  <div class="image-container">
+  <img class="globe" src="./images/globe.png" role="button" alt="globe surrounded by an airplane and clouds"/> 
+  </div>
+  <div class="money-spent hidden">
+  <p class="money-display"></p>
+  </div>
+</header>
+<main class="main-display">
+  <section>
+  <h2>PAST TRIPS</h2>
+  <section class="past-trip"></section>
+</section>
+  <section>
+    <h2>UPCOMING TRIPS</h2>
+    <p class="upcoming-trip"></p>
+  </section>
+  <section class="pending-trips">
+    <div>
+    <h2>PENDING TRIPS</h2> 
+    <p class="pending-trip-para"></p>
+    <section class="post-trips">
+
+    </section>
+    </div>
+    <div>
+      <button class="book-button" type="button">CLICK HERE to book a trip.</button>
+     <img class="airplane" src="./images/airplane.png"/>  
+    </div> 
+  </section>
+</main>
+<main class="book-display hidden">
+  <section class="book-trip">
+   <form>
+    <label>Date:</label>
+    <input type="text" class="date" placeholder="YYYY/MM/DD"></input><br>
+    <label>Duration:</label>
+    <input placeholder="Enter Number of Days" type="text" class="duration"></input><br>
+    <label>Number of Travelers:</label>
+    <input placeholder="Enter Number" type="text" class="travelers"></input><br>
+    <label>Choose a Destination:</label>
+    <select>
+
+    </select>
+    <!-- <select name="destinations">
+      <option value="Madison">Madison</option>
+      <option value="Denver">Denver</option>
+      <option value="Fishers">Fishers</option>
+      <option value="France">France</option>
+    </select> -->
+    <button class="show-estimate">Show estimate cost for this trip.</button>
+    <p class="show-cost"></p>
+    <button class="submit-button" type="submit">Book this trip!</button>
+  </form>
+  </section>
+</main>
+  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  <script src="bundle.js"></script>
+</body>
+</html>
