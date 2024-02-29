@@ -24,9 +24,15 @@ span {
   font-weight: bold;
 }
 
+button {
+  color: #0a2351;
+  box-shadow: 0px 0px 0px 6px darkolivegreen;
+  border-radius: 50px;
+  border: none;
+}
+
 .globe, 
-.airplane {
-  height: 10vh; 
+button {
   cursor: pointer;
     &:hover {
       transform: scale(1.2);
@@ -35,6 +41,15 @@ span {
 h2 {
   color: #0a2351;
   margin-bottom: 3%; 
+}
+
+.globe {
+  height: 10vh; 
+}
+
+.airplane {
+  height: 10vh; 
+  margin-bottom: 5%; 
 }
 
 .upcoming-trip {
