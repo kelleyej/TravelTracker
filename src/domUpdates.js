@@ -18,6 +18,7 @@ const form = document.querySelector('form');
 const date = document.querySelector('.date');
 const travelers = document.querySelector('.travelers');
 const duration = document.querySelector('.duration');
+const destinationSelection = document.querySelector('select')
 
 // EventListeners
 window.addEventListener('load', renderTravelerData)
@@ -27,13 +28,12 @@ globeButton.addEventListener('click', function() {
 airplaneButton.addEventListener('click', bookNextTrip)
 form.addEventListener('submit', function(event) {
     event.preventDefault()
-    console.log(allTrips)
     fetch('http://localhost:3001/api/v1/trips', {
      method: 'POST', 
      body: JSON.stringify({
         id: allTrips.length + 1, 
         userID: currentTraveler.id,
-        destinationID: 4, 
+        destinationID: Number(destinationSelection.value), 
         travelers: Number(travelers.value), 
         date: date.value, 
         duration: Number(duration.value),
@@ -63,6 +63,7 @@ getData()
     welcomeTraveler(currentTraveler, allTrips, allDestinations);
     displayUpcomingTrip(currentTraveler.id, allTrips, allDestinations);
     displayPastTrips(currentTraveler.id, allTrips, allDestinations)
+    listDestinations(allDestinations)
 })
 }
 
@@ -96,11 +97,17 @@ function displayPastTrips(id, allTrips, allDestinations){
     trips.forEach(trip => {
         pastTripSection.innerHTML += `On ${trip.date}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
     })
-  
 }
 
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
     header.classList.add("hidden")
     bookDisplay.classList.remove("hidden")
+}
+
+function listDestinations(allDestinations){
+allDestinations.forEach(location => {
+ destinationSelection.innerHTML += 
+ `<option placeholder="test" value=${location.id}>${location.destination}</option>`
+    })
 }
