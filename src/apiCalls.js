@@ -5,8 +5,36 @@ let allData = [
 ]
 
 // function postData(){
-//     fetch('http://localhost:3001/api/v1/trips')
-//     .then()
+//     fetch('http://localhost:3001/api/v1/trips', {
+//      method: 'POST', 
+//      body: JSON.stringify({
+//         id: , 
+//         userID: ,
+//         destinationID: , 
+//         travelers: , 
+//         date: , 
+//         duration: ,
+//         status: "pending", 
+//         suggestedActivities: []
+//         }), 
+//      headers: {
+//         'Content-type': 'application/json'
+//      },
+//     })
+//     fetch('http://localhost:3001/api/v1/destinations', {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             id: , 
+//             destination: , 
+//             estimatedLodgingCostPerDay: , 
+//             estimatedFlightCostPerPerson: ,
+//             image: , 
+//             alt: 
+//         }),
+//         headers: {
+//             'Content-type': 'application/json'
+//         }
+//     })
 // }
 
 function getData(){
