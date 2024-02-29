@@ -144,7 +144,7 @@ const trips = [
     userID: 5,
     destinationID: 1,
     travelers: 3,
-    date: "2022/07/04",
+    date: "2020/07/04",
     duration: 6,
     status: "approved",
     suggestedActivities: [ ]

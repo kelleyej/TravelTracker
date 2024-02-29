@@ -8,9 +8,8 @@ function viewPastTrips(id, allTrips, allDestinations){
             destination: allDestinations.find(place => place.id === trip.destinationID).destination, 
             travelers: trip.travelers, 
             date: trip.date, 
-        }
-    })
-    console.log(pastTrips)
+        };
+    });
     return pastTrips; 
 };
 
