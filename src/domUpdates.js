@@ -22,14 +22,18 @@ const duration = document.querySelector('.duration');
 const destinationSelection = document.querySelector('select');
 const pendingTripsSection = document.querySelector('.pending-trips');
 const pendingTripParagraph = document.querySelector('.pending-trip-para');
-const submitButton = document.querySelector('.submit-button')
+const submitButton = document.querySelector('.submit-button');
+const postTripSection = document.querySelector('.post-trips')
 
 // EventListeners
 window.addEventListener('load', renderTravelerData)
 globeButton.addEventListener('click', function() {
     displayMoneySpent(currentTraveler.id, allTrips, allDestinations)
 });
-bookTrip.addEventListener('click', bookNextTrip)
+bookTrip.addEventListener('click', function() {
+    bookNextTrip()
+    console.log("IS THIS WORKING?")
+})
 form.addEventListener('submit', function(event) {
     event.preventDefault()
  return runPost(allTrips, currentTraveler, destinationSelection, travelers, date, duration)
@@ -48,7 +52,10 @@ let allDestinations;
 function renderTravelerData(){
 getData()
 .then(([travelers, trips, destinations]) => {
-    currentTraveler = travelers.travelers[Math.floor(Math.random() * travelers.travelers.length)]
+    if(!currentTraveler){
+       currentTraveler = travelers.travelers[Math.floor(Math.random() * travelers.travelers.length)] 
+    }
+
     allTrips = trips.trips
     allDestinations = destinations.destinations
     welcomeTraveler(currentTraveler, allTrips, allDestinations);
@@ -92,6 +99,7 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
 
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
+    pastTripSection.innerHTML = '';
     trips.forEach(trip => {
         pastTripSection.innerHTML += `On ${trip.date}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
     })
@@ -112,11 +120,12 @@ allDestinations.forEach(location => {
 
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
+    postTripSection.innerHTML = '';
     if(pendingTrips === `You currently have no pending trips.`){
         pendingTripParagraph.innerText = "You currently have no pending trips."
     } else {
     pendingTrips.forEach(trip => {
-      pendingTripsSection.innerHTML += `<p>Currently waiting approval for a trip to ${trip.destination} on ${trip.date} with ${trip.travelers} other travelers!</p>` 
+      postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${trip.date} with ${trip.travelers} other travelers!`
     })
 }
 }
