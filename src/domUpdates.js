@@ -75,6 +75,6 @@ function displayPastTrips(id, allTrips, allDestinations){
 
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
-    header.classList.add("hidden");
+    header.classList.add("hidden")
     bookDisplay.classList.remove("hidden")
 }
