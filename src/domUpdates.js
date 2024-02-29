@@ -1,5 +1,6 @@
 import { getData, postData } from './apiCalls.js'
 import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
+import { findPendingTrips } from './pending-trips.js'
 
 // Query Selectors
 const dashboardHeader = document.querySelector('h1');
@@ -108,6 +109,10 @@ function bookNextTrip(){
 function listDestinations(allDestinations){
 allDestinations.forEach(location => {
  destinationSelection.innerHTML += 
- `<option placeholder="test" value=${location.id}>${location.destination}</option>`
+ `<option value=${location.id}>${location.destination}</option>`
     })
+}
+
+function displayPendingTrips(){
+    
 }
