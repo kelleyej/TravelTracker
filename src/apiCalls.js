@@ -4,6 +4,11 @@ let allData = [
     fetch('http://localhost:3001/api/v1/destinations')
 ]
 
+// function postData(){
+//     fetch('http://localhost:3001/api/v1/trips')
+//     .then()
+// }
+
 function getData(){
     return Promise.all(allData)
     .then(response => {
