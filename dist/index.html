@@ -14,13 +14,13 @@
   <p></p>
    </div>
   <div class="image-container">
-  <img src="./images/globe.png" role="button" alt="globe surrounded by an airplane and clouds"/> 
+  <img class="globe" src="./images/globe.png" role="button" alt="globe surrounded by an airplane and clouds"/> 
   </div>
   <div class="money-spent hidden">
   <p class="money-display"></p>
   </div>
 </header>
-<main>
+<main class="main-display">
   <section>
   <h2>PAST TRIPS</h2>
   <section class="past-trip"></section>
@@ -29,13 +29,19 @@
     <h2>UPCOMING TRIPS</h2>
     <p class="upcoming-trip"></p>
   </section>
-  <section>
-  <h2>PENDING TRIPS</h2>
-  <p>You currently have no pending trips.</p>
+  <section class="pending-trips">
+    <div>
+    <h2>PENDING TRIPS</h2>  
+    <p>You currently have no pending trips.</p>
+    </div>
+    <div>
+     <img class="airplane" src="./images/airplane.png"/>  
+    </div> 
   </section>
 </main>
-<footer>
-</footer>
+<main class="book-display hidden">
+  <img class="greece-image" src="./images/greece.jpg"/>
+</main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>

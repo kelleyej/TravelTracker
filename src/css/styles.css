@@ -2,6 +2,7 @@ body {
   background-image: url('/src/images/travel.jpg');
   font-family: "Nunito", sans-serif;
 }
+
 header {
   display: flex; 
   justify-content: space-between;
@@ -19,11 +20,18 @@ p {
   font-style: italic; 
 }
 
+.greece-image {
+  height: 100vh; 
+  width: 100vw; 
+  margin: 0; 
+}
+
 span {
   font-weight: bold;
 }
 
-img {
+.globe, 
+.airplane {
   height: 10vh; 
   cursor: pointer;
     &:hover {
@@ -32,6 +40,7 @@ img {
 }
 h2 {
   color: #0a2351;
+  margin-bottom: 3%; 
 }
 
 .upcoming-trip {
@@ -41,6 +50,7 @@ h2 {
 .past-trip {
   width: 90%;
   text-align: left;
+  margin-left: 5%; 
 }
 
 .image-container, 
@@ -63,7 +73,7 @@ h2 {
 
 main {
   display: flex; 
-  height: 50vh; 
+  height: 70vh; 
   justify-content: space-around; 
 }
 
@@ -73,6 +83,12 @@ section {
   background-color: #87A96B;
   opacity: .9; 
   border-end-start-radius: 80px 80px;
+}
+
+.pending-trips {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hidden {

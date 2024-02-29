@@ -8,6 +8,8 @@ import './css/styles.css';
 // import './images/turing-logo.png'
 import './images/travel.jpg'
 import './images/globe.png'
+import './images/airplane.png'
+import './images/greece.jpg'
 
 import './domUpdates'
 

@@ -10,13 +10,17 @@ const imageDisplay = document.querySelector('.image-container');
 const moneyDisplay = document.querySelector('.money-display')
 const upcomingTripSection = document.querySelector('.upcoming-trip')
 const pastTripSection = document.querySelector('.past-trip')
+const airplaneButton = document.querySelector('.airplane')
+const mainDisplay = document.querySelector('.main-display');
+const bookDisplay = document.querySelector('.book-display')
+const header = document.querySelector('header')
 
 // EventListeners
 window.addEventListener('load', renderTravelerData)
 globeButton.addEventListener('click', function() {
     displayMoneySpent(currentTraveler.id, allTrips, allDestinations)
 });
-
+airplaneButton.addEventListener('click', bookNextTrip)
 
 //Global Variables
 let currentTraveler; 
@@ -67,4 +71,10 @@ function displayPastTrips(id, allTrips, allDestinations){
         pastTripSection.innerHTML += `On ${trip.date}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
     })
   
+}
+
+function bookNextTrip(){
+    mainDisplay.classList.add("hidden");
+    header.classList.add("hidden");
+    bookDisplay.classList.remove("hidden")
 }
