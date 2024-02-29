@@ -1,19 +1,23 @@
-import { getData } from './apiCalls.js'
+import { getData, postData } from './apiCalls.js'
 import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
 
 // Query Selectors
 const dashboardHeader = document.querySelector('h1');
-const dashboardParagraph = document.querySelector('p')
+const dashboardParagraph = document.querySelector('p');
 const globeButton = document.querySelector('img');
 const moneySpentDisplay = document.querySelector('.money-spent');
 const imageDisplay = document.querySelector('.image-container');
-const moneyDisplay = document.querySelector('.money-display')
-const upcomingTripSection = document.querySelector('.upcoming-trip')
-const pastTripSection = document.querySelector('.past-trip')
-const airplaneButton = document.querySelector('button')
+const moneyDisplay = document.querySelector('.money-display');
+const upcomingTripSection = document.querySelector('.upcoming-trip');
+const pastTripSection = document.querySelector('.past-trip');
+const airplaneButton = document.querySelector('button');
 const mainDisplay = document.querySelector('.main-display');
-const bookDisplay = document.querySelector('.book-display')
-const header = document.querySelector('header')
+const bookDisplay = document.querySelector('.book-display');
+const header = document.querySelector('header');
+const form = document.querySelector('form');
+const date = document.querySelector('.date');
+const travelers = document.querySelector('.travelers');
+const duration = document.querySelector('.duration');
 
 // EventListeners
 window.addEventListener('load', renderTravelerData)
@@ -21,6 +25,28 @@ globeButton.addEventListener('click', function() {
     displayMoneySpent(currentTraveler.id, allTrips, allDestinations)
 });
 airplaneButton.addEventListener('click', bookNextTrip)
+form.addEventListener('submit', function(event) {
+    event.preventDefault()
+    console.log(allTrips)
+    fetch('http://localhost:3001/api/v1/trips', {
+     method: 'POST', 
+     body: JSON.stringify({
+        id: allTrips.length + 1, 
+        userID: currentTraveler.id,
+        destinationID: 4, 
+        travelers: Number(travelers.value), 
+        date: date.value, 
+        duration: Number(duration.value),
+        status: "pending", 
+        suggestedActivities: []
+        }), 
+     headers: {
+        'Content-type': 'application/json'
+     }
+    })
+     .then(res => res.json())
+     .then(data => console.log(data))
+})
 
 //Global Variables
 let currentTraveler; 
