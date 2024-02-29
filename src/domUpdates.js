@@ -24,6 +24,9 @@ const pendingTripsSection = document.querySelector('.pending-trips');
 const pendingTripParagraph = document.querySelector('.pending-trip-para');
 const submitButton = document.querySelector('.submit-button');
 const postTripSection = document.querySelector('.post-trips')
+const showEstimateButton = document.querySelector('.show-estimate');
+const bookTripSection = document.querySelector('.book-trip')
+const showCost = document.querySelector('.show-cost')
 
 // EventListeners
 window.addEventListener('load', renderTravelerData)
@@ -38,10 +41,16 @@ form.addEventListener('submit', function(event) {
     event.preventDefault()
  return runPost(allTrips, currentTraveler, destinationSelection, travelers, date, duration)
   
-     .then(data => renderTravelerData())
+     .then(data => {
+        renderTravelerData()
+        
+     })
 
 });
 submitButton.addEventListener('click', backToMain)
+showEstimateButton.addEventListener('click', function() {
+    displayPendingTripCost(destinationSelection, duration, allDestinations)
+})
 
 //Global Variables
 let currentTraveler; 
@@ -127,5 +136,20 @@ function displayPendingTrips(id, allTrips, allDestinations){
     pendingTrips.forEach(trip => {
       postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${trip.date} with ${trip.travelers} other travelers!`
     })
+    }
 }
+
+function calculatePendingTripCost(destinationSelection, duration, allDestinations){
+    let findLocation = allDestinations.find(location => {
+        return location.id === Number(destinationSelection.value)
+    })
+    let tripCost = ((Number(duration.value) * findLocation.estimatedLodgingCostPerDay) + findLocation.estimatedFlightCostPerPerson)
+    let agentFee = tripCost * .10
+    let totalCost = (tripCost + agentFee).toFixed(2)
+    return totalCost; 
+}
+
+function displayPendingTripCost(destinationSelection, duration, allDestinations) {
+    let cost = calculatePendingTripCost(destinationSelection, duration, allDestinations)
+    showCost.innerText = `This trip is estimated to cost approximately $${cost}.`
 }

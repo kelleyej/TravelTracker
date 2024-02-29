@@ -13,4 +13,6 @@ let pendingTripDescription = pendingTrips.map(trip => {
 return pendingTrips.length > 0 ? pendingTripDescription : `You currently have no pending trips.`; 
 }
 
+
+
 export { findPendingTrips }
