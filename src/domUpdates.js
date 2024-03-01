@@ -34,6 +34,7 @@ const password = document.querySelector('.enter-password')
 const textContainer = document.querySelector('.text-container')
 const loginPage = document.querySelector('.login-page')
 const quote = document.querySelector('.quote')
+const feedback = document.querySelector('.feedback')
 // EventListeners
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
@@ -63,17 +64,27 @@ showEstimateButton.addEventListener('click', function() {
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault()
     authenticateLogin()
+    authenticate()
+    changeToMainDisplay()
     findCurrentTraveler(travelerUsername)
     console.log('current traveler:', currentTraveler)
-    mainDisplay.classList.remove("hidden");
-    textContainer.classList.remove("hidden")
-    loginPage.classList.add("hidden")
-    renderTravelerData()
+    
 })
 
 function renderRandomQuote(quotes){
    let randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
    quote.innerText = `${randomQuote}`
+}
+let authorizePassword = false;
+let authorizeUsername = false;  
+
+function changeToMainDisplay(){
+    if(authorizePassword === true && authorizeUsername === true){
+    mainDisplay.classList.remove("hidden");
+    textContainer.classList.remove("hidden")
+    loginPage.classList.add("hidden")
+    renderTravelerData()
+    }
 }
 
 function authenticateLogin(){
@@ -83,13 +94,24 @@ function authenticateLogin(){
     return Number(element)
    })
    numberArray.forEach(number => {
-    if(username.value === `traveler${number}` && password.value === "travel"){
-        console.log("YAYAY")
+    if(username.value === `traveler${number}`){
+        authorizeUsername = true; 
+    } if(password.value === "travel"){
+        authorizePassword = true; 
     }
- })
+})
+ 
  travelerUsername = username.value; 
  travelerUsername = travelerUsername.split('')
  console.log(travelerUsername)
+}
+
+function authenticate(){
+if(!authorizePassword){
+    feedback.innerText = "Your password is incorrect."
+} if(!authorizeUsername){
+    feedback.innerText = "Your username is incorrect."
+}
 }
 
 

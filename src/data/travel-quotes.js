@@ -8,7 +8,9 @@ const quotes = [
     `“The man who goes alone can start today; but he who travels with another must wait till that other is ready.” – Henry David Thoreau`,
     `“To awaken alone in a strange town is one of the pleasantest sensations in the world.” – Freya Stark`,
     `“Man cannot discover new oceans unless he has the courage to lose sight of the shore.” – Andre Gide`,
-    `“The world is a book, and those who do not travel read only one page.” – Saint Augustine`
+    `“The world is a book, and those who do not travel read only one page.” – Saint Augustine`,
+    `“Travel and change of place impart new vigor to the mind.” – Seneca`,
+    `“With age, comes wisdom. With travel, comes understanding.” – Sandra Lake`
 ]
 
 export { quotes }
