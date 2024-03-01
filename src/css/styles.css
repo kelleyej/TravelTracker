@@ -3,6 +3,7 @@ body {
   font-family: "Nunito", sans-serif;
   background-size: cover; 
   height: 100vh; 
+  margin: 0; 
 }
 
 .login-page {
@@ -11,7 +12,7 @@ body {
 }
 
 .login-button {
-  margin-top: 5%; 
+  margin-top: 3%; 
   width: 45%;
   height: 12%; 
   border-radius: 30px;
@@ -29,7 +30,7 @@ body {
   padding-right: 5%;
 }
 
-header {
+.main-header {
   display: flex; 
   justify-content: space-between;
   flex-direction: row-reverse;
@@ -61,6 +62,10 @@ span {
   border: none;
 }
 
+.show-estimate {
+  margin-top: 10%; 
+}
+
 .globe, 
 button {
   cursor: pointer;
@@ -77,16 +82,32 @@ h2 {
   height: 10vh; 
 }
 
-form {
+.date, 
+.travelers, 
+.destination, 
+.duration {
+  text-align: left; 
+}
+
+.book-trip-form {
+  margin-top: 2%;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  /* background-color: #87A96B; */
   width: 60%;
   height: 60%;
 }
 
-input {
+.login-form {
+  margin-top: 2%;
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+  width: 60%;
+  height: 60%;
+}
+
+#username, 
+#password {
   width: 45%;
   height: 12%; 
   border-radius: 30px;
@@ -94,7 +115,7 @@ input {
   text-align: center; 
   background-color: #87A96B;
   opacity: .6;
-  margin-top: 1%;
+  margin-top: .5%;
 }
 
 ::placeholder {
@@ -114,6 +135,7 @@ input {
   width: 90%;
   text-align: left;
   margin-left: 5%; 
+  background-color: antiquewhite;
 }
 
 .image-container, 
@@ -143,9 +165,7 @@ main {
 section {
   width: 30%; 
   text-align: center;
-  background-color: #87A96B;
-  opacity: .9; 
-  border-end-start-radius: 80px 80px;
+  background-color: rgb(229, 43, 80, .6);
 }
 
 .pending-trips {
@@ -156,12 +176,21 @@ section {
 
 .book-trip {
   background-color: #72A0C1; 
-  border-radius: 50%; 
+  opacity: .8; 
+  border-radius: 12px;  
   height: 100%;
-  width: 60%;
+  width: 40%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  margin-top: 2%; 
+}
+
+.book-display {
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  align-items: center
 }
 
 .hidden {

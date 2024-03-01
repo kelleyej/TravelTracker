@@ -10,6 +10,8 @@
 <body>
 <header class="quote-header">
   <h1 class="quote"></h1>
+</header>
+<header class="main-header hidden">
   <div class="text-container hidden">
   <h1></h1>
   <p></p>
@@ -55,18 +57,19 @@
 </form>
 </main>
 <main class="book-display hidden">
+    <h1>Book your next getaway ... </h1>
   <section class="book-trip">
    <form class="book-trip-form">
-    <label>Date:</label>
-    <input type="text" class="date" placeholder="YYYY/MM/DD"></input><br>
-    <label>Duration:</label>
-    <input placeholder="Enter Number of Days" type="text" class="duration"></input><br>
-    <label>Number of Travelers:</label>
-    <input placeholder="Enter Number" type="text" class="travelers"></input><br>
-    <label>Choose a Destination:</label>
+     <label class="date">Date:</label> 
+     <input type="text" class="date" placeholder="YYYY/MM/DD" required><br> 
+     <label class="duration">Duration:</label>
+    <input placeholder="Enter Number of Days" type="number" class="duration" min="1" required><br> 
+    <label class="travelers">Number of Travelers:</label>
+    <input placeholder="Enter Number" type="number" class="travelers" min="1" required><br>  
+    <label class="destination">Choose a Destination:</label>
     <select>
       <!-- select list of destinations will be here. -->
-    </select>
+    </select> 
     <!-- <select name="destinations">
       <option value="Madison">Madison</option>
       <option value="Denver">Denver</option>
