@@ -16,10 +16,11 @@ describe('pending-trip.js', function() {
                 destination: "Stockholm, Sweden"
             }]);
         });
-    });
-    it('should return a message if the traveler has no pending trips', function() {
-        const noPendingTrips = findPendingTrips(4, trips, destinations)
+    
+        it('should return a message if the traveler has no pending trips', function() {
+            const noPendingTrips = findPendingTrips(4, trips, destinations)
 
-        expect(noPendingTrips).to.equal(`You currently have no pending trips.`)
-    });
+            expect(noPendingTrips).to.equal(`You currently have no pending trips.`)
+        });
+   }); 
 });

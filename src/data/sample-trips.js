@@ -64,7 +64,7 @@ const trips = [
     userID: 1,
     destinationID: 4,
     travelers: 5,
-    date: "2022/5/28",
+    date: "2020/5/28",
     duration: 20,
     status: "approved",
     suggestedActivities: [ ]
@@ -104,7 +104,7 @@ const trips = [
     userID: 1,
     destinationID: 6,
     travelers: 4,
-    date: "2022/10/14",
+    date: "2020/10/14",
     duration: 4,
     status: "approved",
     suggestedActivities: [ ]
