@@ -10,6 +10,7 @@ import './images/travel.jpg'
 import './images/globe.png'
 import './images/airplane.png'
 import './images/greece.jpg'
+import './images/home-icon.png'
 
 import './domUpdates'
 

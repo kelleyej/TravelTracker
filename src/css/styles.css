@@ -69,6 +69,10 @@ span {
   border-radius: 50px;
   border: none;
 }
+.home-icon {
+  width: 12%;
+  height: 12%; 
+}
 
 .globe, 
 button {
