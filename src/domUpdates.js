@@ -117,7 +117,8 @@ getData()
     // if(!currentTraveler){
     //    currentTraveler = travelers.travelers[Math.floor(Math.random() * travelers.travelers.length)] 
     // }
-    currentTraveler = travelers.travelers[currentTraveler]
+    currentTraveler = travelers.travelers[currentTraveler - 1]
+    console.log('render:', currentTraveler)
     allTrips = trips.trips
     allDestinations = destinations.destinations
     welcomeTraveler(currentTraveler, allTrips, allDestinations);
