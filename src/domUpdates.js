@@ -30,7 +30,8 @@ const showCost = document.querySelector('.show-cost')
 const loginForm = document.querySelector('.login-form')
 const username = document.querySelector('.enter-username');
 const password = document.querySelector('.enter-password')
-const loginButton = document.querySelector('.login-button')
+const textContainer = document.querySelector('.text-container')
+const loginPage = document.querySelector('.login-page')
 
 // EventListeners
 // window.addEventListener('load', renderTravelerData)
@@ -59,7 +60,14 @@ showEstimateButton.addEventListener('click', function() {
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault()
     authenticateLogin()
+    findCurrentTraveler(travelerUsername)
+    console.log('current traveler:', currentTraveler)
+    mainDisplay.classList.remove("hidden");
+    textContainer.classList.remove("hidden")
+    loginPage.classList.add("hidden")
+    renderTravelerData()
 })
+
 
 
 function authenticateLogin(){
@@ -73,26 +81,43 @@ function authenticateLogin(){
         console.log("YAYAY")
     }
  })
- console.log(username.value)
+ travelerUsername = username.value; 
+ travelerUsername = travelerUsername.split('')
+ console.log(travelerUsername)
+}
+
+
+function findCurrentTraveler(travelerUsername){
+    let password; 
+    let newPassword;
  
-}
-function findCurrentTraveler(username){
+    if(travelerUsername.length === 9){
+      password = travelerUsername.splice(-1)
+      newPassword = password.join('')
+    } else if (travelerUsername.length === 10){
+     password = travelerUsername.splice(-2)
+     newPassword = password.join('')
+    }
+    console.log(newPassword)
+    currentTraveler = newPassword; 
     
-}
+  }
+
 
 //Global Variables
 let currentTraveler; 
 let allTrips;
 let allDestinations; 
+let travelerUsername; 
 
 // Functions
 function renderTravelerData(){
 getData()
 .then(([travelers, trips, destinations]) => {
-    if(!currentTraveler){
-       currentTraveler = travelers.travelers[Math.floor(Math.random() * travelers.travelers.length)] 
-    }
-
+    // if(!currentTraveler){
+    //    currentTraveler = travelers.travelers[Math.floor(Math.random() * travelers.travelers.length)] 
+    // }
+    currentTraveler = travelers.travelers[currentTraveler]
     allTrips = trips.trips
     allDestinations = destinations.destinations
     welcomeTraveler(currentTraveler, allTrips, allDestinations);
