@@ -15,7 +15,7 @@ const bookTrip = document.querySelector('.book-button');
 const mainDisplay = document.querySelector('.main-display');
 const bookDisplay = document.querySelector('.book-display');
 const header = document.querySelector('header');
-const form = document.querySelector('form');
+const bookTripForm = document.querySelector('.book-trip-form');
 const date = document.querySelector('.date');
 const travelers = document.querySelector('.travelers');
 const duration = document.querySelector('.duration');
@@ -27,9 +27,13 @@ const postTripSection = document.querySelector('.post-trips')
 const showEstimateButton = document.querySelector('.show-estimate');
 const bookTripSection = document.querySelector('.book-trip')
 const showCost = document.querySelector('.show-cost')
+const loginForm = document.querySelector('.login-form')
+const username = document.querySelector('.enter-username');
+const password = document.querySelector('.enter-password')
+const loginButton = document.querySelector('.login-button')
 
 // EventListeners
-window.addEventListener('load', renderTravelerData)
+// window.addEventListener('load', renderTravelerData)
 globeButton.addEventListener('click', function() {
     displayMoneySpent(currentTraveler.id, allTrips, allDestinations)
 });
@@ -37,7 +41,7 @@ bookTrip.addEventListener('click', function() {
     bookNextTrip()
     console.log("IS THIS WORKING?")
 })
-form.addEventListener('submit', function(event) {
+bookTripForm.addEventListener('submit', function(event) {
     event.preventDefault()
  return runPost(allTrips, currentTraveler, destinationSelection, travelers, date, duration)
   
@@ -51,6 +55,30 @@ submitButton.addEventListener('click', backToMain)
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations)
 })
+
+loginForm.addEventListener('submit', function(event) {
+    event.preventDefault()
+    authenticateLogin()
+})
+
+
+function authenticateLogin(){
+   let array = [...Array(51).keys()]
+   let modifiedArray = array.shift()
+   let numberArray = array.map(element => {
+    return Number(element)
+   })
+   numberArray.forEach(number => {
+    if(username.value === `traveler${number}` && password.value === "travel"){
+        console.log("YAYAY")
+    }
+ })
+ console.log(username.value)
+ 
+}
+function findCurrentTraveler(username){
+    
+}
 
 //Global Variables
 let currentTraveler; 

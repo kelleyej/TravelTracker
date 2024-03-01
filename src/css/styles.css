@@ -3,6 +3,11 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
+.login-page {
+  display: flex; 
+  justify-content: column;
+}
+
 header {
   display: flex; 
   justify-content: space-between;

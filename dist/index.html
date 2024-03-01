@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <title>Webpack Starter Kit</title>
+  <title>Travel Tracker</title>
 </head>
 <body>
 <header>
-  <div class="text-container">
+  <div class="text-container hidden">
   <h1></h1>
   <p></p>
    </div>
@@ -20,7 +20,7 @@
   <p class="money-display"></p>
   </div>
 </header>
-<main class="main-display">
+<main class="main-display hidden">
   <section>
   <h2>PAST TRIPS</h2>
   <section class="past-trip"></section>
@@ -43,9 +43,18 @@
     </div> 
   </section>
 </main>
+<main class="login-page">
+<form class="login-form">
+<label for="username">Username</label>
+<input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
+<label for="password">Password</label>
+<input class="enter-password" id="password" type="password" placeholder="Enter Password" required>
+<button type="submit" class="login-button">Login</button>
+</form>
+</main>
 <main class="book-display hidden">
   <section class="book-trip">
-   <form>
+   <form class="book-trip-form">
     <label>Date:</label>
     <input type="text" class="date" placeholder="YYYY/MM/DD"></input><br>
     <label>Duration:</label>
@@ -54,7 +63,7 @@
     <input placeholder="Enter Number" type="text" class="travelers"></input><br>
     <label>Choose a Destination:</label>
     <select>
-
+      <!-- select list of destinations will be here. -->
     </select>
     <!-- <select name="destinations">
       <option value="Madison">Madison</option>
