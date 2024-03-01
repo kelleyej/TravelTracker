@@ -1,11 +1,12 @@
 import { getData, runPost } from './apiCalls.js'
 import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
+import { quotes } from '../src/data/travel-quotes'
 
 // Query Selectors
 const dashboardHeader = document.querySelector('h1');
 const dashboardParagraph = document.querySelector('p');
-const globeButton = document.querySelector('img');
+const globeButton = document.querySelector('.globe');
 const moneySpentDisplay = document.querySelector('.money-spent');
 const imageDisplay = document.querySelector('.image-container');
 const moneyDisplay = document.querySelector('.money-display');
@@ -32,11 +33,13 @@ const username = document.querySelector('.enter-username');
 const password = document.querySelector('.enter-password')
 const textContainer = document.querySelector('.text-container')
 const loginPage = document.querySelector('.login-page')
-
+const quote = document.querySelector('.quote')
 // EventListeners
-// window.addEventListener('load', renderTravelerData)
+window.addEventListener('load', function() {
+    renderRandomQuote(quotes)
+})
 globeButton.addEventListener('click', function() {
-    displayMoneySpent(currentTraveler.id, allTrips, allDestinations)
+    displayMoneySpent(traveler.id, allTrips, allDestinations)
 });
 bookTrip.addEventListener('click', function() {
     bookNextTrip()
@@ -44,7 +47,7 @@ bookTrip.addEventListener('click', function() {
 })
 bookTripForm.addEventListener('submit', function(event) {
     event.preventDefault()
- return runPost(allTrips, currentTraveler, destinationSelection, travelers, date, duration)
+ return runPost(allTrips, traveler, destinationSelection, travelers, date, duration)
   
      .then(data => {
         renderTravelerData()
@@ -68,7 +71,10 @@ loginForm.addEventListener('submit', function(event) {
     renderTravelerData()
 })
 
-
+function renderRandomQuote(quotes){
+   let randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
+   quote.innerText = `${randomQuote}`
+}
 
 function authenticateLogin(){
    let array = [...Array(51).keys()]
@@ -109,23 +115,20 @@ let currentTraveler;
 let allTrips;
 let allDestinations; 
 let travelerUsername; 
-
+let traveler; 
 // Functions
 function renderTravelerData(){
 getData()
 .then(([travelers, trips, destinations]) => {
-    // if(!currentTraveler){
-    //    currentTraveler = travelers.travelers[Math.floor(Math.random() * travelers.travelers.length)] 
-    // }
-    currentTraveler = travelers.travelers[currentTraveler - 1]
-    console.log('render:', currentTraveler)
+    traveler = travelers.travelers[currentTraveler - 1]
+    console.log('render:', traveler)
     allTrips = trips.trips
     allDestinations = destinations.destinations
-    welcomeTraveler(currentTraveler, allTrips, allDestinations);
-    displayUpcomingTrip(currentTraveler.id, allTrips, allDestinations);
-    displayPastTrips(currentTraveler.id, allTrips, allDestinations)
+    welcomeTraveler(traveler, allTrips, allDestinations);
+    displayUpcomingTrip(traveler.id, allTrips, allDestinations);
+    displayPastTrips(traveler.id, allTrips, allDestinations)
     listDestinations(allDestinations)
-    displayPendingTrips(currentTraveler.id, allTrips, allDestinations)
+    displayPendingTrips(traveler.id, allTrips, allDestinations)
 })
 }
 

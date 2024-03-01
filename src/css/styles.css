@@ -8,6 +8,14 @@ body {
   justify-content: column;
 }
 
+.quote-header {
+  display: flex; 
+  flex-direction: column;
+  font-size: 85%;  
+  padding-left: 5%; 
+  padding-right: 5%;
+}
+
 header {
   display: flex; 
   justify-content: space-between;
@@ -20,7 +28,8 @@ header {
 h1 {
   text-align: center;
 }
-p {
+p, 
+.quote {
   text-align: center;
   font-style: italic; 
 }
