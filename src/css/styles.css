@@ -52,6 +52,14 @@ p,
 span {
   font-weight: bold;
 }
+.submit-button, 
+.show-estimate {
+  margin-top: 12%; 
+}
+
+.show-cost {
+  width: 80%; 
+}
 
 .book-button, 
 .show-estimate, 
@@ -60,10 +68,6 @@ span {
   box-shadow: 0px 0px 0px 6px darkolivegreen;
   border-radius: 50px;
   border: none;
-}
-
-.show-estimate {
-  margin-top: 10%; 
 }
 
 .globe, 

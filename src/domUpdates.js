@@ -50,16 +50,13 @@ bookTripForm.addEventListener('submit', function(event) {
     event.preventDefault()
     console.log("HELPPPP")
  return runPost(allTrips, traveler, destinationSelection, travelers, date, duration)
-  
      .then(data => {
         clearForm()
         backToMain()
         renderTravelerData()
-        
      })
-
 });
-// submitButton.addEventListener('click', backToMain)
+
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
   
@@ -240,7 +237,9 @@ function calculatePendingTripCost(destinationSelection, duration, allDestination
 
 function displayPendingTripCost(destinationSelection, duration, allDestinations) {
     let cost = calculatePendingTripCost(destinationSelection, duration, allDestinations)
+    if(travelers.value !== '' && duration.value !== ''){
       showCost.innerText = `This trip is estimated to cost approximately $${cost}.`  
-
-    
+    } else {
+        showCost.innerText = `Please fill out all fields to estimate total trip cost.`
+    }
 }
