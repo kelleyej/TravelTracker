@@ -82,10 +82,10 @@ h2 {
   height: 10vh; 
 }
 
-.date, 
-.travelers, 
-.destination, 
-.duration {
+.date-label, 
+.travelers-label, 
+.destination-label, 
+.duration-label {
   text-align: left; 
 }
 
