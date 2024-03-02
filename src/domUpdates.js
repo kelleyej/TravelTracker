@@ -1,5 +1,5 @@
 import { getData, runPost } from './apiCalls.js'
-import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
+import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips, calculateAnnualLodgingCost, calculateAnnualFlightCost } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes'
 
@@ -138,9 +138,7 @@ function findCurrentTraveler(travelerUsername){
     }
     console.log(newPassword)
     currentTraveler = newPassword; 
-    
   }
-
 
 //Global Variables
 let currentTraveler; 
@@ -148,6 +146,7 @@ let allTrips;
 let allDestinations; 
 let travelerUsername; 
 let traveler; 
+
 // Functions
 function renderTravelerData(){
 getData()
@@ -233,7 +232,7 @@ function displayPendingTrips(id, allTrips, allDestinations){
             } 
         }
         agentMessage.innerText = `You cannot book more trips at this time. Please wait for agent approval.`
-        bookTrip.disabled = true; 
+        // bookTrip.disabled = true; 
     }
     console.log(pendingTrips.length)
 }

@@ -1,6 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip, calculateAnnualFlightCost } from '../src/past-trips';
+import { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip, calculateAnnualFlightCost, calculateAnnualLodgingCost } from '../src/past-trips';
 import { trips } from '../src/data/sample-trips';
 import { destinations } from '../src/data/sample-destinations';
 
@@ -64,7 +64,7 @@ describe('trip-history.js', function() {
       const noCost = calculateAnnualTripCost(1, trips, destinations)
 
       expect(noCost).to.equal("0.00")
-    })
+    });
   });
 
   describe('calculate annual flight cost', function() {
@@ -72,10 +72,20 @@ describe('trip-history.js', function() {
       const flightCost = calculateAnnualFlightCost(2, trips, destinations)
 
       expect(flightCost).to.equal("750.00")
-    })
-  })
+    });
+  });
 
-    describe('find upcoming trip', function() {
+  describe('calculate annual loding cost', function() {
+    it('should calculate the cost of lodging for the year for a single traveler', function() {
+      const lodgingCost = calculateAnnualLodgingCost(1, trips, destinations);
+      const lodgingCost2 = calculateAnnualLodgingCost(2, trips, destinations);
+
+      expect(lodgingCost).to.equal("0.00")
+      expect(lodgingCost2).to.equal("1800.00")
+    });
+  });
+
+  describe('find upcoming trip', function() {
     it('should find an upcoming trip for a single traveler', function() {
       const upcomingTrip = viewUpcomingTrip(4, trips)
 

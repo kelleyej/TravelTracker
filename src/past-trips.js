@@ -65,6 +65,23 @@ function calculateAnnualFlightCost(id, allTrips, allDestinations){
     return totalFlightCost.toFixed(2)
 }
 
+function calculateAnnualLodgingCost(id, allTrips, allDestinations){
+    let allPastTrips = allTrips.filter(trip => {
+        return trip.userID === id && trip.status === "approved"; 
+    }).sort((a, b) => new Date(a.date) - new Date(b.date))
+    let lastTrip = allPastTrips.splice(-1)
+    let year = lastTrip[0].date.split('/')[0]
+    let annualTrips = allPastTrips.filter(trip => {
+        return trip.date.split('/')[0] === year; 
+    });
+    let totalLodgingCost = annualTrips.reduce((total, trip) => {
+        return total += trip.duration * (allDestinations.find(destination => {
+        return destination.id === trip.destinationID
+       })).estimatedLodgingCostPerDay
+    }, 0);
+    return totalLodgingCost.toFixed(2);
+}
+
 function viewUpcomingTrip(id, allTrips){
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
@@ -79,5 +96,5 @@ function viewUpcomingTrip(id, allTrips){
     return pastTripDestination.slice(-1);
 };
 
-export { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip, calculateAnnualFlightCost }
+export { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip, calculateAnnualFlightCost, calculateAnnualLodgingCost }
 
