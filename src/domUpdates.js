@@ -197,14 +197,14 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     let locationOfTrip = allDestinations.find(location => {
         return location.id === upcomingTrip[0].destinationID
     })
-    upcomingTripSection.innerText = `On ${upcomingTrip[0].date}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
+    upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
 }
 
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
     pastTripSection.innerHTML = '';
     trips.forEach(trip => {
-        pastTripSection.innerHTML += `On ${trip.date}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
+        pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
     })
 }
 
@@ -228,11 +228,11 @@ function displayPendingTrips(id, allTrips, allDestinations){
         pendingTripParagraph.innerText = "You currently have no pending trips."
     } else if (pendingTrips.length > 0 && pendingTrips.length <= 3) {
     pendingTrips.forEach(trip => {
-      postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${trip.date} with ${trip.travelers} other travelers!<br><br>`
+      postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers} other travelers!<br><br>`
     })
     } else {
         for(let i = 0; i < pendingTrips.length ; i++){
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${pendingTrips[i].date} with ${pendingTrips[i].travelers} other travelers!<br><br>`
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} with ${pendingTrips[i].travelers} other travelers!<br><br>`
             if(i === 2){
             break;   
             } 
@@ -260,4 +260,16 @@ function displayPendingTripCost(destinationSelection, duration, allDestinations)
     } else {
         showCost.innerText = `Please fill out all fields to estimate total trip cost.`
     }
+}
+
+function formatDate(newDate){
+    let dateModified = newDate.split('/')
+    console.log('dateModified:', dateModified)
+    let [year, month, day] = dateModified
+    console.log('year:', year)
+    let array = [month, day, year]
+    console.log('array:', array)
+    let newArray = array.join('/')
+    console.log('newArray:', newArray)
+    return newArray; 
 }
