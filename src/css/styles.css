@@ -11,6 +11,10 @@ body {
   justify-content: column;
 }
 
+h3 {
+  margin-top: 0;
+}
+
 .login-button {
   margin-top: 3%; 
   width: 45%;
@@ -141,6 +145,8 @@ h2 {
   font-style: normal; 
 }
 
+
+
 .past-trip, 
 .post-trips {
   width: 90%;
@@ -175,17 +181,13 @@ main {
 section {
   width: 30%; 
   text-align: center;
-  background-color: rgb(229, 43, 80, .7);
+  background-color: #F88379;
+  opacity: .9;
   display: flex; 
   flex-direction: column; 
   align-items: center;
+  border-radius: 5px; 
 }
-
-/* .pending-trips {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-} */
 
 .book-trip {
   background-color: #72A0C1; 
@@ -203,6 +205,40 @@ section {
   display: flex;
   height: 80vh;
   flex-direction: column;
+  align-items: center
+}
+
+.agent-message {
+  background-color: #6082B6;
+  width: 90%;
+  margin-top: 5%;
+  border-radius: 5px;
+  font-weight: bold; 
+  font-size: 90%; 
+}
+
+.money-dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 60%;
+}
+
+.plane, 
+.money, 
+.home {
+  width: 10%;
+}
+
+footer {
+  background-color: yellow;
+  height: 18%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center
 }
 

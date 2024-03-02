@@ -36,6 +36,7 @@ const loginPage = document.querySelector('.login-page')
 const quote = document.querySelector('.quote')
 const feedback = document.querySelector('.feedback');
 const agentMessage = document.querySelector('.agent-message')
+const footer = document.querySelector('footer')
 // EventListeners
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
@@ -91,6 +92,7 @@ function changeToMainDisplay(){
     mainDisplay.classList.remove("hidden");
     textContainer.classList.remove("hidden")
     loginPage.classList.add("hidden")
+    footer.classList.remove("hidden")
     renderTravelerData()
     }
 }
