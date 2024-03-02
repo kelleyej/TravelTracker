@@ -34,7 +34,8 @@ const password = document.querySelector('.enter-password')
 const textContainer = document.querySelector('.text-container')
 const loginPage = document.querySelector('.login-page')
 const quote = document.querySelector('.quote')
-const feedback = document.querySelector('.feedback')
+const feedback = document.querySelector('.feedback');
+const agentMessage = document.querySelector('.agent-message')
 // EventListeners
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
@@ -216,13 +217,23 @@ allDestinations.forEach(location => {
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
     postTripSection.innerHTML = '';
-    if(pendingTrips === `You currently have no pending trips.`){
+    if(pendingTrips.length === 0){
         pendingTripParagraph.innerText = "You currently have no pending trips."
-    } else {
+    } else if (pendingTrips.length > 0 && pendingTrips.length <= 3) {
     pendingTrips.forEach(trip => {
-      postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${trip.date} with ${trip.travelers} other travelers!`
+      postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${trip.date} with ${trip.travelers} other travelers!<br><br>`
     })
+    } else {
+        for(let i = 0; i < pendingTrips.length ; i++){
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${pendingTrips[i].date} with ${pendingTrips[i].travelers} other travelers!<br><br>`
+            if(i === 2){
+            break;   
+            } 
+        }
+        agentMessage.innerText = `You cannot book more trips at this time. Please wait for agent approval.`
+        bookTrip.disabled = true; 
     }
+    console.log(pendingTrips.length)
 }
 
 function calculatePendingTripCost(destinationSelection, duration, allDestinations){
