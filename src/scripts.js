@@ -9,7 +9,9 @@ import './css/styles.css';
 import './images/travel.jpg'
 import './images/globe.png'
 import './images/airplane.png'
-import './images/greece.jpg'
+import './images/plane-icon.jpg'
+import './images/money-icon.png'
+import './images/home.png'
 
 import './domUpdates'
 

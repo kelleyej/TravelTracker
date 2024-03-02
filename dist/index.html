@@ -5,22 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <title>Webpack Starter Kit</title>
+  <title>Travel Tracker</title>
 </head>
 <body>
-<header>
-  <div class="text-container">
+<header class="quote-header">
+  <h1 class="quote"></h1>
+</header>
+<header class="main-header hidden">
+  <div class="text-container hidden">
   <h1></h1>
   <p></p>
    </div>
-  <div class="image-container">
+  <div class="image-container hidden">
   <img class="globe" src="./images/globe.png" role="button" alt="globe surrounded by an airplane and clouds"/> 
   </div>
-  <div class="money-spent hidden">
+  <div class="money-spent">
   <p class="money-display"></p>
   </div>
 </header>
-<main class="main-display">
+<main class="main-display hidden">
   <section>
   <h2>PAST TRIPS</h2>
   <section class="past-trip"></section>
@@ -30,43 +33,65 @@
     <p class="upcoming-trip"></p>
   </section>
   <section class="pending-trips">
-    <div>
     <h2>PENDING TRIPS</h2> 
     <p class="pending-trip-para"></p>
     <section class="post-trips">
-
     </section>
-    </div>
+    <p class="agent-message"></p>
     <div>
       <button class="book-button" type="button">CLICK HERE to book a trip.</button>
      <img class="airplane" src="./images/airplane.png"/>  
     </div> 
   </section>
+  
+</main>
+ <footer class="hidden">
+  <h3>Travel Expenses</h3>
+  <div class="money-dashboard">
+  <img src="./images/plane-icon.jpg" class="plane"/>
+  <img src="./images/money-icon.png" class="money"/>
+  <img src="./images/home.png" class="home"/> 
+  </div>
+ 
+ </footer>
+<main class="login-page">
+<form class="login-form">
+<label for="username">Username</label>
+<input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
+<label for="password">Password</label>
+<input class="enter-password" id="password" type="password" placeholder="Enter Password" required> 
+<button type="submit" class="login-button">Login</button> 
+<p class="feedback"></p>
+</form>
 </main>
 <main class="book-display hidden">
+    <h1>Book your next getaway ... </h1>
+   
   <section class="book-trip">
-   <form>
-    <label>Date:</label>
-    <input type="text" class="date" placeholder="YYYY/MM/DD"></input><br>
-    <label>Duration:</label>
-    <input placeholder="Enter Number of Days" type="text" class="duration"></input><br>
-    <label>Number of Travelers:</label>
-    <input placeholder="Enter Number" type="text" class="travelers"></input><br>
-    <label>Choose a Destination:</label>
+   <form class="book-trip-form">
+     <label class="date-label">Date:</label> 
+     <input type="text" class="date" placeholder="YYYY/MM/DD" required><br> 
+     <label class="duration-label">Duration:</label>
+    <input placeholder="Enter Number of Days" type="text" class="duration" min="1" required><br> 
+    <label class="travelers-label">Number of Travelers:</label>
+    <input placeholder="Enter Number" type="text" class="travelers" min="1" required><br>  
+    <label class="destination-label">Choose a Destination:</label>
     <select>
-
-    </select>
+      <!-- select list of destinations will be here. -->
+    </select> 
     <!-- <select name="destinations">
       <option value="Madison">Madison</option>
       <option value="Denver">Denver</option>
       <option value="Fishers">Fishers</option>
       <option value="France">France</option>
     </select> -->
-    <button class="show-estimate">Show estimate cost for this trip.</button>
-    <p class="show-cost"></p>
+  
     <button class="submit-button" type="submit">Book this trip!</button>
   </form>
+    <button class="show-estimate">Show estimate cost for this trip.</button>
+    <p class="show-cost"></p>
   </section>
+
 </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>

@@ -7,12 +7,12 @@ let allData = [
 return allData; 
 }
 
-function runPost(allTrips, currentTraveler, destinationSelection, travelers, date, duration){
+function runPost(allTrips, traveler, destinationSelection, travelers, date, duration){
     return fetch('http://localhost:3001/api/v1/trips', {
         method: 'POST', 
         body: JSON.stringify({
            id: allTrips.length + 1, 
-           userID: currentTraveler.id,
+           userID: traveler.id,
            destinationID: Number(destinationSelection.value), 
            travelers: Number(travelers.value), 
            date: date.value, 

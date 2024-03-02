@@ -1,9 +1,40 @@
 body {
-  background-image: url('/src/images/travel.jpg');
+  background-image: url('/src/images/balloon.jpg');
   font-family: "Nunito", sans-serif;
+  background-size: cover; 
+  height: 100vh; 
+  margin: 0; 
 }
 
-header {
+.login-page {
+  display: flex; 
+  justify-content: column;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.login-button {
+  margin-top: 3%; 
+  width: 45%;
+  height: 12%; 
+  border-radius: 30px;
+  text-align: center; 
+  background-color: #87A96B;
+  border: solid darkolivegreen 3px; 
+  opacity: .8; 
+}
+
+.quote-header {
+  display: flex; 
+  flex-direction: column;
+  font-size: 85%;  
+  padding-left: 5%; 
+  padding-right: 5%;
+}
+
+.main-header {
   display: flex; 
   justify-content: space-between;
   flex-direction: row-reverse;
@@ -15,20 +46,38 @@ header {
 h1 {
   text-align: center;
 }
-p {
+p, 
+.quote {
   text-align: center;
   font-style: italic; 
+  color: #0a2351;
+  margin-top: 1%;
 }
 
 span {
   font-weight: bold;
 }
+.submit-button, 
+.show-estimate {
+  margin-top: 12%; 
+}
 
-button {
+.show-cost {
+  width: 80%; 
+}
+
+.book-button, 
+.show-estimate, 
+.submit-button {
   color: #0a2351;
   box-shadow: 0px 0px 0px 6px darkolivegreen;
   border-radius: 50px;
   border: none;
+}
+.home-icon,
+.main-icon {
+  width: 45%;
+  height: 45%; 
 }
 
 .globe, 
@@ -47,10 +96,44 @@ h2 {
   height: 10vh; 
 }
 
-form {
+.date-label, 
+.travelers-label, 
+.destination-label, 
+.duration-label {
+  text-align: left; 
+}
+
+.book-trip-form {
+  margin-top: 2%;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  width: 60%;
+  height: 60%;
+}
+
+.login-form {
+  margin-top: 2%;
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+  width: 60%;
+  height: 60%;
+}
+
+#username, 
+#password {
+  width: 45%;
+  height: 12%; 
+  border-radius: 30px;
+  border: none; 
+  text-align: center; 
+  background-color: #87A96B;
+  opacity: .6;
+  margin-top: .5%;
+}
+
+::placeholder {
+  color: black; 
 }
 
 .airplane {
@@ -62,10 +145,13 @@ form {
   font-style: normal; 
 }
 
-.past-trip {
+
+
+.past-trip, 
+.post-trips {
   width: 90%;
-  text-align: left;
-  margin-left: 5%; 
+  background-color: antiquewhite;
+  height: 90%; 
 }
 
 .image-container, 
@@ -95,25 +181,65 @@ main {
 section {
   width: 30%; 
   text-align: center;
-  background-color: #87A96B;
-  opacity: .9; 
-  border-end-start-radius: 80px 80px;
-}
-
-.pending-trips {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  background-color: #F88379;
+  opacity: .9;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  border-radius: 5px; 
 }
 
 .book-trip {
   background-color: #72A0C1; 
-  border-radius: 50%; 
+  opacity: .8; 
+  border-radius: 12px;  
   height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2%; 
+}
+
+.book-display {
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  align-items: center
+}
+
+.agent-message {
+  background-color: #6082B6;
+  width: 90%;
+  margin-top: 5%;
+  border-radius: 5px;
+  font-weight: bold; 
+  font-size: 90%; 
+}
+
+.money-dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   width: 60%;
+}
+
+.plane, 
+.money, 
+.home {
+  width: 10%;
+}
+
+footer {
+  background-color: yellow;
+  height: 18%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center
 }
 
 .hidden {
