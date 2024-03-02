@@ -36,14 +36,17 @@ const loginPage = document.querySelector('.login-page')
 const quote = document.querySelector('.quote')
 const feedback = document.querySelector('.feedback');
 const agentMessage = document.querySelector('.agent-message')
-const footer = document.querySelector('footer')
+const footer = document.querySelector('footer');
+const displayLodgingCost = document.querySelector('.lodging-cost');
+const displayTotalCost = document.querySelector('.total-cost');
+const displayFligthCost = document.querySelector('.flight-cost')
 // EventListeners
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
 })
-globeButton.addEventListener('click', function() {
-    displayMoneySpent(traveler.id, allTrips, allDestinations)
-});
+// globeButton.addEventListener('click', function() {
+//     displayMoneySpent(traveler.id, allTrips, allDestinations)
+// });
 bookTrip.addEventListener('click', function() {
     bookNextTrip()
     console.log("IS THIS WORKING?")
@@ -160,6 +163,7 @@ getData()
     displayPastTrips(traveler.id, allTrips, allDestinations)
     listDestinations(allDestinations)
     displayPendingTrips(traveler.id, allTrips, allDestinations)
+    displayMoneySpent(traveler.id, allTrips, allDestinations)
 })
 }
 
@@ -180,10 +184,12 @@ function welcomeTraveler({id, name}, allTrips, allDestinations){
 }
 
 function displayMoneySpent(id, allTrips, allDestinations){
-    imageDisplay.classList.add('hidden');
-    moneySpentDisplay.classList.remove('hidden');
-    let amountSpent = calculateAnnualTripCost(id, allTrips, allDestinations)
-    moneyDisplay.innerText = `You have spent $${amountSpent} so far this year.`
+    let totalCost = calculateAnnualTripCost(id, allTrips, allDestinations)
+    let flightCost = calculateAnnualFlightCost(id, allTrips, allDestinations)
+    let lodgingCost = calculateAnnualLodgingCost(id, allTrips, allDestinations)
+    displayTotalCost.innerText = `$${totalCost}`
+    displayFligthCost.innerText = `$${flightCost}`
+    displayLodgingCost.innerText = `$${lodgingCost}`
 }
 
 function displayUpcomingTrip(id, allTrips, allDestinations){

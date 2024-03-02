@@ -224,6 +224,7 @@ section {
   justify-content: space-around;
   width: 60%;
   height: 80%;
+  font-weight: bold;
 }
 
 .plane, 
@@ -245,7 +246,7 @@ p {
 }
 
 footer {
-  background-color: yellow;
+  background-color: #D8BFD8;
   height: 18%;
   position: absolute;
   bottom: 0;
@@ -253,7 +254,8 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  opacity: .9;
 }
 
 .hidden {
