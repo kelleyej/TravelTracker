@@ -1,6 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip } from '../src/past-trips';
+import { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip, calculateAnnualFlightCost } from '../src/past-trips';
 import { trips } from '../src/data/sample-trips';
 import { destinations } from '../src/data/sample-destinations';
 
@@ -66,6 +66,14 @@ describe('trip-history.js', function() {
       expect(noCost).to.equal("0.00")
     })
   });
+
+  describe('calculate annual flight cost', function() {
+    it('should calculate the cost of flights for the year for a single traveler', function() {
+      const flightCost = calculateAnnualFlightCost(2, trips, destinations)
+
+      expect(flightCost).to.equal("750.00")
+    })
+  })
 
     describe('find upcoming trip', function() {
     it('should find an upcoming trip for a single traveler', function() {
