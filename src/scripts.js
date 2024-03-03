@@ -9,9 +9,14 @@ import './css/styles.css';
 import './images/travel.jpg'
 import './images/globe.png'
 import './images/airplane.png'
-import './images/plane-icon.jpg'
+import './images/plane-icon.png'
 import './images/money-icon.png'
 import './images/home.png'
+import './images/fav-star.png'
+import './images/star.png'
+import './images/sand.jpg'
+import './images/storm.png'
+import './images/icon.jpg'
 
 import './domUpdates'
 

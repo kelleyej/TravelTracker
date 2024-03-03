@@ -13,17 +13,54 @@ body {
 
 h3 {
   margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  width: 15%;
+  margin-left: 3%
 }
 
 .login-button {
-  margin-top: 3%; 
-  width: 45%;
-  height: 12%; 
+  margin-top: 6%; 
+  width: 90%;
+  height: 14%; 
   border-radius: 30px;
   text-align: center; 
   background-color: #87A96B;
   border: solid darkolivegreen 3px; 
   opacity: .8; 
+}
+
+.login-header {
+  color: #452c63;
+  margin-top: 0; 
+}
+
+.all-buttons {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  margin-right: 3%;
+  width: 18%;
+  margin-top: 3%;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+
+.login-container {
+  background-color: rgb(216, 191, 216, .7);
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  flex-direction: column; 
+  margin-top: 5%;
 }
 
 .quote-header {
@@ -34,46 +71,60 @@ h3 {
   padding-right: 5%;
 }
 
+.welcome-name {
+  font-style: italic;
+  margin-bottom: 0; 
+  margin-top: 0;
+}
+
 .main-header {
   display: flex; 
   justify-content: space-between;
   flex-direction: row-reverse;
-  height: 15vh; 
-  margin-bottom: 50px; 
-  background-color: #72A0C1;
-  opacity: .8;
+  height: 10vh; 
+  margin-bottom: 0; 
 }
 h1 {
   text-align: center;
 }
+
+.book {
+  width: 100%;
+}
+  
+
 p, 
 .quote {
   text-align: center;
   font-style: italic; 
-  color: #0a2351;
+  color: #452c63;
   margin-top: 1%;
 }
 
-span {
-  font-weight: bold;
-}
 .submit-button, 
 .show-estimate {
-  margin-top: 12%; 
+  background-color: antiquewhite;
+  border: none; 
+  border-radius: 20px; 
 }
 
 .show-cost {
-  width: 80%; 
+  font-weight: bold; 
+  color: black; 
 }
 
-.book-button, 
-.show-estimate, 
-.submit-button {
-  color: #0a2351;
-  box-shadow: 0px 0px 0px 6px darkolivegreen;
-  border-radius: 50px;
-  border: none;
+.show-estimate {
+  margin-top: 4%;
+  margin-bottom: 1%;
+  height: 6%;
+  width: 45%;
 }
+
+.submit-button {
+  height: 50%;
+  margin-top: 8%;
+}
+
 .home-icon,
 .main-icon {
   width: 45%;
@@ -81,19 +132,32 @@ span {
 }
 
 .globe, 
-button {
+button, 
+.home-button {
   cursor: pointer;
     &:hover {
       transform: scale(1.2);
     }
 }
 h2 {
-  color: #0a2351;
-  margin-bottom: 3%; 
+  color: #452c63;
+  margin-bottom: 0; 
 }
 
-.globe {
-  height: 10vh; 
+.star, 
+.fav-star {
+  width: 5%; 
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+label {
+  margin-right: 70%;
+  margin-top: 2%;
+}
+
+.date {
+  height: 80px; 
 }
 
 .date-label, 
@@ -101,6 +165,19 @@ h2 {
 .destination-label, 
 .duration-label {
   text-align: left; 
+  width: 100%;
+  font-weight: bold; 
+}
+
+.home-button {
+  width: 20%; 
+}
+
+.date, 
+.duration, 
+.travelers, 
+select {
+  background-color: antiquewhite;
 }
 
 .book-trip-form {
@@ -108,7 +185,7 @@ h2 {
   display: flex;
   flex-direction: column;
   width: 60%;
-  height: 60%;
+  height: 66%;
 }
 
 .login-form {
@@ -122,13 +199,12 @@ h2 {
 
 #username, 
 #password {
-  width: 45%;
+  width: 90%;
   height: 12%; 
   border-radius: 30px;
   border: none; 
   text-align: center; 
-  background-color: #87A96B;
-  opacity: .6;
+  background-color: rgb(135, 169, 107, .6);
   margin-top: .5%;
 }
 
@@ -137,21 +213,25 @@ h2 {
 }
 
 .airplane {
-  height: 10vh; 
-  margin-bottom: 5%; 
+  height: 12vh; 
+  margin-bottom: 1%; 
+  margin-left: 10%;
 }
 
 .upcoming-trip {
   font-style: normal; 
 }
 
-
+.past-trip {
+  overflow-y: auto;
+}
 
 .past-trip, 
 .post-trips {
   width: 90%;
   background-color: antiquewhite;
   height: 90%; 
+  text-align: left;
 }
 
 .image-container, 
@@ -181,17 +261,55 @@ main {
 section {
   width: 30%; 
   text-align: center;
-  background-color: #F88379;
-  opacity: .9;
   display: flex; 
   flex-direction: column; 
   align-items: center;
   border-radius: 5px; 
+  background-color: antiquewhite;
+}
+
+.feedback {
+  margin-top: 3%;
+  font-weight: bold; 
+}
+
+.question {
+  margin-top: 0;
+}
+
+.book-button,
+.logout {
+  background-color: #72A0C1;
+  border: none; 
+  border-radius: 30px;
+  width: 78%;
+  height: 8%;
+}
+
+.back-to-main, 
+.back-to-login {
+  background-color: #72A0C1;
+  border: none; 
+  margin-bottom: 8%;
+  border-radius: 30px; 
+  height: 30px; 
+}
+
+.logout {
+  width: 10%;
+  position: absolute; 
+  margin-top: 1%;
+  margin-right: 2%;
+  height: 4%;
+}
+
+.home-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .book-trip {
-  background-color: #72A0C1; 
-  opacity: .8; 
+  background-color: rgb(216, 191, 216, .7);
   border-radius: 12px;  
   height: 100%;
   width: 40%;
@@ -209,37 +327,59 @@ section {
 }
 
 .agent-message {
-  background-color: #6082B6;
-  width: 90%;
-  margin-top: 5%;
-  border-radius: 5px;
+  width: 78%;
   font-weight: bold; 
   font-size: 90%; 
+  margin-bottom: 5%;
+  margin-top: 2%;
 }
 
 .money-dashboard {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  width: 60%;
+  justify-content: space-evenly;
+  width: 48%;
+  height: 80%;
+  font-weight: bold;
+  margin-right: 10%;
 }
 
 .plane, 
 .money, 
 .home {
-  width: 10%;
+  width: 20%;
+  height: 22%;
+  margin-bottom: 5%;
+}
+
+.money {
+  height: 21%; 
+}
+
+.icon-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #bb8fa9;
+  border-radius: 50%;
+  width: 17%; 
+}
+
+p {
+  margin-bottom: 0; 
+  font-size: 85%;
 }
 
 footer {
-  background-color: yellow;
+  background-color: rgb(216, 191, 216, .8);
   height: 18%;
   position: absolute;
   bottom: 0;
   width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center
+  align-items: center;
+  justify-content: space-evenly
 }
 
 .hidden {

@@ -1,6 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip } from '../src/past-trips';
+import { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip, calculateAnnualFlightCost, calculateAnnualLodgingCost } from '../src/past-trips';
 import { trips } from '../src/data/sample-trips';
 import { destinations } from '../src/data/sample-destinations';
 
@@ -13,18 +13,21 @@ describe('trip-history.js', function() {
       expect(pastTrips).to.deep.equal([{
         "date": "2022/02/25",
         "destination": "Jakarta, Indonesia",
-        "travelers": 2
+        "travelers": 2,
+        "duration": 10
         },
         {
         "date": "2022/04/30",
         "destination": "Sydney, Austrailia",
-        "travelers": 3
+        "travelers": 3,
+        "duration": 18
         }]) ;
     
       expect(pastTrips2).to.deep.equal([{
         "date": "2022/02/07",
         "destination": "Madrid, Spain",
-        "travelers": 6
+        "travelers": 6,
+        "duration": 4
         }
         ])
       });
@@ -57,17 +60,30 @@ describe('trip-history.js', function() {
       const totalCost = calculateAnnualTripCost(6, trips, destinations)
       const totalCost2 = calculateAnnualTripCost(5, trips, destinations)
 
-      expect(totalCost).to.equal("1375.00")
-      expect(totalCost2).to.equal("3437.50")
+      expect(totalCost).to.equal("2546.50")
+      expect(totalCost2).to.equal("6385.50")
     });
-    it('should return a zero cost if no trips have been taken for a single traveler this year', function() {
-      const noCost = calculateAnnualTripCost(1, trips, destinations)
-
-      expect(noCost).to.equal("0.00")
-    })
   });
 
-    describe('find upcoming trip', function() {
+  describe('calculate annual flight cost', function() {
+    it('should calculate the cost of flights for the year for a single traveler', function() {
+      const flightCost = calculateAnnualFlightCost(2, trips, destinations)
+
+      expect(flightCost).to.equal("1750.00")
+    });
+  });
+
+  describe('calculate annual loding cost', function() {
+    it('should calculate the cost of lodging for the year for a single traveler', function() {
+      const lodgingCost = calculateAnnualLodgingCost(1, trips, destinations);
+      const lodgingCost2 = calculateAnnualLodgingCost(2, trips, destinations);
+
+      expect(lodgingCost).to.equal("800.00")
+      expect(lodgingCost2).to.equal("2550.00")
+    });
+  });
+
+  describe('find upcoming trip', function() {
     it('should find an upcoming trip for a single traveler', function() {
       const upcomingTrip = viewUpcomingTrip(4, trips)
 

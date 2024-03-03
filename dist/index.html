@@ -10,67 +10,88 @@
 <body>
 <header class="quote-header">
   <h1 class="quote"></h1>
+  
 </header>
 <header class="main-header hidden">
   <div class="text-container hidden">
-  <h1></h1>
-  <p></p>
-   </div>
-  <div class="image-container hidden">
-  <img class="globe" src="./images/globe.png" role="button" alt="globe surrounded by an airplane and clouds"/> 
-  </div>
-  <div class="money-spent">
-  <p class="money-display"></p>
-  </div>
+  <h1 class="welcome-name"></h1>
+  <p class="question"></p>
+    </div>
+      <button class="logout">Logout</button> 
 </header>
 <main class="main-display hidden">
   <section>
   <h2>PAST TRIPS</h2>
-  <section class="past-trip"></section>
+  <section class="past-trip">
+  </section>
 </section>
   <section>
     <h2>UPCOMING TRIPS</h2>
     <p class="upcoming-trip"></p>
+    <a href="https://www.rd.com/article/packing-list/">Ultimate Packing List</a>
   </section>
   <section class="pending-trips">
     <h2>PENDING TRIPS</h2> 
     <p class="pending-trip-para"></p>
     <section class="post-trips">
+     
     </section>
+    <button class="book-button">CLICK HERE to book a trip.</button> 
     <p class="agent-message"></p>
-    <div>
-      <button class="book-button" type="button">CLICK HERE to book a trip.</button>
-     <img class="airplane" src="./images/airplane.png"/>  
-    </div> 
-  </section>
   
+  </section>
 </main>
  <footer class="hidden">
-  <h3>Travel Expenses</h3>
-  <div class="money-dashboard">
-  <img src="./images/plane-icon.jpg" class="plane"/>
-  <img src="./images/money-icon.png" class="money"/>
-  <img src="./images/home.png" class="home"/> 
+  <div>
+   <img class="airplane" src="./images/airplane.png"/>  
   </div>
- 
+     
+  <h3>Travel Expenses for the Year</h3>
+  <div class="money-dashboard">
+    <div class="icon-display">
+      <img src="./images/plane-icon.png" class="plane"/>
+  <p>FLIGHT:</p> 
+  <p class="flight-cost"></p>
+    </div>
+ <div class="icon-display">
+  <img src="./images/money-icon.png" class="money"/>
+  <p>TOTAL:</p>
+  <p class="total-cost"></p>
+ </div>
+  <div class="icon-display">
+   <img src="./images/home.png" class="home"/> 
+  <p>LODGING:</p>  
+  <p class="lodging-cost"></p>
  </footer>
 <main class="login-page">
-<form class="login-form">
+  <div class="login-container">
+    <h1 class="login-header">Login to Your Account</h1>
+   <form class="login-form">
 <label for="username">Username</label>
 <input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
 <label for="password">Password</label>
 <input class="enter-password" id="password" type="password" placeholder="Enter Password" required> 
 <button type="submit" class="login-button">Login</button> 
 <p class="feedback"></p>
-</form>
+</form> 
+  </div>
+
 </main>
 <main class="book-display hidden">
-    <h1>Book your next getaway ... </h1>
+  <header class="home-header">
+ <h1 class="book">Book your next getaway ...</h1>
+ <div class="all-buttons">
+  <button class="back-to-login">Logout</button>
+ <button class="back-to-main">Back to Home</button>
+ </div>
+ 
+  </header>
    
+
   <section class="book-trip">
    <form class="book-trip-form">
      <label class="date-label">Date:</label> 
-     <input type="text" class="date" placeholder="YYYY/MM/DD" required><br> 
+     <input type="date" class="date" min="" required><br> 
      <label class="duration-label">Duration:</label>
     <input placeholder="Enter Number of Days" type="text" class="duration" min="1" required><br> 
     <label class="travelers-label">Number of Travelers:</label>

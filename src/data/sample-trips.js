@@ -157,9 +157,8 @@ const trips = [
     date: "2022/11/20",
     duration: 9,
     status: "pending",
-    suggestedActivities: [ ]
-    }, 
-
+    suggestedActivities: []
+    }
 ]
 
 export { trips }

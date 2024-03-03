@@ -1,10 +1,9 @@
 import { getData, runPost } from './apiCalls.js'
-import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
+import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips, calculateAnnualLodgingCost, calculateAnnualFlightCost } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes'
 
 // Query Selectors
-const dashboardHeader = document.querySelector('h1');
 const dashboardParagraph = document.querySelector('p');
 const globeButton = document.querySelector('.globe');
 const moneySpentDisplay = document.querySelector('.money-spent');
@@ -36,21 +35,30 @@ const loginPage = document.querySelector('.login-page')
 const quote = document.querySelector('.quote')
 const feedback = document.querySelector('.feedback');
 const agentMessage = document.querySelector('.agent-message')
-const footer = document.querySelector('footer')
+const footer = document.querySelector('footer');
+const displayLodgingCost = document.querySelector('.lodging-cost');
+const displayTotalCost = document.querySelector('.total-cost');
+const displayFligthCost = document.querySelector('.flight-cost')
+const tripRating = document.querySelector('.rating')
+const homeButton = document.querySelector('.home-button')
+const quoteHeader = document.querySelector('.quote-header')
+const mainHeader = document.querySelector('.main-header')
+const welcomeName = document.querySelector('.welcome-name')
+const logoutButton = document.querySelector('.logout')
+const backToMainButton = document.querySelector('.back-to-main')
+const lastLogoutButton = document.querySelector('.back-to-login')
+
 // EventListeners
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
 })
-globeButton.addEventListener('click', function() {
-    displayMoneySpent(traveler.id, allTrips, allDestinations)
-});
+
+
 bookTrip.addEventListener('click', function() {
     bookNextTrip()
-    console.log("IS THIS WORKING?")
 })
 bookTripForm.addEventListener('submit', function(event) {
     event.preventDefault()
-    console.log("HELPPPP")
  return runPost(allTrips, traveler, destinationSelection, travelers, date, duration)
      .then(data => {
         clearForm()
@@ -61,13 +69,21 @@ bookTripForm.addEventListener('submit', function(event) {
 
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
-  
 })
+
+logoutButton.addEventListener('click', logOut)
+backToMainButton.addEventListener('click', backToMain)
+lastLogoutButton.addEventListener('click', backToLogin)
 
 function clearForm(){
     date.value = '';
     duration.value = '';
     travelers.value = '';
+}
+
+function clearLoginForm(){
+    username.value = '';
+    password.value = '';
 }
 
 loginForm.addEventListener('submit', function(event) {
@@ -92,7 +108,9 @@ function changeToMainDisplay(){
     mainDisplay.classList.remove("hidden");
     textContainer.classList.remove("hidden")
     loginPage.classList.add("hidden")
-    footer.classList.remove("hidden")
+    footer.classList.remove("hidden");
+    quoteHeader.classList.add("hidden");
+    mainHeader.classList.remove("hidden")
     renderTravelerData()
     }
 }
@@ -138,9 +156,7 @@ function findCurrentTraveler(travelerUsername){
     }
     console.log(newPassword)
     currentTraveler = newPassword; 
-    
   }
-
 
 //Global Variables
 let currentTraveler; 
@@ -148,6 +164,8 @@ let allTrips;
 let allDestinations; 
 let travelerUsername; 
 let traveler; 
+let currentDate; 
+
 // Functions
 function renderTravelerData(){
 getData()
@@ -161,17 +179,28 @@ getData()
     displayPastTrips(traveler.id, allTrips, allDestinations)
     listDestinations(allDestinations)
     displayPendingTrips(traveler.id, allTrips, allDestinations)
+    displayMoneySpent(traveler.id, allTrips, allDestinations)
+    date.min = setMinDate(currentDate); 
 })
 }
 
+function setMinDate(dateValue){
+    let newDate = dateValue.split('/')
+    let modifiedDate = newDate.join('-')
+    return modifiedDate
+  }
+
 function backToMain(){
     mainDisplay.classList.remove("hidden");
-    header.classList.remove("hidden")
-    bookDisplay.classList.add("hidden")
+    mainHeader.classList.remove("hidden")
+    bookDisplay.classList.add("hidden");
+    footer.classList.remove("hidden");
+    
 }
 
+
 function welcomeTraveler({id, name}, allTrips, allDestinations){
-    dashboardHeader.innerText = `Welcome back, ${name}!`
+    welcomeName.innerText = `Welcome back, ${name}!`
     let previousTrip = viewPreviousTrip(id, allTrips, allDestinations)
     if(previousTrip !== ''){
        dashboardParagraph.innerText = `How was your trip to ${previousTrip}?` 
@@ -180,33 +209,68 @@ function welcomeTraveler({id, name}, allTrips, allDestinations){
     }
 }
 
+function backToLogin(){
+    bookDisplay.classList.add("hidden");
+    quoteHeader.classList.remove("hidden");
+    loginPage.classList.remove("hidden");
+    clearLoginForm();
+}
+
+function logOut(){
+    clearLoginForm()
+    mainDisplay.classList.add("hidden");
+    textContainer.classList.add("hidden")
+    footer.classList.add("hidden");
+    quoteHeader.classList.remove("hidden");
+    mainHeader.classList.add("hidden")
+    loginPage.classList.remove("hidden");
+}
+
 function displayMoneySpent(id, allTrips, allDestinations){
-    imageDisplay.classList.add('hidden');
-    moneySpentDisplay.classList.remove('hidden');
-    let amountSpent = calculateAnnualTripCost(id, allTrips, allDestinations)
-    moneyDisplay.innerText = `You have spent $${amountSpent} so far this year.`
+    let totalCost = calculateAnnualTripCost(id, allTrips, allDestinations)
+    let flightCost = calculateAnnualFlightCost(id, allTrips, allDestinations)
+    let lodgingCost = calculateAnnualLodgingCost(id, allTrips, allDestinations)
+    displayTotalCost.innerText = `$${totalCost}`
+    displayFligthCost.innerText = `$${flightCost}`
+    displayLodgingCost.innerText = `$${lodgingCost}`
 }
 
 function displayUpcomingTrip(id, allTrips, allDestinations){
     let upcomingTrip = viewUpcomingTrip(id, allTrips)
     let locationOfTrip = allDestinations.find(location => {
         return location.id === upcomingTrip[0].destinationID
-    })
-    upcomingTripSection.innerText = `On ${upcomingTrip[0].date}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
+    }) 
+    upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
+    currentDate = upcomingTrip[0].date; 
 }
+
 
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
-    pastTripSection.innerHTML = '';
+    console.log('trips:', trips)
+    if(trips.length === 0){
+        pastTripSection.innerHTML = 'You have not documented any travel. Book a trip today!'
+    } else {
+            pastTripSection.innerHTML = '';
     trips.forEach(trip => {
-        pastTripSection.innerHTML += `On ${trip.date}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
-    })
+        if((trip.travelers - 1) === 0){
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days!<br><br>`
+        } else if((trip.travelers - 1) === 1) {
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days!<div class="rating"<br><br>`
+        } else {
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days!<div class="rating"<br><br>`
+    }    
+})
+    }
+
+
 }
 
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
-    header.classList.add("hidden")
+    mainHeader.classList.add("hidden")
     bookDisplay.classList.remove("hidden")
+    footer.classList.add("hidden");
 }
 
 function listDestinations(allDestinations){
@@ -218,24 +282,30 @@ allDestinations.forEach(location => {
 
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
+    console.log(pendingTrips)
     postTripSection.innerHTML = '';
     if(pendingTrips.length === 0){
-        pendingTripParagraph.innerText = "You currently have no pending trips."
-    } else if (pendingTrips.length > 0 && pendingTrips.length <= 3) {
-    pendingTrips.forEach(trip => {
-      postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${trip.date} with ${trip.travelers} other travelers!<br><br>`
-    })
+        postTripSection.innerHTML = `You currently have no pending trips.`
     } else {
         for(let i = 0; i < pendingTrips.length ; i++){
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${pendingTrips[i].date} with ${pendingTrips[i].travelers} other travelers!<br><br>`
-            if(i === 2){
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} for ${pendingTrips[i].duration} days with ${pendingTrips[i].travelers} other travelers!<br><br>`
+            if(i === 3){
             break;   
             } 
         }
-        agentMessage.innerText = `You cannot book more trips at this time. Please wait for agent approval.`
-        bookTrip.disabled = true; 
     }
-    console.log(pendingTrips.length)
+    disableBookTrip(id, allTrips, allDestinations)
+}
+
+function disableBookTrip(id, allTrips, allDestinations){
+    let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
+    if(pendingTrips.length >= 4){
+        agentMessage.innerText = `You cannot book more trips at this time. The maximum allowed is four bookings. Please wait for agent approval.`
+        bookTrip.disabled = true; 
+    } else {
+        agentMessage.innerText = '';
+        bookTrip.disabled = false; 
+    }
 }
 
 function calculatePendingTripCost(destinationSelection, duration, allDestinations){
@@ -255,4 +325,12 @@ function displayPendingTripCost(destinationSelection, duration, allDestinations)
     } else {
         showCost.innerText = `Please fill out all fields to estimate total trip cost.`
     }
+}
+
+function formatDate(newDate){
+    let dateModified = newDate.split('/')
+    let [year, month, day] = dateModified
+    let array = [month, day, year]
+    let newArray = array.join('/')
+    return newArray; 
 }

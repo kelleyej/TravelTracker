@@ -1,3 +1,9 @@
+function modifyDate(dateValue){
+    let newDate = dateValue.split('-')
+    let modifiedDate = newDate.join('/')
+    return modifiedDate;
+  }
+
 function runGet(){
 let allData = [
     fetch('http://localhost:3001/api/v1/travelers'),
@@ -15,7 +21,7 @@ function runPost(allTrips, traveler, destinationSelection, travelers, date, dura
            userID: traveler.id,
            destinationID: Number(destinationSelection.value), 
            travelers: Number(travelers.value), 
-           date: date.value, 
+           date: modifyDate(date.value), 
            duration: Number(duration.value),
            status: "pending", 
            suggestedActivities: []
@@ -34,5 +40,7 @@ function getData(){
         }));
     });
 };
+
+
 
 export { getData, runPost }
