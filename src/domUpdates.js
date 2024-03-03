@@ -55,7 +55,7 @@ window.addEventListener('load', function() {
     renderRandomQuote(quotes)
 })
 
-function displayCurrentWeather(coordinates){
+function displayCurrentWeather(coordinates, allDestinations){
 let location = coordinates.find(place => {
     return place.destination === weatherDisplay; 
 })
@@ -64,14 +64,18 @@ let location = coordinates.find(place => {
 .then(res => res.json())
 .then(data => {
     console.log(data)
-    return displayTripWeather(data)
+    return displayTripWeather(data, allDestinations)
 })
 }
 
 
-function displayTripWeather(data){
+function displayTripWeather(data, allDestinations){
+    let locationImage = allDestinations.find(place => {
+        return place.destination === weatherDisplay; 
+    })
     weather.innerHTML += 
-    `<h2>${data.weather[0].description}</h2>
+    `<img class="display-image" src=${locationImage.image}>
+    <h2>${data.weather[0].description}</h2>
     <p>In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
 }
 
@@ -203,7 +207,7 @@ getData()
     displayPendingTrips(traveler.id, allTrips, allDestinations)
     displayMoneySpent(traveler.id, allTrips, allDestinations)
     date.min = setMinDate(currentDate); 
-    displayCurrentWeather(coordinates)
+    displayCurrentWeather(coordinates, allDestinations)
     console.log(weatherDisplay)
 })
 }

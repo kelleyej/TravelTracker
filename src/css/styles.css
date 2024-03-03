@@ -237,6 +237,11 @@ select {
 .current-weather {
   width: 85%; 
 }
+.display-image {
+  width: 95%;
+  border-radius: 50%;
+  margin-top: 15%; 
+}
 
 .image-container, 
 .money-spent {
