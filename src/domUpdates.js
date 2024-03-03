@@ -56,11 +56,9 @@ window.addEventListener('load', function() {
 
 bookTrip.addEventListener('click', function() {
     bookNextTrip()
-    console.log("IS THIS WORKING?")
 })
 bookTripForm.addEventListener('submit', function(event) {
     event.preventDefault()
-    console.log("HELPPPP")
  return runPost(allTrips, traveler, destinationSelection, travelers, date, duration)
      .then(data => {
         clearForm()
@@ -225,6 +223,7 @@ function logOut(){
     footer.classList.add("hidden");
     quoteHeader.classList.remove("hidden");
     mainHeader.classList.add("hidden")
+    loginPage.classList.remove("hidden");
 }
 
 function displayMoneySpent(id, allTrips, allDestinations){
