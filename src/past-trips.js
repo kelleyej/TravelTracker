@@ -10,7 +10,7 @@ function viewPastTrips(id, allTrips, allDestinations) {
             date: trip.date, 
         };
     });
-    return allPastTrips.length > 0 ? pastTrips : `You have no past trips documented. Make travel plans today!`; 
+    return allPastTrips;
 };
 
 function viewPreviousTrip(id, allTrips, allDestinations){

@@ -40,13 +40,14 @@ const footer = document.querySelector('footer');
 const displayLodgingCost = document.querySelector('.lodging-cost');
 const displayTotalCost = document.querySelector('.total-cost');
 const displayFligthCost = document.querySelector('.flight-cost')
+const tripRating = document.querySelector('.rating')
+
 // EventListeners
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
 })
-// globeButton.addEventListener('click', function() {
-//     displayMoneySpent(traveler.id, allTrips, allDestinations)
-// });
+
+
 bookTrip.addEventListener('click', function() {
     bookNextTrip()
     console.log("IS THIS WORKING?")
@@ -164,6 +165,7 @@ getData()
     listDestinations(allDestinations)
     displayPendingTrips(traveler.id, allTrips, allDestinations)
     displayMoneySpent(traveler.id, allTrips, allDestinations)
+  
 })
 }
 
@@ -200,19 +202,25 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
 }
 
+
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
-    pastTripSection.innerHTML = '';
+    if(trips.length === 0){
+        pastTripSection.innerHTML = 'You have not documented any travel. Book a trip today!'
+    } else {
+            pastTripSection.innerHTML = '';
     trips.forEach(trip => {
         if((trip.travelers - 1) === 0){
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination}!<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination}!<br>`
         } else if((trip.travelers - 1) === 1) {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler!<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler!<div class="rating"<br>`
         } else {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers!<br><br>`
-        }
-        
-    })
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers!<div class="rating"<br>`
+    }    
+})
+    }
+
+
 }
 
 function bookNextTrip(){

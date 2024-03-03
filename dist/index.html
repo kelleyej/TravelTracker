@@ -26,7 +26,8 @@
 <main class="main-display hidden">
   <section>
   <h2>PAST TRIPS</h2>
-  <section class="past-trip"></section>
+  <section class="past-trip">
+  </section>
 </section>
   <section>
     <h2>UPCOMING TRIPS</h2>
@@ -38,44 +39,47 @@
     <section class="post-trips">
     </section>
     <p class="agent-message"></p>
-    <div>
-      <button class="book-button" type="button">CLICK HERE to book a trip.</button>
-     <img class="airplane" src="./images/airplane.png"/>  
-    </div> 
   </section>
   
 </main>
  <footer class="hidden">
-  <h3>Travel Expenses</h3>
+  <div>
+   <img class="airplane" src="./images/airplane.png"/>  
+  </div>
+     
+  <h3>Travel Expenses for the Year</h3>
   <div class="money-dashboard">
     <div class="icon-display">
       <img src="./images/plane-icon.png" class="plane"/>
-  <p>FLIGHT COST:</p> 
+  <p>FLIGHT:</p> 
   <p class="flight-cost"></p>
     </div>
  <div class="icon-display">
   <img src="./images/money-icon.png" class="money"/>
-  <p>TOTAL COST:</p>
+  <p>TOTAL:</p>
   <p class="total-cost"></p>
  </div>
   <div class="icon-display">
    <img src="./images/home.png" class="home"/> 
-  <p>LODGING COST:</p>  
+  <p>LODGING:</p>  
   <p class="lodging-cost"></p>
   </div>
-
+  <button class="book-button">CLICK HERE to book a trip.</button>
   </div>
- 
  </footer>
 <main class="login-page">
-<form class="login-form">
+  <div class="login-container">
+    <h1 class="login-header">Login to Your Account</h1>
+   <form class="login-form">
 <label for="username">Username</label>
 <input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
 <label for="password">Password</label>
 <input class="enter-password" id="password" type="password" placeholder="Enter Password" required> 
 <button type="submit" class="login-button">Login</button> 
 <p class="feedback"></p>
-</form>
+</form> 
+  </div>
+
 </main>
 <main class="book-display hidden">
     <h1>Book your next getaway ... </h1>
