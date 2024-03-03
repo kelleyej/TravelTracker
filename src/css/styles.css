@@ -234,6 +234,10 @@ select {
   text-align: left;
 }
 
+.current-weather {
+  width: 85%; 
+}
+
 .image-container, 
 .money-spent {
   position: fixed; 

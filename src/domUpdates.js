@@ -48,6 +48,7 @@ const welcomeName = document.querySelector('.welcome-name')
 const logoutButton = document.querySelector('.logout')
 const backToMainButton = document.querySelector('.back-to-main')
 const lastLogoutButton = document.querySelector('.back-to-login')
+const weather = document.querySelector('.current-weather')
 
 // EventListeners
 window.addEventListener('load', function() {
@@ -59,13 +60,20 @@ let location = coordinates.find(place => {
     return place.destination === weatherDisplay; 
 })
 
- fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=de097255829b2751c79ce43b8bebb127`)
+ fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=de097255829b2751c79ce43b8bebb127&units=imperial`)
 .then(res => res.json())
-.then(data => console.log(data))   
+.then(data => {
+    console.log(data)
+    return displayTripWeather(data)
+})
 }
 
 
-
+function displayTripWeather(data){
+    weather.innerHTML += 
+    `<h2>${data.weather[0].description}</h2>
+    <p>In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
+}
 
 bookTrip.addEventListener('click', function() {
     bookNextTrip()
