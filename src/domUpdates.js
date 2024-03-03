@@ -76,7 +76,7 @@ function displayTripWeather(data, allDestinations){
     weather.innerHTML += 
     `<img class="display-image" src=${locationImage.image}>
     <h2>${data.weather[0].description}</h2>
-    <p>In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
+    <p class="weath-descrip">In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
 }
 
 bookTrip.addEventListener('click', function() {
