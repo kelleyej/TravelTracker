@@ -60,14 +60,18 @@ h3 {
   padding-right: 5%;
 }
 
+.welcome-name {
+  font-style: italic;
+  margin-bottom: 0; 
+  margin-top: 0;
+}
+
 .main-header {
   display: flex; 
   justify-content: space-between;
   flex-direction: row-reverse;
-  height: 15vh; 
-  margin-bottom: 50px; 
-  background-color: #72A0C1;
-  opacity: .8;
+  height: 12vh; 
+  margin-bottom: 0; 
 }
 h1 {
   text-align: center;
@@ -90,7 +94,7 @@ p,
 .submit-button, 
 .show-estimate {
   margin-top: 12%; 
-  background-color:#ffcbcb;
+  background-color: 	#769a6e;
   border: none; 
   border-radius: 20px; 
   height: 7%;
@@ -241,12 +245,25 @@ section {
   font-weight: bold; 
 }
 
-.book-button {
+.question {
+  margin-top: 0;
+}
+
+.book-button,
+.sign-out {
   background-color: #72A0C1;
   border: none; 
   border-radius: 30px;
   width: 78%;
   height: 8%;
+}
+
+.sign-out {
+  width: 10%;
+  position: absolute; 
+  margin-top: 1%;
+  margin-right: 2%;
+  height: 4%;
 }
 
 .home-container {
@@ -255,7 +272,7 @@ section {
 }
 
 .book-trip {
-  background-color: rgb(64, 112, 136, .9);
+  background-color: rgb(216, 191, 216, .7);
   border-radius: 12px;  
   height: 100%;
   width: 40%;

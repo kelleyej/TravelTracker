@@ -4,7 +4,6 @@ import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes'
 
 // Query Selectors
-const dashboardHeader = document.querySelector('h1');
 const dashboardParagraph = document.querySelector('p');
 const globeButton = document.querySelector('.globe');
 const moneySpentDisplay = document.querySelector('.money-spent');
@@ -42,6 +41,9 @@ const displayTotalCost = document.querySelector('.total-cost');
 const displayFligthCost = document.querySelector('.flight-cost')
 const tripRating = document.querySelector('.rating')
 const homeButton = document.querySelector('.home-button')
+const quoteHeader = document.querySelector('.quote-header')
+const mainHeader = document.querySelector('.main-header')
+const welcomeName = document.querySelector('.welcome-name')
 
 // EventListeners
 window.addEventListener('load', function() {
@@ -99,7 +101,9 @@ function changeToMainDisplay(){
     mainDisplay.classList.remove("hidden");
     textContainer.classList.remove("hidden")
     loginPage.classList.add("hidden")
-    footer.classList.remove("hidden")
+    footer.classList.remove("hidden");
+    quoteHeader.classList.add("hidden");
+    mainHeader.classList.remove("hidden")
     renderTravelerData()
     }
 }
@@ -180,7 +184,7 @@ function backToMain(){
 }
 
 function welcomeTraveler({id, name}, allTrips, allDestinations){
-    dashboardHeader.innerText = `Welcome back, ${name}!`
+    welcomeName.innerText = `Welcome back, ${name}!`
     let previousTrip = viewPreviousTrip(id, allTrips, allDestinations)
     if(previousTrip !== ''){
        dashboardParagraph.innerText = `How was your trip to ${previousTrip}?` 
