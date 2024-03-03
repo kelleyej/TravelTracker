@@ -71,6 +71,7 @@ bookTripForm.addEventListener('submit', function(event) {
 
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
+    console.log(date.value)
   
 })
 
