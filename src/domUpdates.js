@@ -197,7 +197,9 @@ function backToMain(){
     mainHeader.classList.remove("hidden")
     bookDisplay.classList.add("hidden");
     footer.classList.remove("hidden");
+    
 }
+
 
 function welcomeTraveler({id, name}, allTrips, allDestinations){
     welcomeName.innerText = `Welcome back, ${name}!`

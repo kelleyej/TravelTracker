@@ -204,7 +204,9 @@ select {
   font-style: normal; 
 }
 
-
+.past-trip {
+  overflow-y: scroll;
+}
 
 .past-trip, 
 .post-trips {
