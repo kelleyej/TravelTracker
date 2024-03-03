@@ -288,7 +288,7 @@ function displayPendingTrips(id, allTrips, allDestinations){
         postTripSection.innerHTML = `You currently have no pending trips.`
     } else {
         for(let i = 0; i < pendingTrips.length ; i++){
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} for ${pendingTrips[i].destination} with ${pendingTrips[i].travelers} other travelers!<br><br>`
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} for ${pendingTrips[i].duration} days with ${pendingTrips[i].travelers} other travelers!<br><br>`
             if(i === 3){
             break;   
             } 
@@ -299,9 +299,12 @@ function displayPendingTrips(id, allTrips, allDestinations){
 
 function disableBookTrip(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
-    if(pendingTrips.length === 4){
+    if(pendingTrips.length >= 4){
         agentMessage.innerText = `You cannot book more trips at this time. The maximum allowed is four bookings. Please wait for agent approval.`
         bookTrip.disabled = true; 
+    } else {
+        agentMessage.innerText = '';
+        bookTrip.disabled = false; 
     }
 }
 
