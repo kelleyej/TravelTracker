@@ -45,6 +45,8 @@ const quoteHeader = document.querySelector('.quote-header')
 const mainHeader = document.querySelector('.main-header')
 const welcomeName = document.querySelector('.welcome-name')
 const logoutButton = document.querySelector('.logout')
+const backToMainButton = document.querySelector('.back-to-main')
+const lastLogoutButton = document.querySelector('.back-to-login')
 
 // EventListeners
 window.addEventListener('load', function() {
@@ -72,8 +74,9 @@ showEstimateButton.addEventListener('click', function() {
   
 })
 
-homeButton.addEventListener('click', backToMain);
 logoutButton.addEventListener('click', logOut)
+backToMainButton.addEventListener('click', backToMain)
+lastLogoutButton.addEventListener('click', backToLogin)
 
 function clearForm(){
     date.value = '';
@@ -185,7 +188,7 @@ getData()
 
 function backToMain(){
     mainDisplay.classList.remove("hidden");
-    header.classList.remove("hidden")
+    mainHeader.classList.remove("hidden")
     bookDisplay.classList.add("hidden");
     footer.classList.remove("hidden");
 }
@@ -200,11 +203,17 @@ function welcomeTraveler({id, name}, allTrips, allDestinations){
     }
 }
 
+function backToLogin(){
+    bookDisplay.classList.add("hidden");
+    quoteHeader.classList.remove("hidden");
+    loginPage.classList.remove("hidden");
+    clearLoginForm();
+}
+
 function logOut(){
     clearLoginForm()
     mainDisplay.classList.add("hidden");
     textContainer.classList.add("hidden")
-    loginPage.classList.remove("hidden")
     footer.classList.add("hidden");
     quoteHeader.classList.remove("hidden");
     mainHeader.classList.add("hidden")
@@ -250,7 +259,7 @@ function displayPastTrips(id, allTrips, allDestinations){
 
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
-    header.classList.add("hidden")
+    mainHeader.classList.add("hidden")
     bookDisplay.classList.remove("hidden")
     footer.classList.add("hidden");
 }
