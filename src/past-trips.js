@@ -32,9 +32,8 @@ function viewPreviousTrip(id, allTrips, allDestinations){
 function calculateAnnualTripCost(id, allTrips, allDestinations) {
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
-    }).sort((a, b) => new Date(a.date) - new Date(b.date))
-    let lastTrip = allPastTrips.splice(-1)
-    let year = lastTrip[0].date.split('/')[0]
+    }).sort((a, b) => new Date(b.date) - new Date(a.date))
+    let year = allPastTrips[0].date.split('/')[0]
     let annualTrips = allPastTrips.filter(trip => {
         return trip.date.split('/')[0] === year; 
     });
@@ -51,9 +50,8 @@ function calculateAnnualTripCost(id, allTrips, allDestinations) {
 function calculateAnnualFlightCost(id, allTrips, allDestinations){
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
-    }).sort((a, b) => new Date(a.date) - new Date(b.date))
-    let lastTrip = allPastTrips.splice(-1)
-    let year = lastTrip[0].date.split('/')[0]
+    }).sort((a, b) => new Date(b.date) - new Date(a.date))
+    let year = allPastTrips[0].date.split('/')[0]
     let annualTrips = allPastTrips.filter(trip => {
         return trip.date.split('/')[0] === year; 
     });
@@ -68,9 +66,8 @@ function calculateAnnualFlightCost(id, allTrips, allDestinations){
 function calculateAnnualLodgingCost(id, allTrips, allDestinations){
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
-    }).sort((a, b) => new Date(a.date) - new Date(b.date))
-    let lastTrip = allPastTrips.splice(-1)
-    let year = lastTrip[0].date.split('/')[0]
+    }).sort((a, b) => new Date(b.date) - new Date(a.date))
+    let year = allPastTrips[0].date.split('/')[0]
     let annualTrips = allPastTrips.filter(trip => {
         return trip.date.split('/')[0] === year; 
     });

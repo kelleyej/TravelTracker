@@ -205,11 +205,11 @@ function displayPastTrips(id, allTrips, allDestinations){
     pastTripSection.innerHTML = '';
     trips.forEach(trip => {
         if((trip.travelers - 1) === 0){
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to <span>${trip.destination}</span>!<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination}!<br><br>`
         } else if((trip.travelers - 1) === 1) {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler!<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler!<br><br>`
         } else {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other travelers!<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers!<br><br>`
         }
         
     })
