@@ -223,7 +223,7 @@ select {
 }
 
 .past-trip {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .past-trip, 
