@@ -74,7 +74,7 @@ h3 {
 .welcome-name {
   font-style: italic;
   margin-bottom: 0; 
-  margin-top: 0;
+  margin-top: 1%;
 }
 
 .main-header {
@@ -220,6 +220,8 @@ select {
 
 .upcoming-trip {
   font-style: normal; 
+  font-size: 1em; 
+  width: 85%; 
 }
 
 .past-trip {
@@ -237,10 +239,11 @@ select {
 .current-weather {
   width: 85%; 
 }
+
 .display-image {
   width: 95%;
   border-radius: 50%;
-  margin-top: 10%; 
+  margin-top: 5%; 
 }
 
 .weath-descrip {
@@ -285,11 +288,6 @@ section {
   margin-top: 3%;
   font-weight: bold; 
 }
-
-.question {
-  margin-top: 0;
-}
-
 .book-button,
 .logout {
   background-color: #72A0C1;

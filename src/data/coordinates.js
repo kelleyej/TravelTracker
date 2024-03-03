@@ -1,7 +1,7 @@
 let coordinates = [
     {destination: "Lima, Peru",
-    latitude: 12.0464,
-    longitude: 77.0428
+    latitude: -12.0464,
+    longitude: -77.0428
     },
     {destination: "Stockholm, Sweden",
     latitude: 59.3293,
@@ -13,14 +13,14 @@ let coordinates = [
     },
     {destination: "Cartagena, Colombia",
     latitude: 10.3932,
-    longitude: 75.4832
+    longitude: -75.4832
     },
     {destination: "Madrid, Spain",
     latitude: 40.4168,
-    longitude: 3.7038
+    longitude: -3.7038
     },
     {destination: "Jakarta, Indonesia",
-    latitude: 6.1944,
+    latitude: -6.1944,
     longitude: 106.8229
     },
     {destination: "Paris, France",
@@ -37,14 +37,14 @@ let coordinates = [
     },
     {destination: "Toronto, Canada",
     latitude: 43.6532,
-    longitude: 79.3832
+    longitude: -79.3832
     },
     {destination: "Mikonos, Greece",
     latitude: 37.4415,
     longitude: 25.3667
     },
     {destination: "Wellington, New Zealand",
-    latitude: 41.2924,
+    latitude: -41.2924,
     longitude: 174.7787
     },
     {destination: "St. Petersburg, Russia",
@@ -53,7 +53,7 @@ let coordinates = [
     },
     {destination: "Marrakesh, Morocco",
     latitude: 31.6225,
-    longitude: 7.9898
+    longitude: -7.9898
     },
     {destination: "Manila, Philippines",
     latitude: 14.5995,
@@ -68,20 +68,20 @@ let coordinates = [
     longitude: 75.7873
     },
     {destination: "Cape Town, South Africa",
-    latitude: 33.9249,
+    latitude: -33.9249,
     longitude: 18.4241
     },
     {destination: "Quito, Ecuador",
-    latitude: 0.1807,
-    longitude: 78.4678
+    latitude: -0.1807,
+    longitude: -78.4678
     },
     {destination: "Miami, Florida",
     latitude: 25.7617,
-    longitude: 80.1918
+    longitude: -80.1918
     },
     {destination: "Tulum, Mexico",
     latitude: 20.2114,
-    longitude: 87.4654
+    longitude: -87.4654
     },
     {destination: "Rome, Italy",
     latitude: 41.9028,
@@ -97,26 +97,26 @@ let coordinates = [
     },
     {destination: "New York, New York",
     latitude: 40.7128,
-    longitude: 74.0060
+    longitude: -74.0060
     },
     {destination: "London, England",
     latitude: 51.5072,
-    longitude: 0.1276
+    longitude: -0.1276
     },
     {destination: "San Francisco, California",
     latitude: 37.7749,
-    longitude: 122.4194
+    longitude: -122.4194
     },
     {destination: "San Juan, Puerto Rico",
     latitude: 18.4671,
-    longitude: 66.1185
+    longitude: -66.1185
     },
     {destination: "Willemstad, Curaçao",
     latitude: 12.1039,
-    longitude: 68.9324
+    longitude: -68.9324
     },
     {destination: "Antananarivo, Madagascar",
-    latitude: 18.9185,
+    latitude: -18.9185,
     longitude: 47.5211
     }, 
     {destination: "Colombo, Sri Lanka",
@@ -137,11 +137,11 @@ let coordinates = [
     },
     {destination: "Anchorage, Alaska",
     latitude: 61.2176,
-    longitude: 149.8997
+    longitude: -149.8997
     },
     {destination: "Reykjavík, Iceland",
     latitude: 64.1470,
-    longitude: 21.9408
+    longitude: -21.9408
     },
     {destination: "Frankfurt, Germany",
     latitude: 50.1109,
@@ -153,13 +153,52 @@ let coordinates = [
     },
     {destination: "Porto, Portugal",
     latitude: 41.1579,
-    longitude: 8.6291
+    longitude: -8.6291
     },
     {destination: "La Isla Tortuga, Costa Rica",
     latitude: 20.0549,
-    longitude: 72.7925
+    longitude: -72.7925
+    },
+    {destination: "Montego Bay, Jamaica",
+    latitude: 18.4714,
+    longitude: -77.94
+    },
+    {destination: "Santo Domingo, Dominican Republic",
+    latitude: 18.4626,
+    longitude: -69.929611
+    },
+    {destination: "Nassau, The Bahamas",
+    latitude: 25.0443,
+    longitude: -77.3504
+    },
+    {destination: "Caye Caulker, Belize",
+    latitude: 17.7612,
+    longitude: -88.0277
+    },
+    {destination: "Calgary, Canada",
+    latitude: 51.0447,
+    longitude: -114.0719
+    },
+    {destination: "Victoria, Seychelles",
+    latitude: -4.6211,
+    longitude: 55.4522
+    },
+    {destination: "Zürich, Switzerland",
+    latitude: 47.3769,
+    longitude: 8.5417
+    },
+    {destination: "Dar es Salaam, Tanzania",
+    latitude: -6.8165,
+    longitude: 39.2894
+    },
+    {destination: "Castries, St Lucia",
+    latitude: 14.0110,
+    longitude: -60.9897
+    },
+    {destination: "Hobart, Tasmania",
+    latitude: -42.8826,
+    longitude: 147.3257
     }
-
 ]
 
 export { coordinates }

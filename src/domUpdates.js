@@ -73,9 +73,10 @@ function displayTripWeather(data, allDestinations){
     let locationImage = allDestinations.find(place => {
         return place.destination === weatherDisplay; 
     })
+    weather.innerHTML = '';
     weather.innerHTML += 
-    `<img class="display-image" src=${locationImage.image}>
-    <h2>${data.weather[0].description}</h2>
+    `<img alt=${locationImage.alt} class="display-image" src=${locationImage.image}>
+    <h2>current weather: ${data.weather[0].description}</h2>
     <p class="weath-descrip">In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
 }
 
