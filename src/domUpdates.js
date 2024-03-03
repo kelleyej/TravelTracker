@@ -71,8 +71,6 @@ bookTripForm.addEventListener('submit', function(event) {
 
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
-    console.log(date.value)
-  
 })
 
 logoutButton.addEventListener('click', logOut)
@@ -168,6 +166,7 @@ let allTrips;
 let allDestinations; 
 let travelerUsername; 
 let traveler; 
+let currentDate; 
 
 // Functions
 function renderTravelerData(){
@@ -183,9 +182,15 @@ getData()
     listDestinations(allDestinations)
     displayPendingTrips(traveler.id, allTrips, allDestinations)
     displayMoneySpent(traveler.id, allTrips, allDestinations)
-  
+    date.min = setMinDate(currentDate); 
 })
 }
+
+function setMinDate(dateValue){
+    let newDate = dateValue.split('/')
+    let modifiedDate = newDate.join('-')
+    return modifiedDate
+  }
 
 function backToMain(){
     mainDisplay.classList.remove("hidden");
@@ -233,8 +238,9 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     let upcomingTrip = viewUpcomingTrip(id, allTrips)
     let locationOfTrip = allDestinations.find(location => {
         return location.id === upcomingTrip[0].destinationID
-    })
+    }) 
     upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
+    currentDate = upcomingTrip[0].date; 
 }
 
 
