@@ -1,7 +1,8 @@
 import { getData, runPost } from './apiCalls.js'
 import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips, calculateAnnualLodgingCost, calculateAnnualFlightCost } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
-import { quotes } from '../src/data/travel-quotes'
+import { quotes } from '../src/data/travel-quotes.js'
+import { coordinates } from '../src/data/coordinates.js'
 
 // Query Selectors
 const dashboardParagraph = document.querySelector('p');
@@ -52,6 +53,18 @@ const lastLogoutButton = document.querySelector('.back-to-login')
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
 })
+
+function displayCurrentWeather(coordinates){
+let location = coordinates.find(place => {
+    return place.destination === weatherDisplay; 
+})
+
+ fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=de097255829b2751c79ce43b8bebb127`)
+.then(res => res.json())
+.then(data => console.log(data.weather))   
+}
+
+
 
 
 bookTrip.addEventListener('click', function() {
@@ -165,6 +178,7 @@ let allDestinations;
 let travelerUsername; 
 let traveler; 
 let currentDate; 
+let weatherDisplay; 
 
 // Functions
 function renderTravelerData(){
@@ -181,6 +195,8 @@ getData()
     displayPendingTrips(traveler.id, allTrips, allDestinations)
     displayMoneySpent(traveler.id, allTrips, allDestinations)
     date.min = setMinDate(currentDate); 
+    displayCurrentWeather(coordinates)
+    console.log(weatherDisplay)
 })
 }
 
@@ -242,6 +258,7 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     }) 
     upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
     currentDate = upcomingTrip[0].date; 
+    weatherDisplay = locationOfTrip.destination
 }
 
 
