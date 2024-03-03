@@ -44,6 +44,7 @@ const homeButton = document.querySelector('.home-button')
 const quoteHeader = document.querySelector('.quote-header')
 const mainHeader = document.querySelector('.main-header')
 const welcomeName = document.querySelector('.welcome-name')
+const logoutButton = document.querySelector('.logout')
 
 // EventListeners
 window.addEventListener('load', function() {
@@ -71,12 +72,18 @@ showEstimateButton.addEventListener('click', function() {
   
 })
 
-homeButton.addEventListener('click', backToMain)
+homeButton.addEventListener('click', backToMain);
+logoutButton.addEventListener('click', logOut)
 
 function clearForm(){
     date.value = '';
     duration.value = '';
     travelers.value = '';
+}
+
+function clearLoginForm(){
+    username.value = '';
+    password.value = '';
 }
 
 loginForm.addEventListener('submit', function(event) {
@@ -191,6 +198,16 @@ function welcomeTraveler({id, name}, allTrips, allDestinations){
     } else {
         dashboardParagraph.innerText = `You have not been on any trips yet. Plan yours today!`
     }
+}
+
+function logOut(){
+    clearLoginForm()
+    mainDisplay.classList.add("hidden");
+    textContainer.classList.add("hidden")
+    loginPage.classList.remove("hidden")
+    footer.classList.add("hidden");
+    quoteHeader.classList.remove("hidden");
+    mainHeader.classList.add("hidden")
 }
 
 function displayMoneySpent(id, allTrips, allDestinations){

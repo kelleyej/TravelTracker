@@ -70,7 +70,7 @@ h3 {
   display: flex; 
   justify-content: space-between;
   flex-direction: row-reverse;
-  height: 12vh; 
+  height: 10vh; 
   margin-bottom: 0; 
 }
 h1 {
@@ -250,7 +250,7 @@ section {
 }
 
 .book-button,
-.sign-out {
+.logout {
   background-color: #72A0C1;
   border: none; 
   border-radius: 30px;
@@ -258,7 +258,7 @@ section {
   height: 8%;
 }
 
-.sign-out {
+.logout {
   width: 10%;
   position: absolute; 
   margin-top: 1%;
