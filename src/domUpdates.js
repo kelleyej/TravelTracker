@@ -41,6 +41,7 @@ const displayLodgingCost = document.querySelector('.lodging-cost');
 const displayTotalCost = document.querySelector('.total-cost');
 const displayFligthCost = document.querySelector('.flight-cost')
 const tripRating = document.querySelector('.rating')
+const homeButton = document.querySelector('.home-button')
 
 // EventListeners
 window.addEventListener('load', function() {
@@ -67,6 +68,8 @@ showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
   
 })
+
+homeButton.addEventListener('click', backToMain)
 
 function clearForm(){
     date.value = '';
@@ -172,7 +175,8 @@ getData()
 function backToMain(){
     mainDisplay.classList.remove("hidden");
     header.classList.remove("hidden")
-    bookDisplay.classList.add("hidden")
+    bookDisplay.classList.add("hidden");
+    footer.classList.remove("hidden");
 }
 
 function welcomeTraveler({id, name}, allTrips, allDestinations){
@@ -227,6 +231,7 @@ function bookNextTrip(){
     mainDisplay.classList.add("hidden");
     header.classList.add("hidden")
     bookDisplay.classList.remove("hidden")
+    footer.classList.add("hidden");
 }
 
 function listDestinations(allDestinations){

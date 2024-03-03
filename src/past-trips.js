@@ -10,7 +10,7 @@ function viewPastTrips(id, allTrips, allDestinations) {
             date: trip.date, 
         };
     });
-    return allPastTrips;
+    return pastTrips; 
 };
 
 function viewPreviousTrip(id, allTrips, allDestinations){

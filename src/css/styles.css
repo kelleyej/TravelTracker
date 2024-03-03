@@ -34,6 +34,13 @@ h3 {
   margin-top: 0; 
 }
 
+.home-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+
 .login-container {
   background-color: rgb(216, 191, 216, .7);
   width: 50%;
@@ -65,30 +72,30 @@ h3 {
 h1 {
   text-align: center;
 }
+
+.book {
+  margin-left: 28%;
+  width: 100%;
+}
+  
+
 p, 
 .quote {
   text-align: center;
   font-style: italic; 
-  color: #0a2351;
+  color: #452c63;
   margin-top: 1%;
 }
 
 .submit-button, 
 .show-estimate {
   margin-top: 12%; 
+  background-color:#ffcbcb;
+  border: none; 
+  border-radius: 20px; 
+  height: 7%;
 }
 
-.show-cost {
-  width: 80%; 
-}
-
-.show-estimate, 
-.submit-button {
-  color: #0a2351;
-  box-shadow: 0px 0px 0px 6px darkolivegreen;
-  border-radius: 50px;
-  border: none;
-}
 .home-icon,
 .main-icon {
   width: 45%;
@@ -96,14 +103,15 @@ p,
 }
 
 .globe, 
-button {
+button, 
+.home-button {
   cursor: pointer;
     &:hover {
       transform: scale(1.2);
     }
 }
 h2 {
-  color: #0a2351;
+  color: #452c63;
   margin-bottom: 0; 
 }
 
@@ -128,6 +136,19 @@ label {
 .destination-label, 
 .duration-label {
   text-align: left; 
+  width: 100%;
+  font-weight: bold; 
+}
+
+.home-button {
+  width: 20%; 
+}
+
+.date, 
+.duration, 
+.travelers, 
+select {
+  background-color: antiquewhite;;
 }
 
 .book-trip-form {
@@ -212,6 +233,7 @@ section {
   flex-direction: column; 
   align-items: center;
   border-radius: 5px; 
+  background-color: antiquewhite;
 }
 
 .feedback {
@@ -220,16 +242,20 @@ section {
 }
 
 .book-button {
-  background-color: #6082B6;
+  background-color: #72A0C1;
   border: none; 
   border-radius: 30px;
-  width: 40%;
-  height: 30%;
+  width: 78%;
+  height: 8%;
+}
+
+.home-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .book-trip {
-  background-color: #72A0C1; 
-  opacity: .8; 
+  background-color: rgb(64, 112, 136, .9);
   border-radius: 12px;  
   height: 100%;
   width: 40%;
