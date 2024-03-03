@@ -118,7 +118,48 @@ let coordinates = [
     {destination: "Antananarivo, Madagascar",
     latitude: 18.9185,
     longitude: 47.5211
+    }, 
+    {destination: "Colombo, Sri Lanka",
+    latitude: 6.9271,
+    longitude: 79.8612
+    },
+    {destination: "Kathmandu, Nepal",
+    latitude: 27.7172,
+    longitude: 85.3240
+    },
+    {destination: "Brussels, Belgium",
+    latitude: 50.8476,
+    longitude: 4.3572
+    },
+    {destination: "Seoul, South Korea",
+    latitude: 37.5519,
+    longitude: 126.9918
+    },
+    {destination: "Anchorage, Alaska",
+    latitude: 61.2176,
+    longitude: 149.8997
+    },
+    {destination: "Reykjavík, Iceland",
+    latitude: 64.1470,
+    longitude: 21.9408
+    },
+    {destination: "Frankfurt, Germany",
+    latitude: 50.1109,
+    longitude: 8.6821
+    },
+    {destination: "Helsinki, Finland",
+    latitude: 60.1699,
+    longitude: 24.9384
+    },
+    {destination: "Porto, Portugal",
+    latitude: 41.1579,
+    longitude: 8.6291
+    },
+    {destination: "La Isla Tortuga, Costa Rica",
+    latitude: 20.0549,
+    longitude: 72.7925
     }
+
 ]
 
 export { coordinates }

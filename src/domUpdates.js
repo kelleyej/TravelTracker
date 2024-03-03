@@ -61,7 +61,7 @@ let location = coordinates.find(place => {
 
  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=de097255829b2751c79ce43b8bebb127`)
 .then(res => res.json())
-.then(data => console.log(data.weather))   
+.then(data => console.log(data))   
 }
 
 
