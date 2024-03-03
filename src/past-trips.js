@@ -8,6 +8,7 @@ function viewPastTrips(id, allTrips, allDestinations) {
             destination: allDestinations.find(place => place.id === trip.destinationID).destination, 
             travelers: trip.travelers, 
             date: trip.date, 
+            duration: trip.duration
         };
     });
     return pastTrips; 

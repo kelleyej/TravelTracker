@@ -248,17 +248,18 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
 
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
+    console.log('trips:', trips)
     if(trips.length === 0){
         pastTripSection.innerHTML = 'You have not documented any travel. Book a trip today!'
     } else {
             pastTripSection.innerHTML = '';
     trips.forEach(trip => {
         if((trip.travelers - 1) === 0){
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination}!<br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days!<br><br>`
         } else if((trip.travelers - 1) === 1) {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler!<div class="rating"<br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days!<div class="rating"<br><br>`
         } else {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers!<div class="rating"<br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days!<div class="rating"<br><br>`
     }    
 })
     }
@@ -288,8 +289,8 @@ function displayPendingTrips(id, allTrips, allDestinations){
         postTripSection.innerHTML = `You currently have no pending trips.`
     } else {
         for(let i = 0; i < pendingTrips.length ; i++){
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} with ${pendingTrips[i].travelers} other travelers!<br><br>`
-            if(i === 2){
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} for ${pendingTrips[i].destination} with ${pendingTrips[i].travelers} other travelers!<br><br>`
+            if(i === 3){
             break;   
             } 
         }
@@ -299,8 +300,8 @@ function displayPendingTrips(id, allTrips, allDestinations){
 
 function disableBookTrip(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
-    if(pendingTrips.length === 3){
-        agentMessage.innerText = `You cannot book more trips at this time. Please wait for agent approval.`
+    if(pendingTrips.length === 4){
+        agentMessage.innerText = `You cannot book more trips at this time. The maximum allowed is four bookings. Please wait for agent approval.`
         bookTrip.disabled = true; 
     }
 }

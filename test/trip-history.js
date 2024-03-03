@@ -13,18 +13,21 @@ describe('trip-history.js', function() {
       expect(pastTrips).to.deep.equal([{
         "date": "2022/02/25",
         "destination": "Jakarta, Indonesia",
-        "travelers": 2
+        "travelers": 2,
+        "duration": 10
         },
         {
         "date": "2022/04/30",
         "destination": "Sydney, Austrailia",
-        "travelers": 3
+        "travelers": 3,
+        "duration": 18
         }]) ;
     
       expect(pastTrips2).to.deep.equal([{
         "date": "2022/02/07",
         "destination": "Madrid, Spain",
-        "travelers": 6
+        "travelers": 6,
+        "duration": 4
         }
         ])
       });
