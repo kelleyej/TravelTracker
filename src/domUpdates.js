@@ -49,6 +49,7 @@ const logoutButton = document.querySelector('.logout')
 const backToMainButton = document.querySelector('.back-to-main')
 const lastLogoutButton = document.querySelector('.back-to-login')
 const weather = document.querySelector('.current-weather')
+const yearExpense = document.querySelector('h3')
 
 // EventListeners
 window.addEventListener('load', function() {
@@ -209,7 +210,7 @@ getData()
     displayMoneySpent(traveler.id, allTrips, allDestinations)
     date.min = setMinDate(currentDate); 
     displayCurrentWeather(coordinates, allDestinations)
-    console.log(weatherDisplay)
+    console.log('CURRENT DATE:', currentDate)
 })
 }
 
@@ -259,6 +260,7 @@ function displayMoneySpent(id, allTrips, allDestinations){
     let totalCost = calculateAnnualTripCost(id, allTrips, allDestinations)
     let flightCost = calculateAnnualFlightCost(id, allTrips, allDestinations)
     let lodgingCost = calculateAnnualLodgingCost(id, allTrips, allDestinations)
+    yearExpense.innerText = `Travel Expenses in ${findCurrentYear(currentDate)}`
     displayTotalCost.innerText = `$${totalCost}`
     displayFligthCost.innerText = `$${flightCost}`
     displayLodgingCost.innerText = `$${lodgingCost}`
@@ -272,6 +274,12 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
     currentDate = upcomingTrip[0].date; 
     weatherDisplay = locationOfTrip.destination
+}
+
+function findCurrentYear(currentDate){
+   let newDate = currentDate.split('/')
+   let [year, month, day] = newDate; 
+   return year; 
 }
 
 

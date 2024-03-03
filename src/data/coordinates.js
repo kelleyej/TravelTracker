@@ -8,7 +8,7 @@ let coordinates = [
     longitude:18.0686
     },
     {destination: "Sydney, Austrailia",
-    latitude: 33.8688,
+    latitude: -33.8688,
     longitude: 151.2093
     },
     {destination: "Cartagena, Colombia",
