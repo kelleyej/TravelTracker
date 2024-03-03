@@ -204,7 +204,14 @@ function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
     pastTripSection.innerHTML = '';
     trips.forEach(trip => {
-        pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler(s)!<br><br>`
+        if((trip.travelers - 1) === 0){
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to <span>${trip.destination}</span>!<br><br>`
+        } else if((trip.travelers - 1) === 1) {
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other traveler!<br><br>`
+        } else {
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited <span>${trip.destination}</span> with ${trip.travelers - 1} other travelers!<br><br>`
+        }
+        
     })
 }
 
