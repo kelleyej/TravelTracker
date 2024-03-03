@@ -223,13 +223,10 @@ allDestinations.forEach(location => {
 
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
+    console.log(pendingTrips)
     postTripSection.innerHTML = '';
     if(pendingTrips.length === 0){
-        pendingTripParagraph.innerText = "You currently have no pending trips."
-    } else if (pendingTrips.length > 0 && pendingTrips.length <= 3) {
-    pendingTrips.forEach(trip => {
-      postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers} other travelers!<br><br>`
-    })
+        postTripSection.innerHTML = `You currently have no pending trips.`
     } else {
         for(let i = 0; i < pendingTrips.length ; i++){
             postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} with ${pendingTrips[i].travelers} other travelers!<br><br>`
@@ -237,10 +234,16 @@ function displayPendingTrips(id, allTrips, allDestinations){
             break;   
             } 
         }
-        agentMessage.innerText = `You cannot book more trips at this time. Please wait for agent approval.`
-        // bookTrip.disabled = true; 
     }
-    console.log(pendingTrips.length)
+    disableBookTrip(id, allTrips, allDestinations)
+}
+
+function disableBookTrip(id, allTrips, allDestinations){
+    let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
+    if(pendingTrips.length === 3){
+        agentMessage.innerText = `You cannot book more trips at this time. Please wait for agent approval.`
+        bookTrip.disabled = true; 
+    }
 }
 
 function calculatePendingTripCost(destinationSelection, duration, allDestinations){
@@ -264,12 +267,8 @@ function displayPendingTripCost(destinationSelection, duration, allDestinations)
 
 function formatDate(newDate){
     let dateModified = newDate.split('/')
-    console.log('dateModified:', dateModified)
     let [year, month, day] = dateModified
-    console.log('year:', year)
     let array = [month, day, year]
-    console.log('array:', array)
     let newArray = array.join('/')
-    console.log('newArray:', newArray)
     return newArray; 
 }
