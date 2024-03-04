@@ -4,6 +4,7 @@ import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
 import { formatDate, setMinDate, findCurrentYear } from './dates.js'
+import { setKey } from './weather-api.js'
 
 // Query Selectors
 const dashboardParagraph = document.querySelector('p');
@@ -51,7 +52,7 @@ let location = coordinates.find(place => {
     return place.destination === weatherDisplay; 
 })
 
- fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=de097255829b2751c79ce43b8bebb127&units=imperial`)
+ fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${setKey()}&units=imperial`)
 .then(res => res.json())
 .then(data => {
     console.log(data)
