@@ -98,9 +98,14 @@ showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
 })
 
-logoutButton.addEventListener('click', logOut)
+logoutButton.addEventListener('click', function() {
+    logOut()
+})
 backToMainButton.addEventListener('click', backToMain)
-lastLogoutButton.addEventListener('click', backToLogin)
+lastLogoutButton.addEventListener('click', function(){
+    backToLogin();
+})
+
 
 function clearForm(){
     date.value = '';
@@ -111,6 +116,9 @@ function clearForm(){
 function clearLoginForm(){
     username.value = '';
     password.value = '';
+    feedback.innerText = '';
+    authorizeUsername = false; 
+    authorizePassword = false; 
 }
 
 loginForm.addEventListener('submit', function(event) {
@@ -278,7 +286,7 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
 
 function findCurrentYear(currentDate){
    let newDate = currentDate.split('/')
-   let [year, month, day] = newDate; 
+   let [year,,,] = newDate; 
    return year; 
 }
 
@@ -292,11 +300,11 @@ function displayPastTrips(id, allTrips, allDestinations){
             pastTripSection.innerHTML = '';
     trips.forEach(trip => {
         if((trip.travelers - 1) === 0){
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days!<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days.<br><br>`
         } else if((trip.travelers - 1) === 1) {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days!<div class="rating"<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<div class="rating"<br><br>`
         } else {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days!<div class="rating"<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<div class="rating"<br><br>`
     }    
 })
     }
