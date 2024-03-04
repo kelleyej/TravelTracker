@@ -1,5 +1,5 @@
 body {
-  background-image: url('/src/images/balloon.jpg');
+  background-image: url('../../dist/images/balloon.jpg');
   font-family: "Nunito", sans-serif;
   background-size: cover; 
   height: 100vh; 
@@ -135,7 +135,6 @@ p {
   height: 45%; 
 }
 
-.globe, 
 button, 
 .home-button {
   cursor: pointer;
@@ -181,10 +180,9 @@ label {
 .duration, 
 .travelers, 
 select {
-  background-color: #87A96B;
+  background-color: rgb(135, 169, 108, .8);
   border: none; 
   height: 50%;
-  opacity: .8;
 }
 
 .book-trip-form {
@@ -216,7 +214,7 @@ select {
 }
 
 ::placeholder {
-  color: #452c63; 
+  color: black;  
 }
 
 .airplane {
@@ -249,13 +247,15 @@ select {
 }
 
 .display-image {
-  width: 95%;
+  width: 90%;
   border-radius: 50%;
   margin-top: 5%; 
 }
 
 .weath-descrip {
   margin-bottom: 5%;
+  font-size: .9em; 
+  font-style: italic; 
 }
 
 .image-container, 

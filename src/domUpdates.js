@@ -6,27 +6,18 @@ import { coordinates } from '../src/data/coordinates.js'
 
 // Query Selectors
 const dashboardParagraph = document.querySelector('p');
-const globeButton = document.querySelector('.globe');
-const moneySpentDisplay = document.querySelector('.money-spent');
-const imageDisplay = document.querySelector('.image-container');
-const moneyDisplay = document.querySelector('.money-display');
 const upcomingTripSection = document.querySelector('.upcoming-trip');
 const pastTripSection = document.querySelector('.past-trip');
 const bookTrip = document.querySelector('.book-button');
 const mainDisplay = document.querySelector('.main-display');
 const bookDisplay = document.querySelector('.book-display');
-const header = document.querySelector('header');
 const bookTripForm = document.querySelector('.book-trip-form');
 const date = document.querySelector('.date');
 const travelers = document.querySelector('.travelers');
 const duration = document.querySelector('.duration');
 const destinationSelection = document.querySelector('select');
-const pendingTripsSection = document.querySelector('.pending-trips');
-const pendingTripParagraph = document.querySelector('.pending-trip-para');
-const submitButton = document.querySelector('.submit-button');
 const postTripSection = document.querySelector('.post-trips')
 const showEstimateButton = document.querySelector('.show-estimate');
-const bookTripSection = document.querySelector('.book-trip')
 const showCost = document.querySelector('.show-cost')
 const loginForm = document.querySelector('.login-form')
 const username = document.querySelector('.enter-username');
@@ -40,8 +31,6 @@ const footer = document.querySelector('footer');
 const displayLodgingCost = document.querySelector('.lodging-cost');
 const displayTotalCost = document.querySelector('.total-cost');
 const displayFligthCost = document.querySelector('.flight-cost')
-const tripRating = document.querySelector('.rating')
-const homeButton = document.querySelector('.home-button')
 const quoteHeader = document.querySelector('.quote-header')
 const mainHeader = document.querySelector('.main-header')
 const welcomeName = document.querySelector('.welcome-name')
