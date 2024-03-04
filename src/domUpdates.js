@@ -42,6 +42,7 @@ const backToMainButton = document.querySelector('.back-to-main')
 const lastLogoutButton = document.querySelector('.back-to-login')
 const weather = document.querySelector('.current-weather')
 const yearExpense = document.querySelector('h3')
+const errorDisplay = document.querySelector('.error-display')
 
 // EventListeners
 window.addEventListener('load', function() {
@@ -215,6 +216,17 @@ getData()
     displayCurrentWeather(coordinates, allDestinations)
     console.log(weatherDisplay)
 })
+.catch(error => {
+    renderErrorMessage(error)
+})
+}
+
+function renderErrorMessage(error) {
+    mainDisplay.classList.add("hidden");
+    mainHeader.classList.add("hidden");
+    footer.classList.add("hidden")
+    errorDisplay.innerText += error; 
+
 }
 
 function backToMain(){

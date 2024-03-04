@@ -243,11 +243,11 @@ select {
 }
 
 .current-weather {
-  width: 85%; 
+  width: 90%; 
 }
 
 .display-image {
-  width: 90%;
+  width: 95%;
   border-radius: 50%;
   margin-top: 5%; 
 }
