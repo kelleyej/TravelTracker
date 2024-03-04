@@ -13,6 +13,12 @@ describe('trip-expenses.js', function() {
           expect(totalCost).to.equal("2546.50")
           expect(totalCost2).to.equal("6385.50")
         });
+
+        it('should return zero cost if single traveler has not traveled this year', function() {
+          const noTravel = calculateAnnualTripCost(7, trips, destinations)
+
+          expect(noTravel).to.equal("0.00")
+        });
       });
     
     describe('calculate annual flight cost', function() {
@@ -20,6 +26,12 @@ describe('trip-expenses.js', function() {
           const flightCost = calculateAnnualFlightCost(2, trips, destinations)
     
           expect(flightCost).to.equal("1750.00")
+        });
+
+        it('should return zero cost if single traveler has not traveled this year', function() {
+          const noFlight = calculateAnnualFlightCost(7, trips, destinations)
+
+          expect(noFlight).to.equal("0.00")
         });
       });
     
@@ -30,6 +42,12 @@ describe('trip-expenses.js', function() {
     
           expect(lodgingCost).to.equal("800.00")
           expect(lodgingCost2).to.equal("2550.00")
+        });
+
+        it('should return zero cost if single traveler has not traveled this year', function() {
+          const noLodging = calculateAnnualLodgingCost(7, trips, destinations)
+
+          expect(noLodging).to.equal("0.00")
         });
     });
 

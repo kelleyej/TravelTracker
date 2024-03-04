@@ -10,5 +10,11 @@ describe('weather-code.js', function() {
 
             expect(weather).to.equal("overcast")
         });
+
+        it('should return an error message if no weather code is found', function() {
+            const noWeather = findWeatherCode(6, weatherCodes)
+
+            expect(noWeather).to.equal('Error: no weather description found.')
+        })
     });
 });
