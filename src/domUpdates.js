@@ -1,31 +1,24 @@
 import { getData, runPost } from './apiCalls.js'
 import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips, calculateAnnualLodgingCost, calculateAnnualFlightCost } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
-import { quotes } from '../src/data/travel-quotes'
+import { quotes } from '../src/data/travel-quotes.js'
+import { coordinates } from '../src/data/coordinates.js'
+import { formatDate, setMinDate, findCurrentYear } from './dates.js'
 
 // Query Selectors
 const dashboardParagraph = document.querySelector('p');
-const globeButton = document.querySelector('.globe');
-const moneySpentDisplay = document.querySelector('.money-spent');
-const imageDisplay = document.querySelector('.image-container');
-const moneyDisplay = document.querySelector('.money-display');
 const upcomingTripSection = document.querySelector('.upcoming-trip');
 const pastTripSection = document.querySelector('.past-trip');
 const bookTrip = document.querySelector('.book-button');
 const mainDisplay = document.querySelector('.main-display');
 const bookDisplay = document.querySelector('.book-display');
-const header = document.querySelector('header');
 const bookTripForm = document.querySelector('.book-trip-form');
 const date = document.querySelector('.date');
 const travelers = document.querySelector('.travelers');
 const duration = document.querySelector('.duration');
 const destinationSelection = document.querySelector('select');
-const pendingTripsSection = document.querySelector('.pending-trips');
-const pendingTripParagraph = document.querySelector('.pending-trip-para');
-const submitButton = document.querySelector('.submit-button');
 const postTripSection = document.querySelector('.post-trips')
 const showEstimateButton = document.querySelector('.show-estimate');
-const bookTripSection = document.querySelector('.book-trip')
 const showCost = document.querySelector('.show-cost')
 const loginForm = document.querySelector('.login-form')
 const username = document.querySelector('.enter-username');
@@ -39,20 +32,44 @@ const footer = document.querySelector('footer');
 const displayLodgingCost = document.querySelector('.lodging-cost');
 const displayTotalCost = document.querySelector('.total-cost');
 const displayFligthCost = document.querySelector('.flight-cost')
-const tripRating = document.querySelector('.rating')
-const homeButton = document.querySelector('.home-button')
 const quoteHeader = document.querySelector('.quote-header')
 const mainHeader = document.querySelector('.main-header')
 const welcomeName = document.querySelector('.welcome-name')
 const logoutButton = document.querySelector('.logout')
 const backToMainButton = document.querySelector('.back-to-main')
 const lastLogoutButton = document.querySelector('.back-to-login')
+const weather = document.querySelector('.current-weather')
+const yearExpense = document.querySelector('h3')
 
 // EventListeners
 window.addEventListener('load', function() {
     renderRandomQuote(quotes)
 })
 
+function displayCurrentWeather(coordinates, allDestinations){
+let location = coordinates.find(place => {
+    return place.destination === weatherDisplay; 
+})
+
+ fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=de097255829b2751c79ce43b8bebb127&units=imperial`)
+.then(res => res.json())
+.then(data => {
+    console.log(data)
+    return displayTripWeather(data, allDestinations)
+})
+}
+
+
+function displayTripWeather(data, allDestinations){
+    let locationImage = allDestinations.find(place => {
+        return place.destination === weatherDisplay; 
+    })
+    weather.innerHTML = '';
+    weather.innerHTML += 
+    `<img alt="${locationImage.alt}" class="display-image" src=${locationImage.image}>
+    <h2>current weather: ${data.weather[0].description}</h2>
+    <p class="weath-descrip">In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
+}
 
 bookTrip.addEventListener('click', function() {
     bookNextTrip()
@@ -71,9 +88,14 @@ showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
 })
 
-logoutButton.addEventListener('click', logOut)
+logoutButton.addEventListener('click', function() {
+    logOut()
+})
 backToMainButton.addEventListener('click', backToMain)
-lastLogoutButton.addEventListener('click', backToLogin)
+lastLogoutButton.addEventListener('click', function(){
+    backToLogin();
+})
+
 
 function clearForm(){
     date.value = '';
@@ -84,6 +106,9 @@ function clearForm(){
 function clearLoginForm(){
     username.value = '';
     password.value = '';
+    feedback.innerText = '';
+    authorizeUsername = false; 
+    authorizePassword = false; 
 }
 
 loginForm.addEventListener('submit', function(event) {
@@ -139,6 +164,8 @@ if(!authorizePassword){
     feedback.innerText = "Your password is incorrect."
 } if(!authorizeUsername){
     feedback.innerText = "Your username is incorrect."
+} if(!authorizeUsername && !authorizePassword){
+    feedback.innerText = `Both your username and password are incorrect.`
 }
 }
 
@@ -165,6 +192,7 @@ let allDestinations;
 let travelerUsername; 
 let traveler; 
 let currentDate; 
+let weatherDisplay; 
 
 // Functions
 function renderTravelerData(){
@@ -181,14 +209,10 @@ getData()
     displayPendingTrips(traveler.id, allTrips, allDestinations)
     displayMoneySpent(traveler.id, allTrips, allDestinations)
     date.min = setMinDate(currentDate); 
+    displayCurrentWeather(coordinates, allDestinations)
+    console.log('CURRENT DATE:', currentDate)
 })
 }
-
-function setMinDate(dateValue){
-    let newDate = dateValue.split('/')
-    let modifiedDate = newDate.join('-')
-    return modifiedDate
-  }
 
 function backToMain(){
     mainDisplay.classList.remove("hidden");
@@ -230,6 +254,7 @@ function displayMoneySpent(id, allTrips, allDestinations){
     let totalCost = calculateAnnualTripCost(id, allTrips, allDestinations)
     let flightCost = calculateAnnualFlightCost(id, allTrips, allDestinations)
     let lodgingCost = calculateAnnualLodgingCost(id, allTrips, allDestinations)
+    yearExpense.innerText = `Travel Expenses in ${findCurrentYear(currentDate)}`
     displayTotalCost.innerText = `$${totalCost}`
     displayFligthCost.innerText = `$${flightCost}`
     displayLodgingCost.innerText = `$${lodgingCost}`
@@ -242,23 +267,23 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     }) 
     upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
     currentDate = upcomingTrip[0].date; 
+    weatherDisplay = locationOfTrip.destination
 }
-
 
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
     console.log('trips:', trips)
     if(trips.length === 0){
-        pastTripSection.innerHTML = 'You have not documented any travel. Book a trip today!'
+        pastTripSection.innerHTML = 'You have not documented any past travel.'
     } else {
             pastTripSection.innerHTML = '';
     trips.forEach(trip => {
         if((trip.travelers - 1) === 0){
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days!<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days.<br><br>`
         } else if((trip.travelers - 1) === 1) {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days!<div class="rating"<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<div class="rating"<br><br>`
         } else {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days!<div class="rating"<br><br>`
+            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<div class="rating"<br><br>`
     }    
 })
     }
@@ -327,10 +352,3 @@ function displayPendingTripCost(destinationSelection, duration, allDestinations)
     }
 }
 
-function formatDate(newDate){
-    let dateModified = newDate.split('/')
-    let [year, month, day] = dateModified
-    let array = [month, day, year]
-    let newArray = array.join('/')
-    return newArray; 
-}
