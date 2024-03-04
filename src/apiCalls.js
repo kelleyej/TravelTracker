@@ -1,3 +1,5 @@
+import { modifyDate } from './dates.js'
+
 function runGet(){
     let allData = [
         fetch('http://localhost:3001/api/v1/travelers'),
@@ -15,7 +17,7 @@ function runPost(allTrips, traveler, destinationSelection, travelers, date, dura
            userID: traveler.id,
            destinationID: Number(destinationSelection.value), 
            travelers: Number(travelers.value), 
-           date: setMinDate(date.value), 
+           date: modifyDate(date.value), 
            duration: Number(duration.value),
            status: "pending", 
            suggestedActivities: []

@@ -12,10 +12,16 @@ function setMinDate(dateValue){
     return modifiedDate
   }
 
+function modifyDate(dateValue) {
+  let newDate = dateValue.split('-')
+  let modifiedDate = newDate.join('/')
+  return modifiedDate;
+}
+
 function findCurrentYear(currentDate){
     let newDate = currentDate.split('/')
     let [year,,,] = newDate; 
     return year; 
  }
 
-export { formatDate, setMinDate, findCurrentYear }
+export { formatDate, setMinDate, findCurrentYear, modifyDate }

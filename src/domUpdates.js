@@ -3,7 +3,7 @@ import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTr
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
-import { formatDate, setMinDate, findCurrentYear } from './dates.js'
+import { formatDate, findCurrentYear, setMinDate } from './dates.js'
 import { findWeatherCode } from './weather.js'
 import { weatherCodes } from './data/codes.js'
 
@@ -85,6 +85,9 @@ bookTripForm.addEventListener('submit', function(event) {
         clearForm()
         backToMain()
         renderTravelerData()
+     })
+     .catch(error => {
+        renderErrorMessage(error)
      })
 });
 
@@ -225,8 +228,8 @@ function renderErrorMessage(error) {
     mainDisplay.classList.add("hidden");
     mainHeader.classList.add("hidden");
     footer.classList.add("hidden")
-    errorDisplay.innerText += error; 
-
+    errorDisplay.classList.remove("hidden")
+    errorDisplay.innerHTML += error; 
 }
 
 function backToMain(){
