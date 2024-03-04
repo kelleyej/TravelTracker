@@ -31,12 +31,14 @@ describe('trip-history.js', function() {
         "duration": 4
         }
         ])
-          expect(noPastTrips).to.deep.equal([])  
-           expect(noPastTrips.length).to.equal(0)
-           expect(pastTrips.length).to.equal(2)
+
+      expect(noPastTrips).to.deep.equal([]) 
+
+      expect(noPastTrips.length).to.equal(0)
+      expect(pastTrips.length).to.equal(2)
       expect(pastTrips2.length).to.equal(1)
       });
-    })
+    });
   
   describe('find upcoming trip', function() {
     it('should find an upcoming trip for a single traveler', function() {

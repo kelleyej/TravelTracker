@@ -21,29 +21,29 @@ const duration = document.querySelector('.duration');
 const destinationSelection = document.querySelector('select');
 const postTripSection = document.querySelector('.post-trips')
 const showEstimateButton = document.querySelector('.show-estimate');
-const showCost = document.querySelector('.show-cost')
-const loginForm = document.querySelector('.login-form')
+const showCost = document.querySelector('.show-cost');
+const loginForm = document.querySelector('.login-form');
 const username = document.querySelector('.enter-username');
-const password = document.querySelector('.enter-password')
-const textContainer = document.querySelector('.text-container')
-const loginPage = document.querySelector('.login-page')
-const quote = document.querySelector('.quote')
+const password = document.querySelector('.enter-password');
+const textContainer = document.querySelector('.text-container');
+const loginPage = document.querySelector('.login-page');
+const quote = document.querySelector('.quote');
 const feedback = document.querySelector('.feedback');
-const agentMessage = document.querySelector('.agent-message')
+const agentMessage = document.querySelector('.agent-message');
 const footer = document.querySelector('footer');
 const displayLodgingCost = document.querySelector('.lodging-cost');
 const displayTotalCost = document.querySelector('.total-cost');
-const displayFligthCost = document.querySelector('.flight-cost')
-const quoteHeader = document.querySelector('.quote-header')
-const mainHeader = document.querySelector('.main-header')
-const welcomeName = document.querySelector('.welcome-name')
+const displayFligthCost = document.querySelector('.flight-cost');
+const quoteHeader = document.querySelector('.quote-header');
+const mainHeader = document.querySelector('.main-header');
+const welcomeName = document.querySelector('.welcome-name');
 const logoutButton = document.querySelector('.logout')
-const backToMainButton = document.querySelector('.back-to-main')
-const lastLogoutButton = document.querySelector('.back-to-login')
-const weather = document.querySelector('.current-weather')
-const yearExpense = document.querySelector('h3')
-const errorDisplay = document.querySelector('.error-display')
-const clearLogin = document.querySelector('.clear-form')
+const backToMainButton = document.querySelector('.back-to-main');
+const lastLogoutButton = document.querySelector('.back-to-login');
+const weather = document.querySelector('.current-weather');
+const yearExpense = document.querySelector('h3');
+const errorDisplay = document.querySelector('.error-display');
+const clearLogin = document.querySelector('.clear-form');
 
 // EventListeners
 window.addEventListener('load', function(){
@@ -157,6 +157,7 @@ function clearForm(){
     date.value = '';
     duration.value = '';
     travelers.value = '';
+    showCost.innerText = '';
 };
 
 function clearLoginForm(){
@@ -297,12 +298,12 @@ function displayPastTrips(id, allTrips, allDestinations){
         } else {
             pastTripSection.innerHTML = '';
         trips.forEach(trip => {
-            if((trip.travelers - 1) === 0){
+            if(trip.travelers === 1){
                 pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days.<br><br>`
-            } else if((trip.travelers - 1) === 1) {
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<div class="rating"<br><br>`
+            } else if(trip.travelers === 2) {
+                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<br><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<div class="rating"<br><br>`
+                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<br><br>`
             }    
         });
     };
@@ -324,17 +325,21 @@ function listDestinations(allDestinations){
 
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
-    postTripSection.innerHTML = '';
+    console.log(pendingTrips)
     if(pendingTrips.length === 0){
-        postTripSection.innerHTML = `You currently have no pending trips.`
+        postTripSection.innerHTML = 'You have not documented any past travel.'
     } else {
-        for(let i = 0; i < pendingTrips.length ; i++){
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${pendingTrips[i].destination} on ${formatDate(pendingTrips[i].date)} for ${pendingTrips[i].duration} days with ${pendingTrips[i].travelers} other travelers!<br><br>`
-            if(i === 3){
-            break;   
-            } 
-        }
-    }
+        postTripSection.innerHTML = '';
+        pendingTrips.forEach(trip => {
+            if(trip.travelers === 1){
+                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${trip.destination} on ${formatDate(trip.date)} for ${trip.duration} day(s).<br><br>`
+            } else if(trip.travelers === 2) {
+                postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers - 1} other traveler for ${trip.duration} day(s).<br><br>`
+            } else {
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers - 1} other travelers for ${trip.duration} day(s).<br><br>`
+            }    
+        });
+    };
     disableBookTrip(id, allTrips, allDestinations)
 };
 

@@ -2,8 +2,9 @@ function calculateAnnualTripCost(id, allTrips, allDestinations) {
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
     }).sort((a, b) => new Date(b.date) - new Date(a.date))
-    let year = allPastTrips[0].date.split('/')[0]
-    let annualTrips = allPastTrips.filter(trip => {
+    if(allPastTrips.length > 0){
+        let year = allPastTrips[0].date.split('/')[0]
+        let annualTrips = allPastTrips.filter(trip => {
         return trip.date.split('/')[0] === year; 
     });
     let totalTripCost = annualTrips.reduce((total, trip) => {
@@ -14,15 +15,19 @@ function calculateAnnualTripCost(id, allTrips, allDestinations) {
        }).estimatedFlightCostPerPerson) 
     }, 0);
 
-    return (totalTripCost + (totalTripCost * .10)).toFixed(2);
+    return (totalTripCost + (totalTripCost * .10)).toFixed(2); 
+    } else {
+        return "0.00"
+    }
 };
 
 function calculateAnnualFlightCost(id, allTrips, allDestinations){
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
     }).sort((a, b) => new Date(b.date) - new Date(a.date))
-    let year = allPastTrips[0].date.split('/')[0]
-    let annualTrips = allPastTrips.filter(trip => {
+    if (allPastTrips.length > 0) {
+        let year = allPastTrips[0].date.split('/')[0]
+        let annualTrips = allPastTrips.filter(trip => {
         return trip.date.split('/')[0] === year; 
     });
     let totalFlightCost = annualTrips.reduce((total, trip) => {
@@ -31,15 +36,19 @@ function calculateAnnualFlightCost(id, allTrips, allDestinations){
        }).estimatedFlightCostPerPerson
     }, 0);
 
-    return totalFlightCost.toFixed(2)
+    return totalFlightCost.toFixed(2) 
+    } else {
+        return "0.00"
+    }
 };
 
 function calculateAnnualLodgingCost(id, allTrips, allDestinations){
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
     }).sort((a, b) => new Date(b.date) - new Date(a.date))
-    let year = allPastTrips[0].date.split('/')[0]
-    let annualTrips = allPastTrips.filter(trip => {
+    if(allPastTrips.length > 0){
+        let year = allPastTrips[0].date.split('/')[0]
+        let annualTrips = allPastTrips.filter(trip => {
         return trip.date.split('/')[0] === year; 
     });
     let totalLodgingCost = annualTrips.reduce((total, trip) => {
@@ -48,7 +57,10 @@ function calculateAnnualLodgingCost(id, allTrips, allDestinations){
        })).estimatedLodgingCostPerDay
     }, 0);
     
-    return totalLodgingCost.toFixed(2);
+    return totalLodgingCost.toFixed(2); 
+    } else {
+        return "0.00"
+    }
 };
 
 function calculatePendingTripCost(destination, duration, allDestinations){

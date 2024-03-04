@@ -52,7 +52,6 @@ h3 {
   width: 100%;
 }
 
-
 .login-container {
   background-color: rgb(216, 191, 216, .7);
   width: 50%;
@@ -85,6 +84,7 @@ h3 {
   height: 10vh; 
   margin-bottom: 0; 
 }
+
 h1 {
   text-align: center;
 }
@@ -98,6 +98,7 @@ p {
   color: black; 
   margin-top: 1%;
 }
+
 .quote {
   text-align: center;
   font-style: italic; 
@@ -135,13 +136,13 @@ p {
   height: 45%; 
 }
 
-button, 
-.home-button {
+button {
   cursor: pointer;
     &:hover {
       transform: scale(1.2);
     }
 }
+
 h2 {
   color: #452c63;
   margin-bottom: 0; 
@@ -161,6 +162,7 @@ label {
 
 .date {
   height: 80px; 
+  font-family: "Nunito", sans-serif;
 }
 
 .date-label, 
@@ -170,10 +172,6 @@ label {
   text-align: left; 
   width: 100%;
   font-weight: bold; 
-}
-
-.home-button {
-  width: 20%; 
 }
 
 .date, 
@@ -259,10 +257,6 @@ select {
   margin-top: 5%; 
 }
 
-.error-display {
-  width: 100%; 
-}
-
 .weath-descrip {
   margin-bottom: 5%;
   font-size: .9em; 
@@ -283,7 +277,8 @@ select {
   width: 8%; 
 }
 
-.text-container {
+.text-container, 
+.error-display {
   width: 100%;
 }
 
@@ -307,6 +302,7 @@ section {
   margin-top: 3%;
   font-weight: bold; 
 }
+
 .book-button,
 .logout {
   background-color: #72A0C1;
