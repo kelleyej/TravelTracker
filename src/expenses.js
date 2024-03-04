@@ -13,6 +13,7 @@ function calculateAnnualTripCost(id, allTrips, allDestinations) {
         return destination.id === trip.destinationID
        }).estimatedFlightCostPerPerson) 
     }, 0);
+
     return (totalTripCost + (totalTripCost * .10)).toFixed(2);
 };
 
@@ -29,8 +30,9 @@ function calculateAnnualFlightCost(id, allTrips, allDestinations){
         return destination.id === trip.destinationID
        }).estimatedFlightCostPerPerson
     }, 0);
+
     return totalFlightCost.toFixed(2)
-}
+};
 
 function calculateAnnualLodgingCost(id, allTrips, allDestinations){
     let allPastTrips = allTrips.filter(trip => {
@@ -45,7 +47,19 @@ function calculateAnnualLodgingCost(id, allTrips, allDestinations){
         return destination.id === trip.destinationID
        })).estimatedLodgingCostPerDay
     }, 0);
+    
     return totalLodgingCost.toFixed(2);
-}
+};
 
-export { calculateAnnualTripCost, calculateAnnualFlightCost, calculateAnnualLodgingCost }
+function calculatePendingTripCost(destination, duration, allDestinations){
+    let findLocation = allDestinations.find(location => {
+        return location.id === destination
+    })
+    let tripCost = (duration * findLocation.estimatedLodgingCostPerDay) + findLocation.estimatedFlightCostPerPerson
+    let agentFee = tripCost * .10
+    let totalCost = (tripCost + agentFee).toFixed(2)
+
+    return totalCost; 
+};
+
+export { calculateAnnualTripCost, calculateAnnualFlightCost, calculateAnnualLodgingCost, calculatePendingTripCost }

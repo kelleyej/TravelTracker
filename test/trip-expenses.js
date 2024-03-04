@@ -1,6 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { calculateAnnualTripCost, calculateAnnualFlightCost, calculateAnnualLodgingCost } from '../src/expenses';
+import { calculateAnnualTripCost, calculateAnnualFlightCost, calculateAnnualLodgingCost, calculatePendingTripCost } from '../src/expenses';
 import { trips } from '../src/data/sample-trips';
 import { destinations } from '../src/data/sample-destinations';
 
@@ -15,7 +15,7 @@ describe('trip-expenses.js', function() {
         });
       });
     
-      describe('calculate annual flight cost', function() {
+    describe('calculate annual flight cost', function() {
         it('should calculate the cost of flights for the year for a single traveler', function() {
           const flightCost = calculateAnnualFlightCost(2, trips, destinations)
     
@@ -23,7 +23,7 @@ describe('trip-expenses.js', function() {
         });
       });
     
-      describe('calculate annual loding cost', function() {
+    describe('calculate annual loding cost', function() {
         it('should calculate the cost of lodging for the year for a single traveler', function() {
           const lodgingCost = calculateAnnualLodgingCost(1, trips, destinations);
           const lodgingCost2 = calculateAnnualLodgingCost(2, trips, destinations);
@@ -31,5 +31,13 @@ describe('trip-expenses.js', function() {
           expect(lodgingCost).to.equal("800.00")
           expect(lodgingCost2).to.equal("2550.00")
         });
+    });
+
+    describe('calculate estimate cost for booking trip', function() {
+      it('should calculate the cost of a potential trip to book', function() {
+        const bookingCost = calculatePendingTripCost(1, 3, destinations)
+
+        expect(bookingCost).to.equal("671.00")
       });
+    });
 });

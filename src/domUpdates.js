@@ -1,15 +1,14 @@
 import { getData, runPost } from './apiCalls.js'
-import { viewPreviousTrip, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
+import { viewUpcomingTrip, viewPastTrips } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
 import { formatDate, findCurrentYear, setMinDate } from './dates.js'
 import { findWeatherCode } from './weather.js'
 import { weatherCodes } from './data/codes.js'
-import { calculateAnnualTripCost, calculateAnnualLodgingCost, calculateAnnualFlightCost } from './expenses.js'
+import { calculateAnnualTripCost, calculateAnnualLodgingCost, calculateAnnualFlightCost, calculatePendingTripCost } from './expenses.js'
 
 // Query Selectors
-const dashboardParagraph = document.querySelector('p');
 const upcomingTripSection = document.querySelector('.upcoming-trip');
 const pastTripSection = document.querySelector('.past-trip');
 const bookTrip = document.querySelector('.book-button');
@@ -46,173 +45,46 @@ const yearExpense = document.querySelector('h3')
 const errorDisplay = document.querySelector('.error-display')
 
 // EventListeners
-window.addEventListener('load', function() {
+window.addEventListener('load', function(){
     renderRandomQuote(quotes)
-})
-
-function displayCurrentWeather(coordinates, allDestinations){
-let location = coordinates.find(place => {
-    return place.destination === weatherDisplay; 
-})
-
-fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1`)
-
-.then(res => {
-    if(!res.ok) {
-        let responseText = response.statusText
-        let responseCode = response.status
-        throw new Error(`${responseCode} - ${responseText}`)
-    } else {
-        return res.json()
-    }
-        
-})
-.then(data => {
-    console.log(data)
-    return displayTripWeather(data, allDestinations)
-})
-.catch(error => {
-    renderErrorMessage(error)
-})
-}
-function displayTripWeather(data, allDestinations){
-    let locationImage = allDestinations.find(place => {
-        return place.destination === weatherDisplay; 
-    })
-    console.log(locationImage)
-    console.log('WEATHER:', weatherDisplay)
-    weather.innerHTML = '';
-    weather.innerHTML += 
-    `<img alt="${locationImage.alt}" class="display-image" src=${locationImage.image}>
-    <h2>current weather: ${findWeatherCode(data.current.weather_code, weatherCodes)}</h2>
-    <p class="weath-descrip">In ${weatherDisplay}, the temperature is currently ${data.current.temperature_2m}℉ with ${data.current.relative_humidity_2m}% humidity. Wind speeds are ${data.current.wind_speed_10m} mph.</p>`
-}
-
-bookTrip.addEventListener('click', function() {
-    bookNextTrip()
-})
-bookTripForm.addEventListener('submit', function(event) {
-    event.preventDefault()
- return runPost(allTrips, traveler, destinationSelection, travelers, date, duration)
-    .then(response => {
-        if(!response.ok){
-            let responseText = response.statusText
-      let responseCode = response.status
-      throw new Error(`Failed to Post ${responseCode} - ${responseText}`)
-        } else {
-            return response; 
-        }
-    })
-     .then(data => {
-        clearForm()
-        backToMain()
-        renderTravelerData()
-     })
-     .catch(error => {
-        renderErrorMessage(error)
-     })
 });
 
-showEstimateButton.addEventListener('click', function() {
-    displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
-})
-
-logoutButton.addEventListener('click', function() {
-    logOut()
-})
-backToMainButton.addEventListener('click', backToMain)
-lastLogoutButton.addEventListener('click', function(){
-    backToLogin();
-})
-
-
-function clearForm(){
-    date.value = '';
-    duration.value = '';
-    travelers.value = '';
-}
-
-function clearLoginForm(){
-    username.value = '';
-    password.value = '';
-    feedback.innerText = '';
-    authorizeUsername = false; 
-    authorizePassword = false; 
-}
-
+logoutButton.addEventListener('click', logOut);
+backToMainButton.addEventListener('click', backToMain);
+lastLogoutButton.addEventListener('click', backToLogin);
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault()
     authenticateLogin()
     authenticate()
     changeToMainDisplay()
     findCurrentTraveler(travelerUsername)
-    console.log('current traveler:', currentTraveler)
-    
-})
+});
+showEstimateButton.addEventListener('click', function() {
+    displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
+});
+bookTrip.addEventListener('click', bookNextTrip)
 
-function renderRandomQuote(quotes){
-   let randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
-   quote.innerText = `${randomQuote}`
-}
-let authorizePassword = false;
-let authorizeUsername = false;  
-
-function changeToMainDisplay(){
-    if(authorizePassword === true && authorizeUsername === true){
-    mainDisplay.classList.remove("hidden");
-    textContainer.classList.remove("hidden")
-    loginPage.classList.add("hidden")
-    footer.classList.remove("hidden");
-    quoteHeader.classList.add("hidden");
-    mainHeader.classList.remove("hidden")
-    renderTravelerData()
-    }
-}
-
-function authenticateLogin(){
-   let array = [...Array(51).keys()]
-   let modifiedArray = array.shift()
-   let numberArray = array.map(element => {
-    return Number(element)
-   })
-   numberArray.forEach(number => {
-    if(username.value === `traveler${number}`){
-        authorizeUsername = true; 
-    } if(password.value === "travel"){
-        authorizePassword = true; 
-    }
-})
- 
- travelerUsername = username.value; 
- travelerUsername = travelerUsername.split('')
- console.log(travelerUsername)
-}
-
-function authenticate(){
-if(!authorizePassword){
-    feedback.innerText = "Your password is incorrect."
-} if(!authorizeUsername){
-    feedback.innerText = "Your username is incorrect."
-} if(!authorizeUsername && !authorizePassword){
-    feedback.innerText = `Both your username and password are incorrect.`
-}
-}
-
-
-function findCurrentTraveler(travelerUsername){
-    let password; 
-    let newPassword;
- 
-    if(travelerUsername.length === 9){
-      password = travelerUsername.splice(-1)
-      newPassword = password.join('')
-    } else if (travelerUsername.length === 10){
-     password = travelerUsername.splice(-2)
-     newPassword = password.join('')
-    }
-    console.log(newPassword)
-    currentTraveler = newPassword; 
-  }
+bookTripForm.addEventListener('submit', function(event) {
+    event.preventDefault()
+    return runPost(allTrips, traveler, destinationSelection, travelers, date, duration)
+    .then(response => {
+        if(!response.ok){
+            let responseText = response.statusText
+            let responseCode = response.status
+            throw new Error(`Failed to Post ${responseCode} - ${responseText}`)
+        } else {
+            return response; 
+        }
+    })
+    .then(data => {
+        clearForm()
+        backToMain()
+        renderTravelerData()
+    })
+    .catch(error => {
+        renderErrorMessage(error)
+     });
+});
 
 //Global Variables
 let currentTraveler; 
@@ -222,8 +94,11 @@ let travelerUsername;
 let traveler; 
 let currentDate; 
 let weatherDisplay; 
+let authorizePassword = false;
+let authorizeUsername = false;
 
-// Functions
+
+// FUNCTIONS
 function renderTravelerData(){
 getData()
 .then(([travelers, trips, destinations]) => {
@@ -246,6 +121,125 @@ getData()
 })
 }
 
+function displayCurrentWeather(coordinates, allDestinations){
+    let location = coordinates.find(place => {
+        return place.destination === weatherDisplay; 
+    })
+
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1`)
+    .then(res => {
+    if(!res.ok) {
+        let responseText = response.statusText
+        let responseCode = response.status
+        throw new Error(`${responseCode} - ${responseText}`)
+    } else {
+        return res.json()
+    }  
+    })  
+    .then(data => {
+        return displayTripWeather(data, allDestinations)
+    })
+    .catch(error => {
+        renderErrorMessage(error)
+    })
+};
+
+function displayTripWeather(data, allDestinations){
+    let locationImage = allDestinations.find(place => {
+        return place.destination === weatherDisplay; 
+    })
+    weather.innerHTML = '';
+    weather.innerHTML += 
+    `<img alt="${locationImage.alt}" class="display-image" src=${locationImage.image}>
+    <h2>current weather: ${findWeatherCode(data.current.weather_code, weatherCodes)}</h2>
+    <p class="weath-descrip">In ${weatherDisplay}, the temperature is currently ${data.current.temperature_2m}℉ with ${data.current.relative_humidity_2m}% humidity. Wind speeds are ${data.current.wind_speed_10m} mph.</p>`
+}
+
+function clearForm(){
+    date.value = '';
+    duration.value = '';
+    travelers.value = '';
+};
+
+function clearLoginForm(){
+    username.value = '';
+    password.value = '';
+    feedback.innerText = '';
+    authorizeUsername = false; 
+    authorizePassword = false; 
+};
+
+function renderRandomQuote(quotes){
+   let randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
+   quote.innerText = `${randomQuote}`
+};
+  
+function changeToMainDisplay(){
+    if(authorizePassword === true && authorizeUsername === true){
+        mainDisplay.classList.remove("hidden");
+        textContainer.classList.remove("hidden");
+        loginPage.classList.add("hidden");
+        footer.classList.remove("hidden");
+        quoteHeader.classList.add("hidden");
+        mainHeader.classList.remove("hidden");
+        renderTravelerData();
+    };
+};
+
+function authenticateLogin(){
+   let array = [...Array(51).keys()]
+   let modifiedArray = array.shift()
+   let numberArray = array.map(element => {
+    return Number(element)
+   })
+   numberArray.forEach(number => {
+    if(username.value === `traveler${number}`){
+        authorizeUsername = true; 
+        username.disabled = true; 
+    } if(password.value === "travel"){
+        authorizePassword = true; 
+        password.disabled = true; 
+    }
+    });
+    travelerUsername = username.value; 
+    travelerUsername = travelerUsername.split('')
+};
+
+function authenticate(){
+    if(!authorizePassword){
+        feedback.innerText = "Your password is incorrect."
+        password.value = '';
+    } else if(!authorizeUsername){
+        feedback.innerText = "Your username is incorrect."
+         username.value = '';
+    } else if(!authorizeUsername && !authorizePassword){
+    feedback.innerText = `Both your username and password are incorrect.`
+    }
+};
+
+
+
+function findCurrentTraveler(travelerUsername){
+    let password; 
+    let newPassword;
+ 
+    if(travelerUsername.length === 9){
+      password = travelerUsername.splice(-1)
+      newPassword = password.join('')
+    } else if (travelerUsername.length === 10){
+     password = travelerUsername.splice(-2)
+     newPassword = password.join('')
+    }
+    console.log(newPassword)
+    currentTraveler = newPassword; 
+    console.log('currenttraveler:', currentTraveler)
+  }
+
+
+
+// Functions
+
+
 function renderErrorMessage(error) {
     mainDisplay.classList.add("hidden");
     bookDisplay.classList.add("hidden")
@@ -264,14 +258,8 @@ function backToMain(){
 }
 
 
-function welcomeTraveler({id, name}, allTrips, allDestinations){
+function welcomeTraveler({name}){
     welcomeName.innerText = `Welcome back, ${name}!`
-    let previousTrip = viewPreviousTrip(id, allTrips, allDestinations)
-    if(previousTrip !== ''){
-       dashboardParagraph.innerText = `How was your trip to ${previousTrip}?` 
-    } else {
-        dashboardParagraph.innerText = `You have not been on any trips yet. Plan yours today!`
-    }
 }
 
 function backToLogin(){
@@ -374,18 +362,19 @@ function disableBookTrip(id, allTrips, allDestinations){
     }
 }
 
-function calculatePendingTripCost(destinationSelection, duration, allDestinations){
-    let findLocation = allDestinations.find(location => {
-        return location.id === Number(destinationSelection.value)
-    })
-    let tripCost = ((Number(duration.value) * findLocation.estimatedLodgingCostPerDay) + findLocation.estimatedFlightCostPerPerson)
-    let agentFee = tripCost * .10
-    let totalCost = (tripCost + agentFee).toFixed(2)
-    return totalCost; 
-}
+// function calculatePendingTripCost(destinationSelection, duration, allDestinations) {
+//     let findLocation = allDestinations.find(location => {
+//         return location.id === Number(destinationSelection.value)
+//     })
+//     let tripCost = (duration * findLocation.estimatedLodgingCostPerDay) + findLocation.estimatedFlightCostPerPerson
+//     let agentFee = tripCost * .10
+//     let totalCost = (tripCost + agentFee).toFixed(2)
+
+//     return totalCost; 
+// };
 
 function displayPendingTripCost(destinationSelection, duration, allDestinations) {
-    let cost = calculatePendingTripCost(destinationSelection, duration, allDestinations)
+    let cost = calculatePendingTripCost(Number(destinationSelection.value), Number(duration.value), allDestinations)
     if(travelers.value !== '' && duration.value !== ''){
       showCost.innerText = `This trip is estimated to cost approximately $${cost}.`  
     } else {

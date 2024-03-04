@@ -5,7 +5,7 @@ function runGet(){
         fetch('http://localhost:3001/api/v1/travelers'),
         fetch('http://localhost:3001/api/v1/trips'),
         fetch('http://localhost:3001/api/v1/destinations')
-]
+    ]
     return allData; 
 }
 
