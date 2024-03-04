@@ -162,6 +162,7 @@ label {
 
 .date {
   height: 80px; 
+  font-family: "Nunito", sans-serif;
 }
 
 .date-label, 
