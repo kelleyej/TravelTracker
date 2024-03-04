@@ -16,14 +16,15 @@ describe('pending-trip.js', function() {
                     date: "2022/11/20",
                     destination: "Stockholm, Sweden"
                 }]);
-            expect(pendingTrips.length).to.equal(1)
-
+            
             expect(noPendingTrips).to.deep.equal([])
         });
     
-        it('should return a length of 0 if a single traveler has no pending trips', function() {
+        it('should return the number of pending trips for a single traveler', function() {
+            const pendingTrips = findPendingTrips(2, trips, destinations)
             const noPendingTrips = findPendingTrips(4, trips, destinations)
 
+            expect(pendingTrips.length).to.equal(1)
             expect(noPendingTrips.length).to.equal(0)
         });      
    }); 
