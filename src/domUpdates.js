@@ -43,6 +43,7 @@ const lastLogoutButton = document.querySelector('.back-to-login')
 const weather = document.querySelector('.current-weather')
 const yearExpense = document.querySelector('h3')
 const errorDisplay = document.querySelector('.error-display')
+const clearLogin = document.querySelector('.clear-form')
 
 // EventListeners
 window.addEventListener('load', function(){
@@ -52,6 +53,7 @@ window.addEventListener('load', function(){
 logoutButton.addEventListener('click', logOut);
 backToMainButton.addEventListener('click', backToMain);
 lastLogoutButton.addEventListener('click', backToLogin);
+clearLogin.addEventListener('click', clearLoginForm)
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault()
     authenticateLogin()
@@ -97,51 +99,47 @@ let weatherDisplay;
 let authorizePassword = false;
 let authorizeUsername = false;
 
-
 // FUNCTIONS
 function renderTravelerData(){
-getData()
-.then(([travelers, trips, destinations]) => {
-    traveler = travelers.travelers[currentTraveler - 1]
-    console.log('render:', traveler)
-    allTrips = trips.trips
-    allDestinations = destinations.destinations
-    welcomeTraveler(traveler, allTrips, allDestinations);
-    displayUpcomingTrip(traveler.id, allTrips, allDestinations);
-    displayPastTrips(traveler.id, allTrips, allDestinations)
-    listDestinations(allDestinations)
-    displayPendingTrips(traveler.id, allTrips, allDestinations)
-    displayMoneySpent(traveler.id, allTrips, allDestinations)
-    date.min = setMinDate(currentDate); 
-    displayCurrentWeather(coordinates, allDestinations)
-    console.log(weatherDisplay)
-})
-.catch(error => {
-    renderErrorMessage(error)
-})
-}
+    getData()
+    .then(([travelers, trips, destinations]) => {
+        traveler = travelers.travelers[currentTraveler - 1]
+        allTrips = trips.trips
+        allDestinations = destinations.destinations
+        welcomeTraveler(traveler, allTrips, allDestinations);
+        displayUpcomingTrip(traveler.id, allTrips, allDestinations);
+        displayPastTrips(traveler.id, allTrips, allDestinations)
+        listDestinations(allDestinations)
+        displayPendingTrips(traveler.id, allTrips, allDestinations)
+        displayMoneySpent(traveler.id, allTrips, allDestinations)
+        date.min = setMinDate(currentDate); 
+        displayCurrentWeather(coordinates, allDestinations)
+    })
+    .catch(error => {
+        renderErrorMessage(error)
+    });
+};
 
 function displayCurrentWeather(coordinates, allDestinations){
     let location = coordinates.find(place => {
         return place.destination === weatherDisplay; 
     })
-
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1`)
     .then(res => {
-    if(!res.ok) {
-        let responseText = response.statusText
-        let responseCode = response.status
-        throw new Error(`${responseCode} - ${responseText}`)
-    } else {
-        return res.json()
-    }  
+        if(!res.ok) {
+            let responseText = response.statusText
+            let responseCode = response.status
+            throw new Error(`${responseCode} - ${responseText}`)
+        } else {
+            return res.json()
+        }  
     })  
     .then(data => {
         return displayTripWeather(data, allDestinations)
     })
     .catch(error => {
         renderErrorMessage(error)
-    })
+    });
 };
 
 function displayTripWeather(data, allDestinations){
@@ -153,7 +151,7 @@ function displayTripWeather(data, allDestinations){
     `<img alt="${locationImage.alt}" class="display-image" src=${locationImage.image}>
     <h2>current weather: ${findWeatherCode(data.current.weather_code, weatherCodes)}</h2>
     <p class="weath-descrip">In ${weatherDisplay}, the temperature is currently ${data.current.temperature_2m}℉ with ${data.current.relative_humidity_2m}% humidity. Wind speeds are ${data.current.wind_speed_10m} mph.</p>`
-}
+};
 
 function clearForm(){
     date.value = '';
@@ -167,6 +165,8 @@ function clearLoginForm(){
     feedback.innerText = '';
     authorizeUsername = false; 
     authorizePassword = false; 
+    username.disabled = false; 
+    password.disabled = false;
 };
 
 function renderRandomQuote(quotes){
@@ -209,15 +209,13 @@ function authenticate(){
     if(!authorizePassword){
         feedback.innerText = "Your password is incorrect."
         password.value = '';
-    } else if(!authorizeUsername){
+    } if(!authorizeUsername){
         feedback.innerText = "Your username is incorrect."
          username.value = '';
-    } else if(!authorizeUsername && !authorizePassword){
+    } if(!authorizeUsername && !authorizePassword){
     feedback.innerText = `Both your username and password are incorrect.`
     }
 };
-
-
 
 function findCurrentTraveler(travelerUsername){
     let password; 
@@ -233,51 +231,44 @@ function findCurrentTraveler(travelerUsername){
     console.log(newPassword)
     currentTraveler = newPassword; 
     console.log('currenttraveler:', currentTraveler)
-  }
-
-
-
-// Functions
-
+  };
 
 function renderErrorMessage(error) {
     mainDisplay.classList.add("hidden");
     bookDisplay.classList.add("hidden")
     mainHeader.classList.add("hidden");
-    footer.classList.add("hidden")
-    errorDisplay.classList.remove("hidden")
+    footer.classList.add("hidden");
+    errorDisplay.classList.remove("hidden");
     errorDisplay.innerHTML += error; 
-}
+};
 
 function backToMain(){
     mainDisplay.classList.remove("hidden");
-    mainHeader.classList.remove("hidden")
+    mainHeader.classList.remove("hidden");
     bookDisplay.classList.add("hidden");
     footer.classList.remove("hidden");
-    
-}
-
+};
 
 function welcomeTraveler({name}){
     welcomeName.innerText = `Welcome back, ${name}!`
-}
+};
 
 function backToLogin(){
     bookDisplay.classList.add("hidden");
     quoteHeader.classList.remove("hidden");
     loginPage.classList.remove("hidden");
     clearLoginForm();
-}
+};
 
 function logOut(){
-    clearLoginForm()
+    clearLoginForm() 
     mainDisplay.classList.add("hidden");
     textContainer.classList.add("hidden")
     footer.classList.add("hidden");
     quoteHeader.classList.remove("hidden");
     mainHeader.classList.add("hidden")
     loginPage.classList.remove("hidden");
-}
+};
 
 function displayMoneySpent(id, allTrips, allDestinations){
     let totalCost = calculateAnnualTripCost(id, allTrips, allDestinations)
@@ -287,7 +278,7 @@ function displayMoneySpent(id, allTrips, allDestinations){
     displayTotalCost.innerText = `$${totalCost}`
     displayFligthCost.innerText = `$${flightCost}`
     displayLodgingCost.innerText = `$${lodgingCost}`
-}
+};
 
 function displayUpcomingTrip(id, allTrips, allDestinations){
     let upcomingTrip = viewUpcomingTrip(id, allTrips)
@@ -297,46 +288,42 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
     currentDate = upcomingTrip[0].date; 
     weatherDisplay = locationOfTrip.destination
-}
+};
 
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
-    console.log('trips:', trips)
-    if(trips.length === 0){
-        pastTripSection.innerHTML = 'You have not documented any past travel.'
-    } else {
-            pastTripSection.innerHTML = '';
-    trips.forEach(trip => {
-        if((trip.travelers - 1) === 0){
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days.<br><br>`
-        } else if((trip.travelers - 1) === 1) {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<div class="rating"<br><br>`
+        if(trips.length === 0){
+            pastTripSection.innerHTML = 'You have not documented any past travel.'
         } else {
-            pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<div class="rating"<br><br>`
-    }    
-})
-    }
-
-
-}
+            pastTripSection.innerHTML = '';
+        trips.forEach(trip => {
+            if((trip.travelers - 1) === 0){
+                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days.<br><br>`
+            } else if((trip.travelers - 1) === 1) {
+                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<div class="rating"<br><br>`
+            } else {
+                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<div class="rating"<br><br>`
+            }    
+        });
+    };
+};
 
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
     mainHeader.classList.add("hidden")
     bookDisplay.classList.remove("hidden")
     footer.classList.add("hidden");
-}
+};
 
 function listDestinations(allDestinations){
-allDestinations.forEach(location => {
- destinationSelection.innerHTML += 
- `<option value=${location.id}>${location.destination}</option>`
-    })
-}
+    allDestinations.forEach(location => {
+        destinationSelection.innerHTML += 
+        `<option value=${location.id}>${location.destination}</option>`
+    });
+};
 
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
-    console.log(pendingTrips)
     postTripSection.innerHTML = '';
     if(pendingTrips.length === 0){
         postTripSection.innerHTML = `You currently have no pending trips.`
@@ -349,7 +336,7 @@ function displayPendingTrips(id, allTrips, allDestinations){
         }
     }
     disableBookTrip(id, allTrips, allDestinations)
-}
+};
 
 function disableBookTrip(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
@@ -359,19 +346,8 @@ function disableBookTrip(id, allTrips, allDestinations){
     } else {
         agentMessage.innerText = '';
         bookTrip.disabled = false; 
-    }
-}
-
-// function calculatePendingTripCost(destinationSelection, duration, allDestinations) {
-//     let findLocation = allDestinations.find(location => {
-//         return location.id === Number(destinationSelection.value)
-//     })
-//     let tripCost = (duration * findLocation.estimatedLodgingCostPerDay) + findLocation.estimatedFlightCostPerPerson
-//     let agentFee = tripCost * .10
-//     let totalCost = (tripCost + agentFee).toFixed(2)
-
-//     return totalCost; 
-// };
+    };
+};
 
 function displayPendingTripCost(destinationSelection, duration, allDestinations) {
     let cost = calculatePendingTripCost(Number(destinationSelection.value), Number(duration.value), allDestinations)
@@ -379,6 +355,6 @@ function displayPendingTripCost(destinationSelection, duration, allDestinations)
       showCost.innerText = `This trip is estimated to cost approximately $${cost}.`  
     } else {
         showCost.innerText = `Please fill out all fields to estimate total trip cost.`
-    }
-}
+    };
+};
 
