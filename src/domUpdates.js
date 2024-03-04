@@ -19,7 +19,7 @@ const date = document.querySelector('.date');
 const travelers = document.querySelector('.travelers');
 const duration = document.querySelector('.duration');
 const destinationSelection = document.querySelector('select');
-const postTripSection = document.querySelector('.post-trips')
+const postTripSection = document.querySelector('.post-trips');
 const showEstimateButton = document.querySelector('.show-estimate');
 const showCost = document.querySelector('.show-cost');
 const loginForm = document.querySelector('.login-form');
@@ -323,9 +323,8 @@ function listDestinations(allDestinations){
 
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
-    console.log(pendingTrips)
     if(pendingTrips.length === 0){
-        postTripSection.innerHTML = 'You have not documented any past travel.'
+        postTripSection.innerHTML = 'You do not have any pending trips currently.'
     } else {
         postTripSection.innerHTML = '';
         pendingTrips.forEach(({travelers, destination, date, duration}) => {
