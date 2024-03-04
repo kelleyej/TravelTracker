@@ -229,9 +229,7 @@ function findCurrentTraveler(travelerUsername){
      password = travelerUsername.splice(-2)
      newPassword = password.join('')
     }
-    console.log(newPassword)
     currentTraveler = newPassword; 
-    console.log('currenttraveler:', currentTraveler)
   };
 
 function renderErrorMessage(error) {
@@ -297,13 +295,13 @@ function displayPastTrips(id, allTrips, allDestinations){
             pastTripSection.innerHTML = 'You have not documented any past travel.'
         } else {
             pastTripSection.innerHTML = '';
-        trips.forEach(trip => {
-            if(trip.travelers === 1){
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days.<br><br>`
-            } else if(trip.travelers === 2) {
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<br><br>`
+        trips.forEach(({date, destination, duration, travelers}) => {
+            if(travelers === 1){
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<br><br>`
+            } else if(travelers === 2) {
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<br><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<br><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<br><br>`
             }    
         });
     };
@@ -317,9 +315,9 @@ function bookNextTrip(){
 };
 
 function listDestinations(allDestinations){
-    allDestinations.forEach(location => {
+    allDestinations.forEach(({id, destination}) => {
         destinationSelection.innerHTML += 
-        `<option value=${location.id}>${location.destination}</option>`
+        `<option value=${id}>${destination}</option>`
     });
 };
 
@@ -330,13 +328,13 @@ function displayPendingTrips(id, allTrips, allDestinations){
         postTripSection.innerHTML = 'You have not documented any past travel.'
     } else {
         postTripSection.innerHTML = '';
-        pendingTrips.forEach(trip => {
-            if(trip.travelers === 1){
-                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${trip.destination} on ${formatDate(trip.date)} for ${trip.duration} day(s).<br><br>`
-            } else if(trip.travelers === 2) {
-                postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers - 1} other traveler for ${trip.duration} day(s).<br><br>`
+        pendingTrips.forEach(({travelers, destination, date, duration}) => {
+            if(travelers === 1){
+                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${destination} on ${formatDate(date)} for ${duration} day(s).<br><br>`
+            } else if(travelers === 2) {
+                postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other traveler for ${duration} day(s).<br><br>`
             } else {
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers - 1} other travelers for ${trip.duration} day(s).<br><br>`
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other travelers for ${duration} day(s).<br><br>`
             }    
         });
     };
