@@ -4,7 +4,8 @@ import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
 import { formatDate, setMinDate, findCurrentYear } from './dates.js'
-import { setKey } from './weather-api.js'
+import { findWeatherCode } from './weather.js'
+import { weatherCodes } from './data/codes.js'
 
 // Query Selectors
 const dashboardParagraph = document.querySelector('p');
@@ -52,24 +53,25 @@ let location = coordinates.find(place => {
     return place.destination === weatherDisplay; 
 })
 
- fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${setKey()}&units=imperial`)
+fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1`)
+
 .then(res => res.json())
 .then(data => {
     console.log(data)
     return displayTripWeather(data, allDestinations)
 })
 }
-
-
 function displayTripWeather(data, allDestinations){
     let locationImage = allDestinations.find(place => {
         return place.destination === weatherDisplay; 
     })
+    console.log(locationImage)
+    console.log('WEATHER:', weatherDisplay)
     weather.innerHTML = '';
     weather.innerHTML += 
     `<img alt="${locationImage.alt}" class="display-image" src=${locationImage.image}>
-    <h2>current weather: ${data.weather[0].description}</h2>
-    <p class="weath-descrip">In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
+    <h2>current weather: ${findWeatherCode(data.current.weather_code, weatherCodes)}</h2>
+    <p class="weath-descrip">In ${weatherDisplay}, the temperature is currently ${data.current.temperature_2m}℉ with ${data.current.relative_humidity_2m}% humidity. Wind speeds are ${data.current.wind_speed_10m} mph.</p>`
 }
 
 bookTrip.addEventListener('click', function() {
@@ -211,7 +213,7 @@ getData()
     displayMoneySpent(traveler.id, allTrips, allDestinations)
     date.min = setMinDate(currentDate); 
     displayCurrentWeather(coordinates, allDestinations)
-    console.log('CURRENT DATE:', currentDate)
+    console.log(weatherDisplay)
 })
 }
 
