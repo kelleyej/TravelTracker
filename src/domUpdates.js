@@ -3,6 +3,7 @@ import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTr
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
+import { formatDate, setMinDate, findCurrentYear } from './dates.js'
 
 // Query Selectors
 const dashboardParagraph = document.querySelector('p');
@@ -213,12 +214,6 @@ getData()
 })
 }
 
-function setMinDate(dateValue){
-    let newDate = dateValue.split('/')
-    let modifiedDate = newDate.join('-')
-    return modifiedDate
-  }
-
 function backToMain(){
     mainDisplay.classList.remove("hidden");
     mainHeader.classList.remove("hidden")
@@ -275,18 +270,11 @@ function displayUpcomingTrip(id, allTrips, allDestinations){
     weatherDisplay = locationOfTrip.destination
 }
 
-function findCurrentYear(currentDate){
-   let newDate = currentDate.split('/')
-   let [year,,,] = newDate; 
-   return year; 
-}
-
-
 function displayPastTrips(id, allTrips, allDestinations){
     let trips = viewPastTrips(id, allTrips, allDestinations)
     console.log('trips:', trips)
     if(trips.length === 0){
-        pastTripSection.innerHTML = 'You have not documented any travel. Book a trip today!'
+        pastTripSection.innerHTML = 'You have not documented any past travel.'
     } else {
             pastTripSection.innerHTML = '';
     trips.forEach(trip => {
@@ -364,10 +352,3 @@ function displayPendingTripCost(destinationSelection, duration, allDestinations)
     }
 }
 
-function formatDate(newDate){
-    let dateModified = newDate.split('/')
-    let [year, month, day] = dateModified
-    let array = [month, day, year]
-    let newArray = array.join('/')
-    return newArray; 
-}
