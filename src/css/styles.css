@@ -252,6 +252,10 @@ select {
   margin-top: 5%; 
 }
 
+.error-display {
+  width: 100%; 
+}
+
 .weath-descrip {
   margin-bottom: 5%;
   font-size: .9em; 

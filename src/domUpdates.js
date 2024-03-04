@@ -56,10 +56,22 @@ let location = coordinates.find(place => {
 
 fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1`)
 
-.then(res => res.json())
+.then(res => {
+    if(!res.ok) {
+        let responseText = response.statusText
+        let responseCode = response.status
+        throw new Error(`${responseCode} - ${responseText}`)
+    } else {
+        return res.json()
+    }
+        
+})
 .then(data => {
     console.log(data)
     return displayTripWeather(data, allDestinations)
+})
+.catch(error => {
+    renderErrorMessage(error)
 })
 }
 function displayTripWeather(data, allDestinations){
@@ -81,6 +93,15 @@ bookTrip.addEventListener('click', function() {
 bookTripForm.addEventListener('submit', function(event) {
     event.preventDefault()
  return runPost(allTrips, traveler, destinationSelection, travelers, date, duration)
+    .then(response => {
+        if(!response.ok){
+            let responseText = response.statusText
+      let responseCode = response.status
+      throw new Error(`Failed to Post ${responseCode} - ${responseText}`)
+        } else {
+            return response; 
+        }
+    })
      .then(data => {
         clearForm()
         backToMain()
@@ -226,6 +247,7 @@ getData()
 
 function renderErrorMessage(error) {
     mainDisplay.classList.add("hidden");
+    bookDisplay.classList.add("hidden")
     mainHeader.classList.add("hidden");
     footer.classList.add("hidden")
     errorDisplay.classList.remove("hidden")
