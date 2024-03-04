@@ -1,11 +1,12 @@
 import { getData, runPost } from './apiCalls.js'
-import { viewPreviousTrip, calculateAnnualTripCost, viewUpcomingTrip, viewPastTrips, calculateAnnualLodgingCost, calculateAnnualFlightCost } from './past-trips.js'
+import { viewPreviousTrip, viewUpcomingTrip, viewPastTrips } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
 import { formatDate, findCurrentYear, setMinDate } from './dates.js'
 import { findWeatherCode } from './weather.js'
 import { weatherCodes } from './data/codes.js'
+import { calculateAnnualTripCost, calculateAnnualLodgingCost, calculateAnnualFlightCost } from './expenses.js'
 
 // Query Selectors
 const dashboardParagraph = document.querySelector('p');
