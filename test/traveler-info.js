@@ -13,6 +13,7 @@ describe('traveler-info.js', function() {
             expect(traveler2).to.equal("Sibby Dawidowitsch")
            
         });
+        
         it('should return a message if the traveler is not in the database', function() {
             const unknownTraveler = findTraveler(8, travelers)
 

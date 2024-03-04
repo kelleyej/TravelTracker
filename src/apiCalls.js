@@ -1,16 +1,12 @@
-function modifyDate(dateValue){
-    let newDate = dateValue.split('-')
-    let modifiedDate = newDate.join('/')
-    return modifiedDate;
-  }
+import { modifyDate } from './dates.js'
 
 function runGet(){
-let allData = [
-    fetch('http://localhost:3001/api/v1/travelers'),
-    fetch('http://localhost:3001/api/v1/trips'),
-    fetch('http://localhost:3001/api/v1/destinations')
-]
-return allData; 
+    let allData = [
+        fetch('http://localhost:3001/api/v1/travelers'),
+        fetch('http://localhost:3001/api/v1/trips'),
+        fetch('http://localhost:3001/api/v1/destinations')
+    ]
+    return allData; 
 }
 
 function runPost(allTrips, traveler, destinationSelection, travelers, date, duration){
@@ -29,18 +25,26 @@ function runPost(allTrips, traveler, destinationSelection, travelers, date, dura
         headers: {
            'Content-type': 'application/json'
         }
-    })
-}
+    });
+};  
 
 function getData(){
     return Promise.all(runGet())
-    .then(response => {
-        return Promise.all(response.map(res => {
-        return res.json()
-        }));
+    .then(responses => {
+        if(responses.every(response => response.ok)) {
+            return Promise.all(responses.map(res => {
+            return res.json()
+        }))
+        } else {
+            let responseText = responses.find(response => !response.ok).statusText
+            let responseCode = responses.find(response => !response.ok).status
+            throw new Error(`${responseCode} - ${responseText}`)
+        }
+    })
+    .catch(error => {
+        let errorText = error.message
+        throw new Error (`${errorText}`)
     });
 };
-
-
 
 export { getData, runPost }

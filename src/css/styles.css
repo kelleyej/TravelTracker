@@ -203,7 +203,8 @@ select {
 }
 
 #username, 
-#password {
+#password, 
+.clear-form {
   width: 90%;
   height: 12%; 
   border-radius: 30px;
@@ -215,6 +216,12 @@ select {
 
 ::placeholder {
   color: black;  
+}
+
+.clear-form {
+  margin-top: 5%;
+  width: 40%;
+  border: solid darkolivegreen 2px; 
 }
 
 .airplane {
@@ -243,13 +250,17 @@ select {
 }
 
 .current-weather {
-  width: 85%; 
+  width: 90%; 
 }
 
 .display-image {
-  width: 90%;
+  width: 95%;
   border-radius: 50%;
   margin-top: 5%; 
+}
+
+.error-display {
+  width: 100%; 
 }
 
 .weath-descrip {

@@ -9,11 +9,10 @@ function findPendingTrips(id, allTrips, allDestinations) {
             date: info.date, 
             destination: allDestinations.find(place => place.id === info.destinationID).destination
         }
-    })
-    console.log(tripInfo.length)
-    console.log(tripInfo)
+    });
+
    return tripInfo;
-}
+};
 
       
 export { findPendingTrips }

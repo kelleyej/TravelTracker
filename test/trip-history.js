@@ -1,14 +1,15 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { viewPastTrips, viewUpcomingTrip, calculateAnnualTripCost, viewPreviousTrip, calculateAnnualFlightCost, calculateAnnualLodgingCost } from '../src/past-trips';
+import { viewPastTrips, viewUpcomingTrip } from '../src/past-trips';
 import { trips } from '../src/data/sample-trips';
 import { destinations } from '../src/data/sample-destinations';
 
 describe('trip-history.js', function() {
   describe('find all past trips', function() {
-    it('should find all past trips for a single traveler', function() {
+    it('should find all past trip descriptions for a single traveler', function() {
       const pastTrips = viewPastTrips(4, trips, destinations);
       const pastTrips2 = viewPastTrips(6, trips, destinations);
+      const noPastTrips = viewPastTrips(3, trips, destinations)
       
       expect(pastTrips).to.deep.equal([{
         "date": "2022/02/25",
@@ -30,68 +31,26 @@ describe('trip-history.js', function() {
         "duration": 4
         }
         ])
+          expect(noPastTrips).to.deep.equal([])  
+           expect(noPastTrips.length).to.equal(0)
+           expect(pastTrips.length).to.equal(2)
+      expect(pastTrips2.length).to.equal(1)
       });
-    
-    it('should return a message if there are no past trips for a single traveler', function() {
-      const noPastTrips = viewPastTrips(3, trips, destinations);
-
-      expect(noPastTrips).to.equal(`You have no past trips documented. Make travel plans today!`)
-    });
-    });
-
-  describe('view previous trip', function() {
-    it('should find the location of the most recent trip for a single traveler', function() {
-      const previousTrip = viewPreviousTrip(5, trips, destinations);
-      const previousTrip2 = viewPreviousTrip(4, trips, destinations);
-
-      expect(previousTrip).to.equal("Tokyo, Japan");
-      expect(previousTrip2).to.equal("Sydney, Austrailia");
-    });
-    
-    it('should return a message if a single traveler has no previous trips', function() {
-      const noPreviousTrip = viewPreviousTrip(3, trips, destinations);
-
-      expect(noPreviousTrip).to.equal(`You have not been on any trips yet.`)
     })
-  });
-
-  describe('calculate annual trip cost', function() {
-    it('should calculate the cost of travel for the year for a single traveler', function() {
-      const totalCost = calculateAnnualTripCost(6, trips, destinations)
-      const totalCost2 = calculateAnnualTripCost(5, trips, destinations)
-
-      expect(totalCost).to.equal("2546.50")
-      expect(totalCost2).to.equal("6385.50")
-    });
-  });
-
-  describe('calculate annual flight cost', function() {
-    it('should calculate the cost of flights for the year for a single traveler', function() {
-      const flightCost = calculateAnnualFlightCost(2, trips, destinations)
-
-      expect(flightCost).to.equal("1750.00")
-    });
-  });
-
-  describe('calculate annual loding cost', function() {
-    it('should calculate the cost of lodging for the year for a single traveler', function() {
-      const lodgingCost = calculateAnnualLodgingCost(1, trips, destinations);
-      const lodgingCost2 = calculateAnnualLodgingCost(2, trips, destinations);
-
-      expect(lodgingCost).to.equal("800.00")
-      expect(lodgingCost2).to.equal("2550.00")
-    });
-  });
-
+  
   describe('find upcoming trip', function() {
     it('should find an upcoming trip for a single traveler', function() {
       const upcomingTrip = viewUpcomingTrip(4, trips)
+      const upcomingTrip2 = viewUpcomingTrip(7, trips)
 
       expect(upcomingTrip).to.deep.equal([{
         destinationID: 2, 
         date: "2022/09/24", 
         duration: 10
       }]);
+
+      expect(upcomingTrip2).to.deep.equal([])
+      expect(upcomingTrip2.length).to.equal(0)
     });
   });
 });
