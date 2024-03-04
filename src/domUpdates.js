@@ -76,7 +76,7 @@ function displayTripWeather(data, allDestinations){
     })
     weather.innerHTML = '';
     weather.innerHTML += 
-    `<img alt=${locationImage.alt} class="display-image" src=${locationImage.image}>
+    `<img alt="${locationImage.alt}" class="display-image" src=${locationImage.image}>
     <h2>current weather: ${data.weather[0].description}</h2>
     <p class="weath-descrip">In ${weatherDisplay}, it currently feels like ${data.main.feels_like}℉ with ${data.main.humidity}% humidity. Wind speeds are ${data.wind.speed} mph.</p>`
 }
@@ -174,6 +174,8 @@ if(!authorizePassword){
     feedback.innerText = "Your password is incorrect."
 } if(!authorizeUsername){
     feedback.innerText = "Your username is incorrect."
+} if(!authorizeUsername && !authorizePassword){
+    feedback.innerText = `Both your username and password are incorrect.`
 }
 }
 

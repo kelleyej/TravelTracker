@@ -27,11 +27,9 @@
   <section>
     <h2>UPCOMING TRIPS</h2>
     <p class="upcoming-trip"></p>
-    <img>
     <section class="current-weather">
 
     </section>
-    <a href="https://www.rd.com/article/packing-list/">Ultimate Packing List</a>
   </section>
   <section class="pending-trips">
     <h2>PENDING TRIPS</h2> 
@@ -46,23 +44,23 @@
 </main>
  <footer class="hidden">
   <div>
-   <img class="airplane" src="./images/airplane.png"/>  
+   <img class="airplane" src="./images/airplane.png" alt="Airplane following path of dots from a geo tag"/>  
   </div>
      
   <h3></h3>
   <div class="money-dashboard">
     <div class="icon-display">
-      <img src="./images/plane-icon.png" class="plane"/>
+      <img src="./images/plane-icon.png" alt="Black image of an airplane" class="plane"/>
   <p>FLIGHT:</p> 
   <p class="flight-cost"></p>
     </div>
  <div class="icon-display">
-  <img src="./images/money-icon.png" class="money"/>
+  <img src="./images/money-icon.png" alt="Black image of a money sign" class="money"/>
   <p>TOTAL:</p>
   <p class="total-cost"></p>
  </div>
   <div class="icon-display">
-   <img src="./images/home.png" class="home"/> 
+   <img src="./images/home.png" alt="Black image of the outline of a house" class="home"/> 
   <p>LODGING:</p>  
   <p class="lodging-cost"></p>
  </footer>
@@ -93,14 +91,14 @@
 
   <section class="book-trip">
    <form class="book-trip-form">
-     <label class="date-label">Date:</label> 
-     <input type="date" class="date" min="" required><br> 
-     <label class="duration-label">Duration:</label>
-    <input placeholder="Enter Number of Days" type="text" class="duration" min="1" required><br> 
-    <label class="travelers-label">Number of Travelers:</label>
-    <input placeholder="Enter Number" type="text" class="travelers" min="1" required><br>  
-    <label class="destination-label">Choose a Destination:</label>
-    <select>
+     <label for="date-input" class="date-label">Date:</label> 
+     <input type="date" id="date-input" class="date" min="" required><br> 
+     <label for="duration-input" class="duration-label">Duration:</label>
+    <input placeholder="Enter Number of Days" id="duration-input" type="text" class="duration" min="1" required><br> 
+    <label for="traveler-input" class="travelers-label">Number of Travelers:</label>
+    <input placeholder="Enter Number" id="traveler-input" type="text" class="travelers" min="1" required><br>  
+    <label for="destination-input" class="destination-label">Choose a Destination:</label>
+    <select id="destination-input">
       <!-- select list of destinations will be here. -->
     </select> 
     <!-- <select name="destinations">

@@ -93,8 +93,11 @@ h1 {
   width: 100%;
 }
   
-
-p, 
+p {
+  text-align: center; 
+  color: black; 
+  margin-top: 1%;
+}
 .quote {
   text-align: center;
   font-style: italic; 
@@ -213,7 +216,7 @@ select {
 }
 
 ::placeholder {
-  color: black; 
+  color: #452c63; 
 }
 
 .airplane {
@@ -226,6 +229,7 @@ select {
   font-style: normal; 
   font-size: 1em; 
   width: 85%; 
+  color: black; 
 }
 
 .past-trip {
