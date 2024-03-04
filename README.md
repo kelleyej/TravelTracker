@@ -15,7 +15,7 @@ Welcome to the Travel Tracker! This application allows a user to login with uniq
 - Navigate to this link:
 - Use  `CTRL + C` to stop running the local server when done viewing the application. 
 
-![Travel Dashboard](dashboard.png)
+![Travel Dashboard]![Screenshot 2024-03-03 at 8 52 23 PM](https://github.com/kelleyej/TravelTracker/assets/120286689/bd97b8d6-190f-4bca-9a59-95a346429f5e)
 
 ## Technologies Used
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat) ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat) ![Mocha Badge](https://img.shields.io/badge/Mocha-8D6748?logo=mocha&logoColor=fff&style=flat)     
