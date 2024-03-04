@@ -31,6 +31,7 @@
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "loader": "^2.1.1"
   }
 }
