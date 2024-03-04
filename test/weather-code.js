@@ -15,6 +15,6 @@ describe('weather-code.js', function() {
             const noWeather = findWeatherCode(6, weatherCodes)
 
             expect(noWeather).to.equal('Error: no weather description found.')
-        })
+        });
     });
 });
