@@ -1,5 +1,5 @@
 body {
-  background-image: url('../../dist/images/balloon.jpg');
+  background-image: url('/src/images/balloon.jpg');
   font-family: "Nunito", sans-serif;
   background-size: cover; 
   height: 100vh; 

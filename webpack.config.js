@@ -20,7 +20,7 @@ module.exports = {
         use: [
             { loader: 'style-loader' },
             { loader: 'css-loader' },
-            { loader: 'sass-loader'}
+            { loader: 'sass-loader' }
         ]
     },
       {

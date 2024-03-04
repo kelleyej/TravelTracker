@@ -8,113 +8,97 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-<header class="quote-header">
-  <h1 class="quote"></h1>
-  
-</header>
-<header class="main-header hidden">
-  <div class="text-container hidden">
-  <h1 class="welcome-name"></h1>
-    </div>
-      <button class="logout">Logout</button> 
-</header>
-<main class="main-display hidden">
-  <section>
-  <h2>PAST TRIPS</h2>
-  <section class="past-trip">
-  </section>
-</section>
-  <section>
-    <h2>UPCOMING TRIPS</h2>
-    <p class="upcoming-trip"></p>
-    <section class="current-weather">
-
-    </section>
-  </section>
-  <section class="pending-trips">
-    <h2>PENDING TRIPS</h2> 
-    <p class="pending-trip-para"></p>
-    <section class="post-trips">
-     
-    </section>
-    <button class="book-button">CLICK HERE to book a trip.</button> 
-    <p class="agent-message"></p>
-  
-  </section>
-</main>
- <footer class="hidden">
-  <div>
-   <img class="airplane" src="./images/airplane.png" alt="Airplane following path of dots from a geo tag"/>  
-  </div>
-     
-  <h3></h3>
-  <div class="money-dashboard">
-    <div class="icon-display">
-      <img src="./images/plane-icon.png" alt="Black image of an airplane" class="plane"/>
-  <p>FLIGHT:</p> 
-  <p class="flight-cost"></p>
-    </div>
- <div class="icon-display">
-  <img src="./images/money-icon.png" alt="Black image of a money sign" class="money"/>
-  <p>TOTAL:</p>
-  <p class="total-cost"></p>
- </div>
-  <div class="icon-display">
-   <img src="./images/home.png" alt="Black image of the outline of a house" class="home"/> 
-  <p>LODGING:</p>  
-  <p class="lodging-cost"></p>
- </footer>
-<main class="login-page">
-  <div class="login-container">
-    <h1 class="login-header">Login to Your Account</h1>
-   <form class="login-form">
-<label for="username">Username</label>
-<input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
-<label for="password">Password</label>
-<input class="enter-password" id="password" type="password" placeholder="Enter Password" required> 
-<button type="submit" class="login-button">Login</button> 
-<p class="feedback"></p>
-</form> 
-  </div>
-
-</main>
-<main class="book-display hidden">
-  <header class="home-header">
- <h1 class="book">Book your next getaway ...</h1>
- <div class="all-buttons">
-  <button class="back-to-login">Logout</button>
- <button class="back-to-main">Back to Home</button>
- </div>
- 
+  <header class="quote-header">
+    <h1 class="quote"></h1>
   </header>
-   
-
-  <section class="book-trip">
-   <form class="book-trip-form">
-     <label for="date-input" class="date-label">Date:</label> 
-     <input type="date" id="date-input" class="date" min="" required><br> 
-     <label for="duration-input" class="duration-label">Duration:</label>
-    <input placeholder="Enter Number of Days" id="duration-input" type="text" class="duration" min="1" required><br> 
-    <label for="traveler-input" class="travelers-label">Number of Travelers:</label>
-    <input placeholder="Enter Number" id="traveler-input" type="text" class="travelers" min="1" required><br>  
-    <label for="destination-input" class="destination-label">Choose a Destination:</label>
-    <select id="destination-input">
-      <!-- select list of destinations will be here. -->
-    </select> 
-    <!-- <select name="destinations">
-      <option value="Madison">Madison</option>
-      <option value="Denver">Denver</option>
-      <option value="Fishers">Fishers</option>
-      <option value="France">France</option>
-    </select> -->
-  
-    <button class="submit-button" type="submit">Book this trip!</button>
-  </form>
-    <button class="show-estimate">Show estimate cost for this trip.</button>
-    <p class="show-cost"></p>
-  </section>
-
-</main>
+  <header class="main-header hidden">
+    <div class="text-container hidden">
+    <h1 class="welcome-name"></h1>
+     </div>
+      <button class="logout">Logout</button> 
+  </header>
+  <main class="main-display hidden">
+    <section>
+      <h2>PAST TRIPS</h2>
+      <section class="past-trip">
+      </section>
+    </section>
+    <section>
+      <h2>UPCOMING TRIPS</h2>
+      <p class="upcoming-trip"></p>
+      <section class="current-weather">
+      </section>
+    </section>
+    <section class="pending-trips">
+      <h2>PENDING TRIPS</h2> 
+      <p class="pending-trip-para"></p>
+      <section class="post-trips">
+      </section>
+      <button class="book-button">CLICK HERE to book a trip.</button> 
+      <p class="agent-message"></p>
+    </section>
+  </main>
+  <footer class="hidden">
+    <div>
+      <img class="airplane" src="./images/airplane.png" alt="Airplane following path of dots from a geo tag"/>  
+    </div>
+    <h3></h3>
+    <div class="money-dashboard">
+      <div class="icon-display">
+        <img src="./images/plane-icon.png" alt="Black image of an airplane" class="plane"/>
+        <p>FLIGHT:</p> 
+        <p class="flight-cost"></p>
+      </div>
+    <div class="icon-display">
+      <img src="./images/money-icon.png" alt="Black image of a money sign" class="money"/>
+      <p>TOTAL:</p>
+      <p class="total-cost"></p>
+    </div>
+    <div class="icon-display">
+      <img src="./images/home.png" alt="Black image of the outline of a house" class="home"/> 
+      <p>LODGING:</p>  
+      <p class="lodging-cost"></p>
+    </div>
+  </footer>
+  <main class="login-page">
+    <div class="login-container">
+      <h1 class="login-header">Login to Your Account</h1>
+      <form class="login-form">
+        <label for="username">Username</label>
+        <input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
+        <label for="password">Password</label>
+        <input class="enter-password" id="password" type="password" placeholder="Enter Password" required> 
+        <button type="submit" class="login-button">Login</button> 
+        <p class="feedback"></p>
+      </form> 
+    </div>  
+  </main>
+  <main class="book-display hidden">
+    <header class="home-header">
+      <h1 class="book">Book your next getaway ...</h1>
+      <div class="all-buttons">
+        <button class="back-to-login">Logout</button>
+        <button class="back-to-main">Back to Home</button>
+      </div>
+    </header>
+    <section class="book-trip">
+      <form class="book-trip-form">
+        <label for="date-input" class="date-label">Date:</label> 
+        <input type="date" id="date-input" class="date" min="" required><br> 
+        <label for="duration-input" class="duration-label">Duration:</label>
+        <input placeholder="Enter Number of Days" id="duration-input" type="text" class="duration" min="1" required><br> 
+        <label for="traveler-input" class="travelers-label">Number of Travelers:</label>
+        <input placeholder="Enter Number" id="traveler-input" type="text" class="travelers" min="1" required><br>  
+        <label for="destination-input" class="destination-label">Choose a Destination:</label>
+        <select id="destination-input">
+        <!-- select list of destinations will be here. -->
+        </select> 
+        <button class="submit-button" type="submit">Book this trip!</button>
+      </form>
+      <button class="show-estimate">Show estimate cost for this trip.</button>
+      <p class="show-cost"></p>
+    </section>
+  </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
