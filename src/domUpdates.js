@@ -333,7 +333,7 @@ function displayPastTrips(id, allTrips, allDestinations){
             } else if(travelers === 2) {
                 pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<br><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<i class="star">★<i><br><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div class="rating"><p class="star">★<p><p class="star">★<p><p class="star">★<p><p class="star">★<p></div><br>`
             }    
         });
     };

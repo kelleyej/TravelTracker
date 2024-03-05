@@ -448,12 +448,19 @@ footer {
   justify-content: space-evenly
 }
 
+.rating {
+  display: flex;
+  width: 28%;
+  justify-content: space-between;
+  align-self: self-start; 
+}
+
 .star {
-  color: grey; 
+  color: rgb(0, 0, 0, .3) 
 }
 
 .active {
-  color: red; 
+  color: rgb(85, 107, 47, 100);
 }
 
 .hidden {
