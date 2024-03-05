@@ -3,7 +3,7 @@ import { viewUpcomingTrip, viewPastTrips } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
-import { formatDate, findCurrentYear, setMinDate } from './dates.js'
+import { formatDate, findCurrentYear, setMinDate, findYesterday } from './dates.js'
 import { findWeatherCode } from './weather.js'
 import { weatherCodes } from './data/codes.js'
 import { calculateAnnualTripCost, calculateAnnualLodgingCost, calculateAnnualFlightCost, calculatePendingTripCost } from './expenses.js'
@@ -48,6 +48,7 @@ const clearBookingForm = document.querySelector('.clear-booking-form')
 const minutesIndex = document.getElementById('minutes')
 const hoursIndex = document.getElementById('hours')
 const secondsIndex = document.getElementById('seconds')
+const todayDate = document.querySelector('.today-date')
 
 // EventListeners
 window.addEventListener('load', function(){
@@ -65,7 +66,7 @@ loginForm.addEventListener('submit', function(event) {
     changeToMainDisplay()
     findCurrentTraveler(travelerUsername)
     startCountdown();
-    timer = setInterval(startCountdown, 1000);
+    setInterval(startCountdown, 1000);
 });
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
@@ -104,7 +105,6 @@ let currentDate;
 let weatherDisplay; 
 let authorizePassword = false;
 let authorizeUsername = false;
-let timer; 
 let countdownDate = new Date().setHours(new Date().getHours() + 24)
 
 // Functions
@@ -122,6 +122,7 @@ function renderTravelerData(){
         displayMoneySpent(traveler.id, allTrips, allDestinations)
         date.min = setMinDate(currentDate); 
         displayCurrentWeather(coordinates, allDestinations)
+        displayTodayDate(currentDate)
     })
     .catch(error => {
         renderErrorMessage(error)
@@ -211,6 +212,11 @@ function changeToMainDisplay(){
         mainHeader.classList.remove("hidden");
         renderTravelerData();
     };
+};
+
+function displayTodayDate(currentDate){
+    let newDate = findYesterday(currentDate)
+    todayDate.innerHTML = `TODAY: ${newDate}`
 };
 
 function authenticateLogin(){
