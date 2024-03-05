@@ -448,6 +448,14 @@ footer {
   justify-content: space-evenly
 }
 
+.star {
+  color: grey; 
+}
+
+.active {
+  color: red; 
+}
+
 .hidden {
   display: none; 
 }

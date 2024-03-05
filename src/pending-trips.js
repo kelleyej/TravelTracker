@@ -13,6 +13,5 @@ function findPendingTrips(id, allTrips, allDestinations) {
 
    return tripInfo;
 };
-
       
 export { findPendingTrips }

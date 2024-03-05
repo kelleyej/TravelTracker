@@ -333,10 +333,24 @@ function displayPastTrips(id, allTrips, allDestinations){
             } else if(travelers === 2) {
                 pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<br><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<br><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<i class="star">★<i><br><br>`
             }    
         });
     };
+    let allStars = document.querySelectorAll('.star')
+    allStars.forEach((star, index) => {
+        star.id = index; 
+         star.addEventListener('click', function(event){
+            if(star.id === event.target.id && star.classList.contains('star')){
+                // star.classList.add('hidden')
+               star.classList.toggle('active')
+            //    star.classList.remove('hidden')
+            }
+            
+        })
+       
+    })
+    
 };
 
 function bookNextTrip(){
