@@ -63,6 +63,20 @@ h3 {
   margin-top: 5%;
 }
 
+.timer {
+  display: flex; 
+  flex-direction: row;
+  width: 58%; 
+  justify-content: space-around; 
+}
+
+#hours, 
+#minutes, 
+#seconds {
+  color: darkolivegreen;
+  font-weight: bold;
+}
+
 .quote-header {
   display: flex; 
   flex-direction: column;

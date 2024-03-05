@@ -45,6 +45,9 @@ const yearExpense = document.querySelector('h3');
 const errorDisplay = document.querySelector('.error-display');
 const clearLogin = document.querySelector('.clear-form');
 const clearBookingForm = document.querySelector('.clear-booking-form')
+const minutesIndex = document.getElementById('minutes')
+const hoursIndex = document.getElementById('hours')
+const secondsIndex = document.getElementById('seconds')
 
 // EventListeners
 window.addEventListener('load', function(){
@@ -61,6 +64,8 @@ loginForm.addEventListener('submit', function(event) {
     authenticate()
     changeToMainDisplay()
     findCurrentTraveler(travelerUsername)
+    startCountdown();
+    timer = setInterval(startCountdown, 1000);
 });
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
@@ -99,6 +104,8 @@ let currentDate;
 let weatherDisplay; 
 let authorizePassword = false;
 let authorizeUsername = false;
+let timer; 
+let countdownDate = new Date().setHours(new Date().getHours() + 24)
 
 // Functions
 function renderTravelerData(){
@@ -153,6 +160,24 @@ function displayTripWeather(data, allDestinations){
     <h2>current weather: ${findWeatherCode(data.current.weather_code, weatherCodes)}</h2>
     <p class="weath-descrip">In ${weatherDisplay}, the temperature is currently ${data.current.temperature_2m}℉ with ${data.current.relative_humidity_2m}% humidity. Wind speeds are ${data.current.wind_speed_10m} mph.</p>`
 };
+
+function startCountdown(){
+    const now = new Date().getTime();
+    const countdown = new Date(countdownDate).getTime();
+    const difference = (countdown - now)/1000
+
+    let hours = Math.floor((difference % (60 * 60 * 24)) / (60 * 60));
+    let minutes = Math.floor((difference % (60 * 60)) / 60);
+    let seconds = Math.floor(difference % 60);
+
+    hoursIndex.innerHTML = formatTime(hours, "hours");
+    minutesIndex.innerHTML = formatTime(minutes, "minutes");
+    secondsIndex.innerHTML = formatTime(seconds, "seconds");
+};
+
+function formatTime(time, interval) {
+    return `${time} ${interval} `
+  };
 
 function clearForm(){
     date.value = '';
