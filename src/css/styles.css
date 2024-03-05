@@ -317,7 +317,7 @@ select {
   width: 8%; 
 }
 
-.text-container, 
+.header-text-container, 
 .error-display {
   width: 100%;
 }
@@ -338,7 +338,7 @@ section {
   background-color: antiquewhite;
 }
 
-.feedback {
+.login-feedback {
   margin-top: 3%;
   font-weight: bold; 
 }

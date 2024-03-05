@@ -25,15 +25,15 @@ const showCost = document.querySelector('.show-cost');
 const loginForm = document.querySelector('.login-form');
 const username = document.querySelector('.enter-username');
 const password = document.querySelector('.enter-password');
-const textContainer = document.querySelector('.text-container');
+const headerTextContainer = document.querySelector('.header-text-container');
 const loginPage = document.querySelector('.login-page');
 const quote = document.querySelector('.quote');
-const feedback = document.querySelector('.feedback');
+const loginFeedback = document.querySelector('.login-feedback');
 const agentMessage = document.querySelector('.agent-message');
 const footer = document.querySelector('footer');
 const displayLodgingCost = document.querySelector('.lodging-cost');
 const displayTotalCost = document.querySelector('.total-cost');
-const displayFligthCost = document.querySelector('.flight-cost');
+const displayFlightCost = document.querySelector('.flight-cost');
 const quoteHeader = document.querySelector('.quote-header');
 const mainHeader = document.querySelector('.main-header');
 const welcomeName = document.querySelector('.welcome-name');
@@ -43,26 +43,26 @@ const lastLogoutButton = document.querySelector('.back-to-login');
 const weather = document.querySelector('.current-weather');
 const yearExpense = document.querySelector('h3');
 const errorDisplay = document.querySelector('.error-display');
-const clearLogin = document.querySelector('.clear-form');
-const clearBookingForm = document.querySelector('.clear-booking-form')
-const minutesIndex = document.getElementById('minutes')
-const hoursIndex = document.getElementById('hours')
-const secondsIndex = document.getElementById('seconds')
-const todayDate = document.querySelector('.today-date')
+const clearLoginButton = document.querySelector('.clear-form');
+const clearBookingFormButton = document.querySelector('.clear-booking-form');
+const minutesIndex = document.getElementById('minutes');
+const hoursIndex = document.getElementById('hours');
+const secondsIndex = document.getElementById('seconds');
+const todayDate = document.querySelector('.today-date');
 
 // EventListeners
 window.addEventListener('load', function(){
     renderRandomQuote(quotes)
 });
-clearBookingForm.addEventListener('click', clearForm)
+clearBookingFormButton.addEventListener('click', clearBookingForm)
 logoutButton.addEventListener('click', logOut);
 backToMainButton.addEventListener('click', backToMain);
 lastLogoutButton.addEventListener('click', backToLogin);
-clearLogin.addEventListener('click', clearLoginForm)
+clearLoginButton.addEventListener('click', clearLoginForm)
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault()
     authenticateLogin()
-    authenticate()
+    displayLoginFeedback()
     changeToMainDisplay()
     findCurrentTraveler(travelerUsername)
     startCountdown();
@@ -86,7 +86,7 @@ bookTripForm.addEventListener('submit', function(event) {
         }
     })
     .then(data => {
-        clearForm()
+        clearBookingForm()
         backToMain()
         renderTravelerData()
     })
@@ -121,7 +121,7 @@ function renderTravelerData(){
         displayPendingTrips(traveler.id, allTrips, allDestinations)
         displayMoneySpent(traveler.id, allTrips, allDestinations)
         date.min = setMinDate(currentDate); 
-        displayCurrentWeather(coordinates, allDestinations)
+        getCurrentWeather(coordinates, allDestinations)
         displayTodayDate(currentDate)
     })
     .catch(error => {
@@ -129,7 +129,7 @@ function renderTravelerData(){
     });
 };
 
-function displayCurrentWeather(coordinates, allDestinations){
+function getCurrentWeather(coordinates, allDestinations){
     let location = coordinates.find(place => {
         return place.destination === weatherDisplay; 
     })
@@ -180,7 +180,7 @@ function formatTime(time, interval) {
     return `${time} ${interval} `
   };
 
-function clearForm(){
+function clearBookingForm(){
     date.value = '';
     duration.value = '';
     travelers.value = '';
@@ -190,7 +190,7 @@ function clearForm(){
 function clearLoginForm(){
     username.value = '';
     password.value = '';
-    feedback.innerText = '';
+    loginFeedback.innerText = '';
     authorizeUsername = false; 
     authorizePassword = false; 
     username.disabled = false; 
@@ -205,7 +205,7 @@ function renderRandomQuote(quotes){
 function changeToMainDisplay(){
     if(authorizePassword === true && authorizeUsername === true){
         mainDisplay.classList.remove("hidden");
-        textContainer.classList.remove("hidden");
+        headerTextContainer.classList.remove("hidden");
         loginPage.classList.add("hidden");
         footer.classList.remove("hidden");
         quoteHeader.classList.add("hidden");
@@ -238,15 +238,15 @@ function authenticateLogin(){
     travelerUsername = travelerUsername.split('')
 };
 
-function authenticate(){
+function displayLoginFeedback(){
     if(!authorizePassword){
-        feedback.innerText = "Your password is incorrect."
+        loginFeedback.innerText = "Your password is incorrect."
         password.value = '';
     } if(!authorizeUsername){
-        feedback.innerText = "Your username is incorrect."
+        loginFeedback.innerText = "Your username is incorrect."
          username.value = '';
     } if(!authorizeUsername && !authorizePassword){
-    feedback.innerText = `Both your username and password are incorrect.`
+    loginFeedback.innerText = `Both your username and password are incorrect.`
     }
 };
 
@@ -294,7 +294,7 @@ function backToLogin(){
 function logOut(){
     clearLoginForm() 
     mainDisplay.classList.add("hidden");
-    textContainer.classList.add("hidden")
+    headerTextContainer.classList.add("hidden")
     footer.classList.add("hidden");
     quoteHeader.classList.remove("hidden");
     mainHeader.classList.add("hidden")
@@ -307,7 +307,7 @@ function displayMoneySpent(id, allTrips, allDestinations){
     let lodgingCost = calculateAnnualLodgingCost(id, allTrips, allDestinations)
     yearExpense.innerText = `Travel Expenses in ${findCurrentYear(currentDate)}`
     displayTotalCost.innerText = `$${totalCost}`
-    displayFligthCost.innerText = `$${flightCost}`
+    displayFlightCost.innerText = `$${flightCost}`
     displayLodgingCost.innerText = `$${lodgingCost}`
 };
 
