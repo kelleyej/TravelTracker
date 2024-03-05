@@ -300,7 +300,6 @@ select {
 .weath-descrip {
   margin-bottom: 5%;
   font-size: .9em; 
-  font-style: italic; 
 }
 
 .image-container, 
@@ -450,7 +449,7 @@ footer {
 
 .rating {
   display: flex;
-  width: 28%;
+  width: 25%;
   justify-content: space-between;
   align-self: self-start; 
 }
@@ -460,7 +459,7 @@ footer {
 }
 
 .active {
-  color: rgb(85, 107, 47, 100);
+  color: rgb(69, 44, 99, 100);
 }
 
 .hidden {

@@ -50,6 +50,7 @@ const hoursIndex = document.getElementById('hours');
 const secondsIndex = document.getElementById('seconds');
 const todayDate = document.querySelector('.today-date');
 
+
 // EventListeners
 window.addEventListener('load', function(){
     renderRandomQuote(quotes)
@@ -123,6 +124,7 @@ function renderTravelerData(){
         date.min = setMinDate(currentDate); 
         getCurrentWeather(coordinates, allDestinations)
         displayTodayDate(currentDate)
+        displayStarRating()
     })
     .catch(error => {
         renderErrorMessage(error)
@@ -289,15 +291,17 @@ function backToLogin(){
     quoteHeader.classList.remove("hidden");
     loginPage.classList.remove("hidden");
     clearLoginForm();
+    localStorage.clear();
 };
 
 function logOut(){
-    clearLoginForm() 
+    clearLoginForm();
+    localStorage.clear();
     mainDisplay.classList.add("hidden");
-    headerTextContainer.classList.add("hidden")
+    headerTextContainer.classList.add("hidden");
     footer.classList.add("hidden");
     quoteHeader.classList.remove("hidden");
-    mainHeader.classList.add("hidden")
+    mainHeader.classList.add("hidden");
     loginPage.classList.remove("hidden");
 };
 
@@ -329,30 +333,35 @@ function displayPastTrips(id, allTrips, allDestinations){
             pastTripSection.innerHTML = '';
         trips.forEach(({date, destination, duration, travelers}) => {
             if(travelers === 1){
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<br><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div class="rating"><p class="star">★<p><p class="star">★<p><p class="star">★<p><p class="star">★<p></div><br>`
             } else if(travelers === 2) {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<br><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div class="rating"><p class="star">★<p><p class="star">★<p><p class="star">★<p><p class="star">★<p></div><br>`
             } else {
                 pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div class="rating"><p class="star">★<p><p class="star">★<p><p class="star">★<p><p class="star">★<p></div><br>`
             }    
         });
     };
+};
+
+function displayStarRating(){
     let allStars = document.querySelectorAll('.star')
     allStars.forEach((star, index) => {
         star.id = index; 
-         star.addEventListener('click', function(event){
+        star.addEventListener('click', function(event){
             if(star.id === event.target.id && star.classList.contains('star')){
-                // star.classList.add('hidden')
-               star.classList.toggle('active')
-            //    star.classList.remove('hidden')
-            }
-            
-        })
-       
-    })
-    
+                star.classList.toggle('active')
+                localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
+                }
+            });
+        if(currentTraveler){
+            let savedState = localStorage.getItem(`star${index}`);
+            if (savedState === 'true') {
+                star.classList.add('active');
+            };
+        };   
+    });
 };
-
+    
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
     mainHeader.classList.add("hidden")
