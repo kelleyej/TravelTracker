@@ -3,7 +3,7 @@ import { viewUpcomingTrip, viewPastTrips } from './past-trips.js'
 import { findPendingTrips } from './pending-trips.js'
 import { quotes } from '../src/data/travel-quotes.js'
 import { coordinates } from '../src/data/coordinates.js'
-import { formatDate, findCurrentYear, setMinDate } from './dates.js'
+import { formatDate, findCurrentYear, setMinDate, findYesterday } from './dates.js'
 import { findWeatherCode } from './weather.js'
 import { weatherCodes } from './data/codes.js'
 import { calculateAnnualTripCost, calculateAnnualLodgingCost, calculateAnnualFlightCost, calculatePendingTripCost } from './expenses.js'
@@ -19,21 +19,21 @@ const date = document.querySelector('.date');
 const travelers = document.querySelector('.travelers');
 const duration = document.querySelector('.duration');
 const destinationSelection = document.querySelector('select');
-const postTripSection = document.querySelector('.post-trips')
+const postTripSection = document.querySelector('.post-trips');
 const showEstimateButton = document.querySelector('.show-estimate');
 const showCost = document.querySelector('.show-cost');
 const loginForm = document.querySelector('.login-form');
 const username = document.querySelector('.enter-username');
 const password = document.querySelector('.enter-password');
-const textContainer = document.querySelector('.text-container');
+const headerTextContainer = document.querySelector('.header-text-container');
 const loginPage = document.querySelector('.login-page');
 const quote = document.querySelector('.quote');
-const feedback = document.querySelector('.feedback');
+const loginFeedback = document.querySelector('.login-feedback');
 const agentMessage = document.querySelector('.agent-message');
 const footer = document.querySelector('footer');
 const displayLodgingCost = document.querySelector('.lodging-cost');
 const displayTotalCost = document.querySelector('.total-cost');
-const displayFligthCost = document.querySelector('.flight-cost');
+const displayFlightCost = document.querySelector('.flight-cost');
 const quoteHeader = document.querySelector('.quote-header');
 const mainHeader = document.querySelector('.main-header');
 const welcomeName = document.querySelector('.welcome-name');
@@ -43,23 +43,31 @@ const lastLogoutButton = document.querySelector('.back-to-login');
 const weather = document.querySelector('.current-weather');
 const yearExpense = document.querySelector('h3');
 const errorDisplay = document.querySelector('.error-display');
-const clearLogin = document.querySelector('.clear-form');
+const clearLoginButton = document.querySelector('.clear-form');
+const clearBookingFormButton = document.querySelector('.clear-booking-form');
+const minutesIndex = document.getElementById('minutes');
+const hoursIndex = document.getElementById('hours');
+const secondsIndex = document.getElementById('seconds');
+const todayDate = document.querySelector('.today-date');
+
 
 // EventListeners
 window.addEventListener('load', function(){
     renderRandomQuote(quotes)
 });
-
+clearBookingFormButton.addEventListener('click', clearBookingForm)
 logoutButton.addEventListener('click', logOut);
 backToMainButton.addEventListener('click', backToMain);
 lastLogoutButton.addEventListener('click', backToLogin);
-clearLogin.addEventListener('click', clearLoginForm)
+clearLoginButton.addEventListener('click', clearLoginForm)
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault()
     authenticateLogin()
-    authenticate()
+    displayLoginFeedback()
     changeToMainDisplay()
     findCurrentTraveler(travelerUsername)
+    startCountdown();
+    setInterval(startCountdown, 1000);
 });
 showEstimateButton.addEventListener('click', function() {
     displayPendingTripCost(destinationSelection, duration, allDestinations, travelers)
@@ -79,7 +87,7 @@ bookTripForm.addEventListener('submit', function(event) {
         }
     })
     .then(data => {
-        clearForm()
+        clearBookingForm()
         backToMain()
         renderTravelerData()
     })
@@ -98,8 +106,9 @@ let currentDate;
 let weatherDisplay; 
 let authorizePassword = false;
 let authorizeUsername = false;
+let countdownDate = new Date().setHours(new Date().getHours() + 24)
 
-// FUNCTIONS
+// Functions
 function renderTravelerData(){
     getData()
     .then(([travelers, trips, destinations]) => {
@@ -113,14 +122,16 @@ function renderTravelerData(){
         displayPendingTrips(traveler.id, allTrips, allDestinations)
         displayMoneySpent(traveler.id, allTrips, allDestinations)
         date.min = setMinDate(currentDate); 
-        displayCurrentWeather(coordinates, allDestinations)
+        getCurrentWeather(coordinates, allDestinations)
+        displayTodayDate(currentDate)
+        displayStarRating()
     })
     .catch(error => {
         renderErrorMessage(error)
     });
 };
 
-function displayCurrentWeather(coordinates, allDestinations){
+function getCurrentWeather(coordinates, allDestinations){
     let location = coordinates.find(place => {
         return place.destination === weatherDisplay; 
     })
@@ -153,7 +164,25 @@ function displayTripWeather(data, allDestinations){
     <p class="weath-descrip">In ${weatherDisplay}, the temperature is currently ${data.current.temperature_2m}℉ with ${data.current.relative_humidity_2m}% humidity. Wind speeds are ${data.current.wind_speed_10m} mph.</p>`
 };
 
-function clearForm(){
+function startCountdown(){
+    const now = new Date().getTime();
+    const countdown = new Date(countdownDate).getTime();
+    const difference = (countdown - now)/1000
+
+    let hours = Math.floor((difference % (60 * 60 * 24)) / (60 * 60));
+    let minutes = Math.floor((difference % (60 * 60)) / 60);
+    let seconds = Math.floor(difference % 60);
+
+    hoursIndex.innerHTML = formatTime(hours, "hours");
+    minutesIndex.innerHTML = formatTime(minutes, "minutes");
+    secondsIndex.innerHTML = formatTime(seconds, "seconds");
+};
+
+function formatTime(time, interval) {
+    return `${time} ${interval} `
+  };
+
+function clearBookingForm(){
     date.value = '';
     duration.value = '';
     travelers.value = '';
@@ -163,7 +192,7 @@ function clearForm(){
 function clearLoginForm(){
     username.value = '';
     password.value = '';
-    feedback.innerText = '';
+    loginFeedback.innerText = '';
     authorizeUsername = false; 
     authorizePassword = false; 
     username.disabled = false; 
@@ -178,13 +207,18 @@ function renderRandomQuote(quotes){
 function changeToMainDisplay(){
     if(authorizePassword === true && authorizeUsername === true){
         mainDisplay.classList.remove("hidden");
-        textContainer.classList.remove("hidden");
+        headerTextContainer.classList.remove("hidden");
         loginPage.classList.add("hidden");
         footer.classList.remove("hidden");
         quoteHeader.classList.add("hidden");
         mainHeader.classList.remove("hidden");
         renderTravelerData();
     };
+};
+
+function displayTodayDate(currentDate){
+    let newDate = findYesterday(currentDate)
+    todayDate.innerHTML = `TODAY: ${newDate}`
 };
 
 function authenticateLogin(){
@@ -206,15 +240,15 @@ function authenticateLogin(){
     travelerUsername = travelerUsername.split('')
 };
 
-function authenticate(){
+function displayLoginFeedback(){
     if(!authorizePassword){
-        feedback.innerText = "Your password is incorrect."
+        loginFeedback.innerText = "Your password is incorrect."
         password.value = '';
     } if(!authorizeUsername){
-        feedback.innerText = "Your username is incorrect."
+        loginFeedback.innerText = "Your username is incorrect."
          username.value = '';
     } if(!authorizeUsername && !authorizePassword){
-    feedback.innerText = `Both your username and password are incorrect.`
+    loginFeedback.innerText = `Both your username and password are incorrect.`
     }
 };
 
@@ -229,9 +263,7 @@ function findCurrentTraveler(travelerUsername){
      password = travelerUsername.splice(-2)
      newPassword = password.join('')
     }
-    console.log(newPassword)
     currentTraveler = newPassword; 
-    console.log('currenttraveler:', currentTraveler)
   };
 
 function renderErrorMessage(error) {
@@ -259,15 +291,17 @@ function backToLogin(){
     quoteHeader.classList.remove("hidden");
     loginPage.classList.remove("hidden");
     clearLoginForm();
+    localStorage.clear();
 };
 
 function logOut(){
-    clearLoginForm() 
+    clearLoginForm();
+    localStorage.clear();
     mainDisplay.classList.add("hidden");
-    textContainer.classList.add("hidden")
+    headerTextContainer.classList.add("hidden");
     footer.classList.add("hidden");
     quoteHeader.classList.remove("hidden");
-    mainHeader.classList.add("hidden")
+    mainHeader.classList.add("hidden");
     loginPage.classList.remove("hidden");
 };
 
@@ -277,7 +311,7 @@ function displayMoneySpent(id, allTrips, allDestinations){
     let lodgingCost = calculateAnnualLodgingCost(id, allTrips, allDestinations)
     yearExpense.innerText = `Travel Expenses in ${findCurrentYear(currentDate)}`
     displayTotalCost.innerText = `$${totalCost}`
-    displayFligthCost.innerText = `$${flightCost}`
+    displayFlightCost.innerText = `$${flightCost}`
     displayLodgingCost.innerText = `$${lodgingCost}`
 };
 
@@ -297,18 +331,47 @@ function displayPastTrips(id, allTrips, allDestinations){
             pastTripSection.innerHTML = 'You have not documented any past travel.'
         } else {
             pastTripSection.innerHTML = '';
-        trips.forEach(trip => {
-            if(trip.travelers === 1){
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you went on a solo adventure to ${trip.destination} for ${trip.duration} days.<br><br>`
-            } else if(trip.travelers === 2) {
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other traveler for ${trip.duration} days.<br><br>`
+        trips.forEach(({date, destination, duration, travelers}) => {
+            if(travelers === 1){
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
+            } else if(travelers === 2) {
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(trip.date)}, you visited ${trip.destination} with ${trip.travelers - 1} other travelers for ${trip.duration} days.<br><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
             }    
         });
     };
 };
 
+function displayStarRating(){
+    let allStars = document.querySelectorAll('.star')
+    allStars.forEach((star, index) => {
+        star.id = index; 
+        star.addEventListener('click', function(event){
+            if(star.id === event.target.id && star.classList.contains('star')){
+                star.classList.toggle('active')
+                localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
+                }
+             });   
+            star.addEventListener('keydown', function(event) {
+                if(event.key === "Enter" || event.code === "Space") {
+                    if(star.id === event.target.id && star.classList.contains('star')){
+                        star.classList.toggle('active')
+                        localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
+                        }
+                        if(star.classList.contains('active')){
+                            star.ariaLabel = "active star"
+                        }
+                }
+            });
+        
+            let savedState = localStorage.getItem(`star${index}`);
+            if (savedState === 'true') {
+                star.classList.add('active');
+            }; 
+    })
+}
+    
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
     mainHeader.classList.add("hidden")
@@ -317,26 +380,25 @@ function bookNextTrip(){
 };
 
 function listDestinations(allDestinations){
-    allDestinations.forEach(location => {
+    allDestinations.forEach(({id, destination}) => {
         destinationSelection.innerHTML += 
-        `<option value=${location.id}>${location.destination}</option>`
+        `<option value=${id}>${destination}</option>`
     });
 };
 
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
-    console.log(pendingTrips)
     if(pendingTrips.length === 0){
-        postTripSection.innerHTML = 'You have not documented any past travel.'
+        postTripSection.innerHTML = 'You do not currently have any pending trips.'
     } else {
         postTripSection.innerHTML = '';
-        pendingTrips.forEach(trip => {
-            if(trip.travelers === 1){
-                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${trip.destination} on ${formatDate(trip.date)} for ${trip.duration} day(s).<br><br>`
-            } else if(trip.travelers === 2) {
-                postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers - 1} other traveler for ${trip.duration} day(s).<br><br>`
+        pendingTrips.forEach(({travelers, destination, date, duration}) => {
+            if(travelers === 1){
+                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${destination} on ${formatDate(date)} for ${duration} day(s).<br><br>`
+            } else if(travelers === 2) {
+                postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other traveler for ${duration} day(s).<br><br>`
             } else {
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${trip.destination} on ${formatDate(trip.date)} with ${trip.travelers - 1} other travelers for ${trip.duration} day(s).<br><br>`
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other travelers for ${duration} day(s).<br><br>`
             }    
         });
     };
@@ -357,7 +419,7 @@ function disableBookTrip(id, allTrips, allDestinations){
 function displayPendingTripCost(destinationSelection, duration, allDestinations) {
     let cost = calculatePendingTripCost(Number(destinationSelection.value), Number(duration.value), allDestinations)
     if(travelers.value !== '' && duration.value !== ''){
-      showCost.innerText = `This trip is estimated to cost approximately $${cost}.`  
+      showCost.innerText = `This trip is estimated to cost approximately $${cost} per person.`  
     } else {
         showCost.innerText = `Please fill out all fields to estimate total trip cost.`
     };

@@ -9,10 +9,9 @@ function findPendingTrips(id, allTrips, allDestinations) {
             date: info.date, 
             destination: allDestinations.find(place => place.id === info.destinationID).destination
         }
-    });
+    }).sort((a, b) => new Date(a.date) - new Date(b.date));
 
    return tripInfo;
 };
-
       
 export { findPendingTrips }

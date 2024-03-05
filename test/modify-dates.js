@@ -1,6 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { formatDate, setMinDate, findCurrentYear, modifyDate } from '../src/dates';
+import { formatDate, setMinDate, findCurrentYear, modifyDate, findYesterday } from '../src/dates';
 
 describe('modify-dates.js', function() {
     describe('modify date format', function() {
@@ -32,6 +32,13 @@ describe('modify-dates.js', function() {
             const currentYear = findCurrentYear("2025/02/12");
 
             expect(currentYear).to.equal("2025")
+        });
+    });
+    describe('find yesterday', function() {
+        it('should find the day before the upcoming trip date', function() {
+            const yesterday = findYesterday("2023/08/07");
+
+            expect(yesterday).to.equal("Aug 06, 2023")
         });
     });
 });

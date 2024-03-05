@@ -168,6 +168,16 @@ const trips = [
         duration: 4,
         status: "pending",
         suggestedActivities: []
+    },
+    {
+        id: 18,
+        userID: 7,
+        destinationID: 3,
+        travelers: 5,
+        date: "2021/08/05",
+        duration: 6,
+        status: "pending",
+        suggestedActivities: []
     }
 ]
 

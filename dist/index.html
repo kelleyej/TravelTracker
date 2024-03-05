@@ -8,35 +8,41 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-  <header class="quote-header">
+  <header tabindex=0 class="quote-header">
     <h1 class="quote"></h1>
   </header>
-  <header class="main-header hidden">
-    <div class="text-container hidden">
+  <header tabindex=0 class="main-header hidden">
+    <div class="header-text-container hidden">
+      <p class="today-date">TEST</p>
       <h1 class="welcome-name"></h1>
     </div>
     <button class="logout">Logout</button> 
   </header>
-  <section class="error-display hidden">Oops! Something is not working.<br></section>
-  <main class="main-display hidden">
-    <section>
+  <section tabindex=0 class="error-display hidden">Oops! Something is not working.<br></section>
+  <main tabindex=0 class="main-display hidden">
+    <section tabindex=0>
       <h2>PAST TRIPS</h2>
       <section class="past-trip"></section>
     </section>
-    <section>
+    <section tabindex=0>
       <h2>UPCOMING TRIPS</h2>
       <p class="upcoming-trip"></p>
       <section class="current-weather"></section>
+      <section class="timer">
+        <p id="hours">0 :<p>
+        <p id="minutes">0 :</p>
+        <p id="seconds">0</p>
+      </section> 
     </section>
-    <section class="pending-trips">
-      <h2>PENDING TRIPS</h2> 
+    <section tabindex=0 class="pending-trips">
+      <h2>PENDING TRIPS</h2>
       <p class="pending-trip-para"></p>
       <section class="post-trips"></section>
       <button class="book-button">CLICK HERE to book a trip.</button> 
       <p class="agent-message"></p>
     </section>
   </main>
-  <footer class="hidden">
+  <footer tabindex=0 class="hidden">
     <div>
       <img class="airplane" src="./images/airplane.png" alt="Airplane following path of dots from a geo tag"/>  
     </div>
@@ -60,7 +66,7 @@
   </footer>
   <main class="login-page">
     <div class="login-container">
-      <h1 class="login-header">Login to Your Account</h1>
+      <h1 tabindex=0 class="login-header">Login to Your Account</h1>
       <form class="login-form">
         <label for="username">Username</label>
         <input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
@@ -68,12 +74,12 @@
         <input class="enter-password" id="password" type="password" placeholder="Enter Password" required> 
         <button type="submit" class="login-button">Login</button> 
         <button class="clear-form">Clear Form</button>
-         <p class="feedback"></p>
+         <p class="login-feedback"></p>
       </form> 
     </div>  
   </main>
   <main class="book-display hidden">
-    <header class="home-header">
+    <header tabindex=0 class="home-header">
       <h1 class="book">Book your next getaway ...</h1>
       <div class="all-buttons">
         <button class="back-to-login">Logout</button>
@@ -87,17 +93,19 @@
         <label for="duration-input" class="duration-label">Duration:</label>
         <input placeholder="Enter Number of Days" id="duration-input" type="number" class="duration" min="1" required><br> 
         <label for="traveler-input" class="travelers-label">Number of Travelers:</label>
-        <input placeholder="Enter Number" id="traveler-input" type="number" class="travelers" min="1" required><br>  
+        <input placeholder="Enter Number of Travelers" id="traveler-input" type="number" class="travelers" min="1" required><br>  
         <label for="destination-input" class="destination-label">Choose a Destination:</label>
         <select id="destination-input">
         <!-- select list of destinations will be here. -->
         </select> 
         <button class="submit-button" type="submit">Book this trip!</button>
       </form>
-      <button class="show-estimate">Show estimate cost for this trip.</button>
-      <p class="show-cost"></p>
+      <button class="show-estimate">Show estimated cost for this trip.</button>
+      <p tabindex=0 class="show-cost"></p>
+      <button class="clear-booking-form">Clear Form</button>
     </section>
   </main>
+  </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
