@@ -11,7 +11,7 @@ Welcome to the Travel Tracker! This application allows a user to login with uniq
 - Run `cd travel-tracker-api`
 - Run `npm install`
 - Run `npm start`
-- Navigate to this link:
+- Navigate to this link: [Travel Tracker](https://kelleyej.github.io/TravelTracker/)
 - Use  `CTRL + C` to stop running the local server when done viewing the application. 
 
 ![Screenshot 2024-03-05 at 11 27 13 AM](https://github.com/kelleyej/TravelTracker/assets/120286689/5333cc71-c284-4ecf-8d82-bc1a586dd58a)
@@ -20,7 +20,7 @@ Welcome to the Travel Tracker! This application allows a user to login with uniq
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat) ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat) ![Mocha Badge](https://img.shields.io/badge/Mocha-8D6748?logo=mocha&logoColor=fff&style=flat) ![Chai Badge](https://img.shields.io/badge/Chai-A30701?logo=chai&logoColor=fff&style=flat) ![Lighthouse Badge](https://img.shields.io/badge/Lighthouse-F44B21?logo=lighthouse&logoColor=fff&style=flat) ![Visual Studio Code Badge](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?logo=visualstudiocode&logoColor=fff&style=flat) ![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=flat)
 
 ## Context 
-- This application was completed independently in the 12th week of my software development program. It took approximately 35+ hours to complete the project. 
+- This application was completed independently in the 12th week of my software development program. It took approximately 45+ hours to complete the project. 
 - Goals:
     1. Make network requests to get data, post data, and updated the DOM accordingly. 
     2. Implement a robust testing suite using TDD. 
@@ -31,11 +31,12 @@ Welcome to the Travel Tracker! This application allows a user to login with uniq
     2. Use of a public API to display real-time weather report. 
     3. Utilized pull request template and project board issues to stay organized throughout duration of project. 
     4. Developed testing suites with sad paths.
-    5. Managed error handling with both POST and GET network requests. 
+    5. Managed error handling with both POST and GET network requests.
+    6. Completed extensions, such as implementing a 25 hour countdown timer and creating a star rating system. 
 - Challenges:
     1. Interpreting provided data set to display dates and trips in a meaningful context. 
-    2. Continued bugs with login page and form.
+    2. Making application screen reader-assessible.
 
 ## Future Improvements 
 - Utilize SASS for CSS styling. 
-- Incorporate local/session storage to maintain displayed booked trips after logging out.  
+- Incorporate local/session storage to maintain star rating correctly for each traveler. 
