@@ -291,12 +291,12 @@ function backToLogin(){
     quoteHeader.classList.remove("hidden");
     loginPage.classList.remove("hidden");
     clearLoginForm();
-    // localStorage.clear();
+    localStorage.clear();
 };
 
 function logOut(){
     clearLoginForm();
-    // localStorage.clear();
+    localStorage.clear();
     mainDisplay.classList.add("hidden");
     headerTextContainer.classList.add("hidden");
     footer.classList.add("hidden");
