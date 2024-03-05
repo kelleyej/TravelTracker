@@ -34,6 +34,7 @@ describe('modify-dates.js', function() {
             expect(currentYear).to.equal("2025")
         });
     });
+    
     describe('find yesterday', function() {
         it('should find the day before the upcoming trip date', function() {
             const yesterday = findYesterday("2023/08/07");

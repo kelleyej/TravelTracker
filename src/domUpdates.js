@@ -291,12 +291,12 @@ function backToLogin(){
     quoteHeader.classList.remove("hidden");
     loginPage.classList.remove("hidden");
     clearLoginForm();
-    localStorage.clear();
+    // localStorage.clear();
 };
 
 function logOut(){
     clearLoginForm();
-    localStorage.clear();
+    // localStorage.clear();
     mainDisplay.classList.add("hidden");
     headerTextContainer.classList.add("hidden");
     footer.classList.add("hidden");
@@ -348,29 +348,30 @@ function displayStarRating(){
     allStars.forEach((star, index) => {
         star.id = index; 
         star.addEventListener('click', function(event){
-            if(star.id === event.target.id && star.classList.contains('star')){
-                star.classList.toggle('active')
-                localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
-                }
-             });   
-            star.addEventListener('keydown', function(event) {
-                if(event.key === "Enter" || event.code === "Space") {
-                    if(star.id === event.target.id && star.classList.contains('star')){
-                        star.classList.toggle('active')
-                        localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
-                        }
-                        if(star.classList.contains('active')){
-                            star.ariaLabel = "active star"
-                        }
-                }
-            });
-        
-            let savedState = localStorage.getItem(`star${index}`);
+        if(star.id === event.target.id && star.classList.contains('star')){
+            star.classList.toggle('active')
+            localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
+            }
+        });   
+        star.addEventListener('keydown', function(event) {
+        if(event.key === "Enter" || event.code === "Space") {
+        if(star.id === event.target.id && star.classList.contains('star')){
+            star.classList.toggle('active')
+            localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
+            }
+            if(star.classList.contains('active')){
+            star.ariaLabel = "active star"
+            }
+        }
+    });
+    if(currentTraveler){
+        let savedState = localStorage.getItem(`star${index}`);
             if (savedState === 'true') {
                 star.classList.add('active');
-            }; 
-    })
-}
+            };
+        }
+    });
+};
     
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");
