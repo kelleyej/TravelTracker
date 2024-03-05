@@ -333,11 +333,11 @@ function displayPastTrips(id, allTrips, allDestinations){
             pastTripSection.innerHTML = '';
         trips.forEach(({date, destination, duration, travelers}) => {
             if(travelers === 1){
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div class="rating"><p class="star">★<p><p class="star">★<p><p class="star">★<p><p class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
             } else if(travelers === 2) {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div class="rating"><p class="star">★<p><p class="star">★<p><p class="star">★<p><p class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div class="rating"><p class="star">★<p><p class="star">★<p><p class="star">★<p><p class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
             }    
         });
     };
@@ -352,15 +352,25 @@ function displayStarRating(){
                 star.classList.toggle('active')
                 localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
                 }
+             });   
+            star.addEventListener('keydown', function(event) {
+                if(event.key === "Enter" || event.code === "Space") {
+                    if(star.id === event.target.id && star.classList.contains('star')){
+                        star.classList.toggle('active')
+                        localStorage.setItem(`star${star.id}`, star.classList.contains('active'));
+                        }
+                        if(star.classList.contains('active')){
+                            star.ariaLabel = "active star"
+                        }
+                }
             });
-        if(currentTraveler){
+        
             let savedState = localStorage.getItem(`star${index}`);
             if (savedState === 'true') {
                 star.classList.add('active');
-            };
-        };   
-    });
-};
+            }; 
+    })
+}
     
 function bookNextTrip(){
     mainDisplay.classList.add("hidden");

@@ -8,23 +8,23 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-  <header class="quote-header">
+  <header tabindex=0 class="quote-header">
     <h1 class="quote"></h1>
   </header>
-  <header class="main-header hidden">
+  <header tabindex=0 class="main-header hidden">
     <div class="header-text-container hidden">
       <p class="today-date">TEST</p>
       <h1 class="welcome-name"></h1>
     </div>
     <button class="logout">Logout</button> 
   </header>
-  <section class="error-display hidden">Oops! Something is not working.<br></section>
-  <main class="main-display hidden">
-    <section>
+  <section tabindex=0 class="error-display hidden">Oops! Something is not working.<br></section>
+  <main tabindex=0 class="main-display hidden">
+    <section tabindex=0>
       <h2>PAST TRIPS</h2>
       <section class="past-trip"></section>
     </section>
-    <section>
+    <section tabindex=0>
       <h2>UPCOMING TRIPS</h2>
       <p class="upcoming-trip"></p>
       <section class="current-weather"></section>
@@ -34,7 +34,7 @@
         <p id="seconds">0</p>
       </section> 
     </section>
-    <section class="pending-trips">
+    <section tabindex=0 class="pending-trips">
       <h2>PENDING TRIPS</h2>
       <p class="pending-trip-para"></p>
       <section class="post-trips"></section>
@@ -42,7 +42,7 @@
       <p class="agent-message"></p>
     </section>
   </main>
-  <footer class="hidden">
+  <footer tabindex=0 class="hidden">
     <div>
       <img class="airplane" src="./images/airplane.png" alt="Airplane following path of dots from a geo tag"/>  
     </div>
@@ -66,7 +66,7 @@
   </footer>
   <main class="login-page">
     <div class="login-container">
-      <h1 class="login-header">Login to Your Account</h1>
+      <h1 tabindex=0 class="login-header">Login to Your Account</h1>
       <form class="login-form">
         <label for="username">Username</label>
         <input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
@@ -79,7 +79,7 @@
     </div>  
   </main>
   <main class="book-display hidden">
-    <header class="home-header">
+    <header tabindex=0 class="home-header">
       <h1 class="book">Book your next getaway ...</h1>
       <div class="all-buttons">
         <button class="back-to-login">Logout</button>
@@ -101,7 +101,7 @@
         <button class="submit-button" type="submit">Book this trip!</button>
       </form>
       <button class="show-estimate">Show estimated cost for this trip.</button>
-      <p class="show-cost"></p>
+      <p tabindex=0 class="show-cost"></p>
       <button class="clear-booking-form">Clear Form</button>
     </section>
   </main>
