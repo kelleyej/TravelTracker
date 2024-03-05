@@ -4,13 +4,109 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>Travel Tracker</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <header tabindex=0 class="quote-header">
+    <h1 class="quote"></h1>
+  </header>
+  <header tabindex=0 class="main-header hidden">
+    <div class="header-text-container hidden">
+      <p class="today-date">TEST</p>
+      <h1 class="welcome-name"></h1>
+    </div>
+    <button class="logout">Logout</button> 
+  </header>
+  <section tabindex=0 class="error-display hidden">Oops! Something is not working.<br></section>
+  <main tabindex=0 class="main-display hidden">
+    <section tabindex=0>
+      <h2>PAST TRIPS</h2>
+      <section class="past-trip"></section>
+    </section>
+    <section tabindex=0>
+      <h2>UPCOMING TRIPS</h2>
+      <p class="upcoming-trip"></p>
+      <section class="current-weather"></section>
+      <section class="timer">
+        <p id="hours">0 :<p>
+        <p id="minutes">0 :</p>
+        <p id="seconds">0</p>
+      </section> 
+    </section>
+    <section tabindex=0 class="pending-trips">
+      <h2>PENDING TRIPS</h2>
+      <p class="pending-trip-para"></p>
+      <section class="post-trips"></section>
+      <button class="book-button">CLICK HERE to book a trip.</button> 
+      <p class="agent-message"></p>
+    </section>
+  </main>
+  <footer tabindex=0 class="hidden">
+    <div>
+      <img class="airplane" src="./images/airplane.png" alt="Airplane following path of dots from a geo tag"/>  
+    </div>
+    <h3></h3>
+    <div class="money-dashboard">
+      <div class="icon-display">
+        <img src="./images/plane-icon.png" alt="Black image of an airplane" class="plane"/>
+        <p>FLIGHT:</p> 
+        <p class="flight-cost"></p>
+      </div>
+    <div class="icon-display">
+      <img src="./images/money-icon.png" alt="Black image of a money sign" class="money"/>
+      <p>TOTAL:</p>
+      <p class="total-cost"></p>
+    </div>
+    <div class="icon-display">
+      <img src="./images/home.png" alt="Black image of the outline of a house" class="home"/> 
+      <p>LODGING:</p>  
+      <p class="lodging-cost"></p>
+    </div>
+  </footer>
+  <main class="login-page">
+    <div class="login-container">
+      <h1 tabindex=0 class="login-header">Login to Your Account</h1>
+      <form class="login-form">
+        <label for="username">Username</label>
+        <input class="enter-username" id="username" type="text" placeholder="Enter Username" required>
+        <label for="password">Password</label>
+        <input class="enter-password" id="password" type="password" placeholder="Enter Password" required> 
+        <button type="submit" class="login-button">Login</button> 
+        <button class="clear-form">Clear Form</button>
+         <p class="login-feedback"></p>
+      </form> 
+    </div>  
+  </main>
+  <main class="book-display hidden">
+    <header tabindex=0 class="home-header">
+      <h1 class="book">Book your next getaway ...</h1>
+      <div class="all-buttons">
+        <button class="back-to-login">Logout</button>
+        <button class="back-to-main">Back to Home</button>
+      </div>
+    </header>
+    <section class="book-trip">
+      <form class="book-trip-form">
+        <label for="date-input" class="date-label">Date:</label> 
+        <input type="date" id="date-input" class="date" min="" required><br> 
+        <label for="duration-input" class="duration-label">Duration:</label>
+        <input placeholder="Enter Number of Days" id="duration-input" type="number" class="duration" min="1" required><br> 
+        <label for="traveler-input" class="travelers-label">Number of Travelers:</label>
+        <input placeholder="Enter Number of Travelers" id="traveler-input" type="number" class="travelers" min="1" required><br>  
+        <label for="destination-input" class="destination-label">Choose a Destination:</label>
+        <select id="destination-input">
+        <!-- select list of destinations will be here. -->
+        </select> 
+        <button class="submit-button" type="submit">Book this trip!</button>
+      </form>
+      <button class="show-estimate">Show estimated cost for this trip.</button>
+      <p tabindex=0 class="show-cost"></p>
+      <button class="clear-booking-form">Clear Form</button>
+    </section>
+  </main>
+  </section>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>

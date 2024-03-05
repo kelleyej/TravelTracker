@@ -1,3 +1,467 @@
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background-image: url('/src/images/balloon.jpg');
+  font-family: "Nunito", sans-serif;
+  background-size: cover; 
+  height: 100vh; 
+  margin: 0; 
+}
+
+.login-page {
+  display: flex; 
+  justify-content: column;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  width: 15%;
+  margin-left: 3%;
+  font-size: 1.6em; 
+}
+
+.today-date {
+  position: absolute; 
+  background-color: rgb(135, 169, 108, .8);
+  border: solid darkolivegreen 2px; 
+  margin-left: 2%; 
+  border-radius: 30px;
+  width: 12%; 
+  height: 3%;
+  padding-top: .3%; 
+}
+
+.login-button {
+  margin-top: 6%; 
+  width: 90%;
+  height: 14%; 
+  border-radius: 30px;
+  text-align: center; 
+  background-color: #87A96B;
+  border: solid darkolivegreen 3px; 
+  opacity: .8; 
+}
+
+.login-header {
+  color: #452c63;
+  margin-top: 0; 
+}
+
+.all-buttons {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  margin-right: 3%;
+  width: 18%;
+  margin-top: 3%;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.login-container {
+  background-color: rgb(216, 191, 216, .7);
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  flex-direction: column; 
+  margin-top: 5%;
+}
+
+.timer {
+  display: flex; 
+  flex-direction: row;
+  width: 58%; 
+  justify-content: space-around; 
+}
+
+#hours, 
+#minutes, 
+#seconds {
+  color: darkolivegreen;
+  font-weight: bold;
+  font-size: 1em; 
+}
+
+.quote-header {
+  display: flex; 
+  flex-direction: column;
+  font-size: 85%;  
+  padding-left: 5%; 
+  padding-right: 5%;
+}
+
+.welcome-name {
+  font-style: italic;
+  margin-bottom: 0; 
+  margin-top: 1%;
+}
+
+.main-header {
+  display: flex; 
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  height: 10vh; 
+  margin-bottom: 0; 
+}
+
+h1 {
+  text-align: center;
+}
+
+.book {
+  width: 100%;
+}
+  
+p {
+  text-align: center; 
+  color: black; 
+  margin-top: 1%;
+}
+
+.quote {
+  text-align: center;
+  font-style: italic; 
+  color: #452c63;
+  margin-top: 1%;
+}
+
+.submit-button, 
+.show-estimate {
+  background-color: antiquewhite;
+  border: none; 
+  border-radius: 20px; 
+}
+
+.show-cost {
+  font-weight: bold; 
+  color: black; 
+}
+
+.show-estimate {
+  margin-top: 3%;
+  margin-bottom: 1%;
+  height: 6%;
+  width: 60%;
+}
+
+.submit-button {
+  height: 15%;
+  margin-top: 6%;
+}
+
+.home-icon,
+.main-icon {
+  width: 45%;
+  height: 45%; 
+}
+
+button {
+  cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
+}
+
+h2 {
+  color: #452c63;
+  margin-bottom: 0; 
+  margin-top: 1.6%;
+}
+
+.star, 
+.fav-star {
+  width: 5%; 
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+label {
+  margin-right: 70%;
+  margin-top: 0;
+}
+
+.date {
+  height: 80px; 
+  font-family: "Nunito", sans-serif;
+}
+
+.date-label, 
+.travelers-label, 
+.destination-label, 
+.duration-label {
+  text-align: left; 
+  width: 100%;
+  font-weight: bold; 
+  margin-top: 2%; 
+}
+
+.date, 
+.duration, 
+.travelers, 
+select {
+  background-color: rgb(135, 169, 108, .8);
+  border: none; 
+  height: 18%;
+}
+
+.book-trip-form {
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 68%;
+}
+
+.login-form {
+  margin-top: 2%;
+  display: flex;
+  align-items: center; 
+  flex-direction: column;
+  width: 60%;
+  height: 60%;
+}
+
+#username, 
+#password, 
+.clear-form {
+  width: 90%;
+  height: 12%; 
+  border-radius: 30px;
+  border: none; 
+  text-align: center; 
+  background-color: rgb(135, 169, 107, .6);
+  margin-top: .5%;
+}
+
+::placeholder {
+  color: black;  
+}
+
+.clear-booking-form {
+  border-radius: 30px;
+  border: none; 
+  text-align: center; 
+  background-color: rgb(135, 169, 107, .6);
+  width: 16%; 
+  height: 5%;
+  margin-top: 36%;
+  border: solid darkolivegreen 2px; 
+  position: fixed; 
+}
+
+.clear-form {
+  margin-top: 5%;
+  width: 40%;
+  border: solid darkolivegreen 2px; 
+}
+
+.airplane {
+  height: 12vh; 
+  margin-bottom: 1%; 
+  margin-left: 10%;
+}
+
+.upcoming-trip {
+  font-style: normal; 
+  font-size: 1em; 
+  width: 85%; 
+  color: black; 
+}
+
+.past-trip {
+  overflow-y: auto;
+}
+
+.past-trip, 
+.post-trips {
+  width: 90%;
+  background-color: antiquewhite;
+  height: 90%; 
+  text-align: left;
+}
+
+.current-weather {
+  width: 90%; 
+}
+
+.display-image {
+  width: 95%;
+  border-radius: 50%;
+  margin-top: 3%; 
+}
+
+.weath-descrip {
+  margin-bottom: 5%;
+  font-size: .9em; 
+}
+
+.image-container, 
+.money-spent {
+  position: fixed; 
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 2%;
+}
+
+.money-spent {
+  width: 8%; 
+}
+
+.header-text-container, 
+.error-display {
+  width: 100%;
+}
+
+main {
+  display: flex; 
+  height: 70vh; 
+  justify-content: space-around; 
+}
+
+section {
+  width: 30%; 
+  text-align: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  border-radius: 5px; 
+  background-color: antiquewhite;
+}
+
+.login-feedback {
+  margin-top: 3%;
+  font-weight: bold; 
+}
+
+.book-button,
+.logout {
+  background-color: #72A0C1;
+  border: none; 
+  border-radius: 30px;
+  width: 78%;
+  height: 8%;
+}
+
+.back-to-main, 
+.back-to-login {
+  background-color: #72A0C1;
+  border: none; 
+  margin-bottom: 8%;
+  border-radius: 30px; 
+  height: 30px; 
+}
+
+.logout {
+  width: 10%;
+  position: absolute; 
+  margin-top: 1%;
+  margin-right: 2%;
+  height: 4%;
+}
+
+.home-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.book-trip {
+  background-color: rgb(216, 191, 216, .7);
+  border-radius: 12px;  
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0; 
+}
+
+.book-display {
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+  align-items: center
+}
+
+.agent-message {
+  width: 78%;
+  font-weight: bold; 
+  font-size: 90%; 
+  margin-bottom: 5%;
+  margin-top: 2%;
+}
+
+.money-dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 48%;
+  height: 80%;
+  font-weight: bold;
+  margin-right: 10%;
+}
+
+.plane, 
+.money, 
+.home {
+  width: 20%;
+  height: 22%;
+  margin-bottom: 5%;
+}
+
+.money {
+  height: 21%; 
+}
+
+.icon-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #bb8fa9;
+  border-radius: 50%;
+  width: 17%; 
+}
+
+p {
+  margin-bottom: 0; 
+  font-size: 85%;
+}
+
+footer {
+  background-color: rgb(216, 191, 216, .8);
+  height: 18%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly
+}
+
+.rating {
+  display: flex;
+  width: 25%;
+  justify-content: space-between;
+  align-self: self-start; 
+}
+
+.star {
+  color: rgb(0, 0, 0, .3) 
+}
+
+.active {
+  color: rgb(69, 44, 99, 100);
+}
+
+.hidden {
+  display: none; 
 }

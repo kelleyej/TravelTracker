@@ -1,100 +1,41 @@
-# Webpack Starter Kit
+# Travel Tracker ✈️
 
-## Clone This Repo
+## Abstract
+Welcome to the Travel Tracker! This application allows a user to login with unique credentials to view a dashboard displaying all past, upcoming, and pending trips for the specific traveler. The user is able to see the current weather forcast for the destination of the upcoming trip as well as view the current travel expenses for the year, including the price of the flight, lodging, and agent's fee. The user can also book future trips and designate the date, duration, number of travelers, and the destination. Happy traveling! 
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+## Contributors 
+[Erin Kelley](https://github.com/kelleyej)
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+## Installation Instructions
+- Clone the local server to your machine: `git clone git@github.com:turingschool-examples/travel-tracker-api.git`
+- Run `cd travel-tracker-api`
+- Run `npm install`
+- Run `npm start`
+- Navigate to this link:
+- Use  `CTRL + C` to stop running the local server when done viewing the application. 
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+![Screenshot 2024-03-05 at 11 27 13 AM](https://github.com/kelleyej/TravelTracker/assets/120286689/5333cc71-c284-4ecf-8d82-bc1a586dd58a)
 
-## Setup
+## Technologies Used
+![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat) ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat) ![Mocha Badge](https://img.shields.io/badge/Mocha-8D6748?logo=mocha&logoColor=fff&style=flat) ![Chai Badge](https://img.shields.io/badge/Chai-A30701?logo=chai&logoColor=fff&style=flat) ![Lighthouse Badge](https://img.shields.io/badge/Lighthouse-F44B21?logo=lighthouse&logoColor=fff&style=flat) ![Visual Studio Code Badge](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?logo=visualstudiocode&logoColor=fff&style=flat) ![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=flat)
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+## Context 
+- This application was completed independently in the 12th week of my software development program. It took approximately 35+ hours to complete the project. 
+- Goals:
+    1. Make network requests to get data, post data, and updated the DOM accordingly. 
+    2. Implement a robust testing suite using TDD. 
+    3. Use object and array prototype methods. 
+    4. Develop a highly accessible application, verified with lighthouse and the WAVE extension. 
+- Wins: 
+    1. Efficiently organized functions in separate files.
+    2. Use of a public API to display real-time weather report. 
+    3. Utilized pull request template and project board issues to stay organized throughout duration of project. 
+    4. Developed testing suites with sad paths.
+    5. Managed error handling with both POST and GET network requests. 
+- Challenges:
+    1. Interpreting provided data set to display dates and trips in a meaningful context. 
+    2. Continued bugs with login page and form.
 
-Then install the library dependencies. Run:
-
-```bash
-npm install
-```
-
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
-
-## Where to Add Your Code
-
-### JavaScript
-
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
-
-**Create all of your feature code files in the `src` directory.**
-
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
-
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
-
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
-### Images
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
-This is a test part 2. 
+## Future Improvements 
+- Utilize SASS for CSS styling. 
+- Incorporate local/session storage to maintain displayed booked trips after logging out.  
