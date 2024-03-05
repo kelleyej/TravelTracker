@@ -44,12 +44,13 @@ const weather = document.querySelector('.current-weather');
 const yearExpense = document.querySelector('h3');
 const errorDisplay = document.querySelector('.error-display');
 const clearLogin = document.querySelector('.clear-form');
+const clearBookingForm = document.querySelector('.clear-booking-form')
 
 // EventListeners
 window.addEventListener('load', function(){
     renderRandomQuote(quotes)
 });
-
+clearBookingForm.addEventListener('click', clearForm)
 logoutButton.addEventListener('click', logOut);
 backToMainButton.addEventListener('click', backToMain);
 lastLogoutButton.addEventListener('click', backToLogin);
@@ -99,7 +100,7 @@ let weatherDisplay;
 let authorizePassword = false;
 let authorizeUsername = false;
 
-// FUNCTIONS
+// Functions
 function renderTravelerData(){
     getData()
     .then(([travelers, trips, destinations]) => {
@@ -324,7 +325,7 @@ function listDestinations(allDestinations){
 function displayPendingTrips(id, allTrips, allDestinations){
     let pendingTrips = findPendingTrips(id, allTrips, allDestinations)
     if(pendingTrips.length === 0){
-        postTripSection.innerHTML = 'You do not have any pending trips currently.'
+        postTripSection.innerHTML = 'You do not currently have any pending trips.'
     } else {
         postTripSection.innerHTML = '';
         pendingTrips.forEach(({travelers, destination, date, duration}) => {
@@ -354,7 +355,7 @@ function disableBookTrip(id, allTrips, allDestinations){
 function displayPendingTripCost(destinationSelection, duration, allDestinations) {
     let cost = calculatePendingTripCost(Number(destinationSelection.value), Number(duration.value), allDestinations)
     if(travelers.value !== '' && duration.value !== ''){
-      showCost.innerText = `This trip is estimated to cost approximately $${cost}.`  
+      showCost.innerText = `This trip is estimated to cost approximately $${cost} per person.`  
     } else {
         showCost.innerText = `Please fill out all fields to estimate total trip cost.`
     };
