@@ -34,8 +34,8 @@ Welcome to the Travel Tracker! This application allows a user to login with uniq
     5. Managed error handling with both POST and GET network requests. 
 - Challenges:
     1. Interpreting provided data set to display dates and trips in a meaningful context. 
-    2. Continued bugs with login page and form. 
+    2. Continued bugs with login page and form.
 
 ## Future Improvements 
 - Utilize SASS for CSS styling. 
-- Incorporate a trip rating system for past trips taken. 
+- Incorporate local/session storage to maintain displayed booked trips after logging out.  
