@@ -275,16 +275,12 @@ select {
   color: black; 
 }
 
-.past-trip {
-  overflow-y: auto;
-}
-
 .past-trip, 
 .post-trips {
   width: 90%;
   background-color: antiquewhite;
   height: 90%; 
-  text-align: left;
+  overflow-y: auto;
 }
 
 .current-weather {
@@ -451,7 +447,6 @@ footer {
   display: flex;
   width: 25%;
   justify-content: space-between;
-  align-self: self-start; 
 }
 
 .star {
@@ -460,6 +455,16 @@ footer {
 
 .active {
   color: rgb(69, 44, 99, 100);
+}
+
+.past-trip-img {
+  height: 30%; 
+  margin-top: 2%; 
+}
+
+.pend-trip-img {
+  height: 39%; 
+  margin-top: 2%; 
 }
 
 .hidden {

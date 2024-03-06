@@ -316,13 +316,10 @@ function displayMoneySpent(id, allTrips, allDestinations){
 };
 
 function displayUpcomingTrip(id, allTrips, allDestinations){
-    let upcomingTrip = viewUpcomingTrip(id, allTrips)
-    let locationOfTrip = allDestinations.find(location => {
-        return location.id === upcomingTrip[0].destinationID
-    }) 
-    upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${locationOfTrip.destination} for ${upcomingTrip[0].duration} days!`
+    let upcomingTrip = viewUpcomingTrip(id, allTrips, allDestinations)
+    upcomingTripSection.innerText = `On ${formatDate(upcomingTrip[0].date)}, you will be leaving for ${upcomingTrip[0].destination} for ${upcomingTrip[0].duration} days!`
     currentDate = upcomingTrip[0].date; 
-    weatherDisplay = locationOfTrip.destination
+    weatherDisplay = upcomingTrip[0].destination;
 };
 
 function displayPastTrips(id, allTrips, allDestinations){
@@ -331,13 +328,13 @@ function displayPastTrips(id, allTrips, allDestinations){
             pastTripSection.innerHTML = 'You have not documented any past travel.'
         } else {
             pastTripSection.innerHTML = '';
-        trips.forEach(({date, destination, duration, travelers}) => {
+        trips.forEach(({date, destination, duration, travelers, image, alt}) => {
             if(travelers === 1){
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><img class="past-trip-img" src="${image}" alt="${alt}"><br>`
             } else if(travelers === 2) {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><img class="past-trip-img" src="${image}" alt="${alt}"><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><img class="past-trip-img" src="${image}" alt="${alt}"><br>`
             }    
         });
     };
@@ -393,13 +390,13 @@ function displayPendingTrips(id, allTrips, allDestinations){
         postTripSection.innerHTML = 'You do not currently have any pending trips.'
     } else {
         postTripSection.innerHTML = '';
-        pendingTrips.forEach(({travelers, destination, date, duration}) => {
+        pendingTrips.forEach(({travelers, destination, date, duration, image, alt}) => {
             if(travelers === 1){
-                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${destination} on ${formatDate(date)} for ${duration} day(s).<br><br>`
+                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${destination} on ${formatDate(date)} for ${duration} day(s).<img class="pend-trip-img" src="${image}" alt="${alt}"><br>`
             } else if(travelers === 2) {
-                postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other traveler for ${duration} day(s).<br><br>`
+                postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other traveler for ${duration} day(s).<img class="pend-trip-img" src="${image}" alt="${alt}"><br>`
             } else {
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other travelers for ${duration} day(s).<br><br>`
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other travelers for ${duration} day(s).<img class="pend-trip-img" src="${image}" alt="${alt}"><br>`
             }    
         });
     };
