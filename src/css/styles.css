@@ -275,15 +275,12 @@ select {
   color: black; 
 }
 
-.past-trip {
-  overflow-y: auto;
-}
-
 .past-trip, 
 .post-trips {
   width: 90%;
   background-color: antiquewhite;
   height: 90%; 
+  overflow-y: auto;
 }
 
 .current-weather {

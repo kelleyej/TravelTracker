@@ -17,15 +17,17 @@ function viewPastTrips(id, allTrips, allDestinations) {
     return pastTrips;
 };
 
-function viewUpcomingTrip(id, allTrips){
+function viewUpcomingTrip(id, allTrips, allDestinations){
     let allPastTrips = allTrips.filter(trip => {
         return trip.userID === id && trip.status === "approved"; 
     }).sort((a, b) => new Date(a.date) - new Date(b.date))
-    let pastTripDestination = allPastTrips.map(destination => {
-        return destination = {
-            destinationID: destination.destinationID,
-            date: destination.date, 
-            duration: destination.duration
+    let pastTripDestination = allPastTrips.map(trip => {
+        return trip = {
+            destination: allDestinations.find(place => place.id === trip.destinationID).destination, 
+            image: allDestinations.find(place => place.id === trip.destinationID).image, 
+            alt: allDestinations.find(place => place.id === trip.destinationID).alt,
+            date: trip.date, 
+            duration: trip.duration
         };
     });
 

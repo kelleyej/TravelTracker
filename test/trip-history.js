@@ -48,11 +48,13 @@ describe('trip-history.js', function() {
   
   describe('find upcoming trip', function() {
     it('should find an upcoming trip for a single traveler', function() {
-      const upcomingTrip = viewUpcomingTrip(4, trips)
-      const upcomingTrip2 = viewUpcomingTrip(7, trips)
+      const upcomingTrip = viewUpcomingTrip(4, trips, destinations)
+      const upcomingTrip2 = viewUpcomingTrip(7, trips, destinations)
 
       expect(upcomingTrip).to.deep.equal([{
-        destinationID: 2, 
+        destination: "Stockholm, Sweden",
+        image: "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        alt: "city with boats on the water during the day time",
         date: "2022/09/24", 
         duration: 10
       }]);
