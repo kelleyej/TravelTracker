@@ -457,13 +457,9 @@ footer {
   color: rgb(69, 44, 99, 100);
 }
 
-.past-trip-img {
-  height: 30%; 
-  margin-top: 2%; 
-}
-
+.past-trip-img, 
 .pend-trip-img {
-  height: 39%; 
+  height: 30%; 
   margin-top: 2%; 
 }
 
