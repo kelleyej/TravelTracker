@@ -14,7 +14,7 @@ Welcome to the Travel Tracker! This application allows a user to login with uniq
 - Navigate to this link: [Travel Tracker](https://kelleyej.github.io/TravelTracker/)
 - Use  `CTRL + C` to stop running the local server when done viewing the application. 
 
-![Screenshot 2024-03-05 at 11 27 13 AM](https://github.com/kelleyej/TravelTracker/assets/120286689/5333cc71-c284-4ecf-8d82-bc1a586dd58a)
+![Screenshot 2024-03-05 at 5 56 39 PM](https://github.com/kelleyej/TravelTracker/assets/120286689/ffe81fae-6d80-4850-b5ea-ed6e0c9364a6)
 
 ## Technologies Used
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat) ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat) ![Mocha Badge](https://img.shields.io/badge/Mocha-8D6748?logo=mocha&logoColor=fff&style=flat) ![Chai Badge](https://img.shields.io/badge/Chai-A30701?logo=chai&logoColor=fff&style=flat) ![Lighthouse Badge](https://img.shields.io/badge/Lighthouse-F44B21?logo=lighthouse&logoColor=fff&style=flat) ![Visual Studio Code Badge](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?logo=visualstudiocode&logoColor=fff&style=flat) ![Webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=000&style=flat)
