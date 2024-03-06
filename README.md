@@ -1,7 +1,7 @@
 # Travel Tracker ✈️
 
 ## Abstract
-Welcome to the Travel Tracker! This application allows a user to login with unique credentials to view a dashboard displaying all past, upcoming, and pending trips for the specific traveler. The user is able to see the current weather forcast for the destination of the upcoming trip as well as view the current travel expenses for the year, including the price of the flight, lodging, and agent's fee. The user can also book future trips and designate the date, duration, number of travelers, and the destination. Happy traveling! 
+Welcome to the Travel Tracker! This application allows a user to login with unique credentials to view a dashboard displaying all past, upcoming, and pending trips for the specific traveler. The user is able to see the current weather forcast for the destination of the upcoming trip as well as view the current travel expenses for the year, including the price of the flight, lodging, and agent's fee. The user can also book future trips and designate the date, duration, number of travelers, and the destination. Lastly, the user can rate past trips using a four-star rating system. Happy traveling! 
 
 ## Contributors 
 [Erin Kelley](https://github.com/kelleyej)
