@@ -331,13 +331,13 @@ function displayPastTrips(id, allTrips, allDestinations){
             pastTripSection.innerHTML = 'You have not documented any past travel.'
         } else {
             pastTripSection.innerHTML = '';
-        trips.forEach(({date, destination, duration, travelers}) => {
+        trips.forEach(({date, destination, duration, travelers, image, alt}) => {
             if(travelers === 1){
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you went on a solo adventure to ${destination} for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><img class="past-trip-img" src="${image}" alt="${alt}"><br>`
             } else if(travelers === 2) {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other traveler for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><img class="past-trip-img" src="${image}" alt="${alt}"><br>`
             } else {
-                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><br>`
+                pastTripSection.innerHTML += `On ${formatDate(date)}, you visited ${destination} with ${travelers - 1} other travelers for ${duration} days.<div tabindex=0 aria-label="star rating out of 4 stars" class="rating"><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p><p tabindex=0 aria-label="inactive star" class="star">★<p></div><img class="past-trip-img" src="${image}" alt="${alt}"><br>`
             }    
         });
     };

@@ -284,7 +284,6 @@ select {
   width: 90%;
   background-color: antiquewhite;
   height: 90%; 
-  text-align: left;
 }
 
 .current-weather {
@@ -451,7 +450,6 @@ footer {
   display: flex;
   width: 25%;
   justify-content: space-between;
-  align-self: self-start; 
 }
 
 .star {
@@ -460,6 +458,11 @@ footer {
 
 .active {
   color: rgb(69, 44, 99, 100);
+}
+
+.past-trip-img {
+  height: 30%; 
+  margin-top: 2%; 
 }
 
 .hidden {

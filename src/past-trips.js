@@ -7,6 +7,8 @@ function viewPastTrips(id, allTrips, allDestinations) {
         let pastTrips = allPastTrips.map(trip => {
         return trip = {
             destination: allDestinations.find(place => place.id === trip.destinationID).destination, 
+            image: allDestinations.find(place => place.id === trip.destinationID).image, 
+            alt: allDestinations.find(place => place.id === trip.destinationID).alt,
             travelers: trip.travelers, 
             date: trip.date, 
             duration: trip.duration

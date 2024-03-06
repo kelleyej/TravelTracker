@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turingschool-examples/webpack-starter-kit.git"
+    "url": "git+https://github.com/kelleyej/TravelTracker.git"
   },
+  "homepage": "http://kelleyej.github.io/TravelTracker",
   "author": "Turing School of Software and Design",
   "license": "MIT",
   "devDependencies": {
@@ -14,6 +15,7 @@
     "css-loader": "^5.2.7",
     "eslint": "^7.27.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^1.1.0",
     "mocha": "^10.2.0",
     "mochapack": "^2.1.2",
     "node-sass": "^7.0.3",
@@ -25,6 +27,8 @@
     "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",

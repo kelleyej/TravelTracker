@@ -14,12 +14,16 @@ describe('trip-history.js', function() {
       expect(pastTrips).to.deep.equal([{
         "date": "2022/02/25",
         "destination": "Jakarta, Indonesia",
+        "image": "https://images.unsplash.com/photo-1555333145-4acf190da336?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "lit up city at night",
         "travelers": 2,
         "duration": 10
         },
         {
         "date": "2022/04/30",
         "destination": "Sydney, Austrailia",
+        "image": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "opera house and city buildings on the water with boats",
         "travelers": 3,
         "duration": 18
         }]) ;
@@ -27,6 +31,8 @@ describe('trip-history.js', function() {
       expect(pastTrips2).to.deep.equal([{
         "date": "2022/02/07",
         "destination": "Madrid, Spain",
+        "image": "https://images.unsplash.com/photo-1543785734-4b6e564642f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        "alt": "city with clear skys and a road in the day time",
         "travelers": 6,
         "duration": 4
         }
