@@ -392,11 +392,11 @@ function displayPendingTrips(id, allTrips, allDestinations){
         postTripSection.innerHTML = '';
         pendingTrips.forEach(({travelers, destination, date, duration, image, alt}) => {
             if(travelers === 1){
-                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${destination} on ${formatDate(date)} for ${duration} day(s).<img class="past-trip-img" src="${image} alt="${alt}"><br>`
+                postTripSection.innerHTML += `Currently waiting approval for a solo trip to ${destination} on ${formatDate(date)} for ${duration} day(s).<img class="pend-trip-img" src="${image}" alt="${alt}"><br>`
             } else if(travelers === 2) {
-                postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other traveler for ${duration} day(s).<img class="past-trip-img" src="${image} alt="${alt}"><br>`
+                postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other traveler for ${duration} day(s).<img class="pend-trip-img" src="${image}" alt="${alt}"><br>`
             } else {
-            postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other travelers for ${duration} day(s).<img class="past-trip-img" src="${image} alt="${alt}"><br>`
+            postTripSection.innerHTML += `Currently waiting approval for a trip to ${destination} on ${formatDate(date)} with ${travelers - 1} other travelers for ${duration} day(s).<img class="pend-trip-img" src="${image}" alt="${alt}"><br>`
             }    
         });
     };
