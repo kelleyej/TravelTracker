@@ -106,7 +106,7 @@ let currentDate;
 let weatherDisplay; 
 let authorizePassword = false;
 let authorizeUsername = false;
-let countdownDate = new Date().setHours(new Date().getHours() + 24)
+let countdownDate = new Date().setHours(new Date().getHours() + 24);
 
 // Functions
 function renderTravelerData(){

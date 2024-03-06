@@ -459,7 +459,8 @@ footer {
 
 .past-trip-img, 
 .pend-trip-img {
-  height: 30%; 
+  height: 130px;
+  width: 215px; 
   margin-top: 2%; 
 }
 
