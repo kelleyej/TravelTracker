@@ -12,6 +12,7 @@ Welcome to the Travel Tracker! This application allows a user to login with uniq
 - Run `npm install`
 - Run `npm start`
 - Navigate to this link: [Travel Tracker](https://kelleyej.github.io/TravelTracker/)
+- Login with username: **traveler1** (you can login with any number between traveler1 - traveler50) and password: **travel**. 
 - Use  `CTRL + C` to stop running the local server when done viewing the application. 
 
 ![Screenshot 2024-03-05 at 5 56 39 PM](https://github.com/kelleyej/TravelTracker/assets/120286689/ffe81fae-6d80-4850-b5ea-ed6e0c9364a6)
